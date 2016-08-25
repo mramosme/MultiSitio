@@ -10,11 +10,6 @@ import com.fyg.MultiSitioDTO.Contacto;
  * @created 21-jul-2016 12:36:58 p.m.
  */
 public class Negocio  extends ObjetoValor{
-
-	
-	Contacto contact = new Contacto();
-	
-	
 	/**
 	 * 
 	 */
