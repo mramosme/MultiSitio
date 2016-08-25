@@ -1,0 +1,203 @@
+2016-08-17 17:20:07,759 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:20:07,760 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:20:07,760 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:20:07,760 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:20:09,164 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Created connection 1273765644. 
+2016-08-17 17:20:09,167 DEBUG java.sql.Connection --> ooo Connection Opened 
+2016-08-17 17:20:09,286 DEBUG java.sql.PreparedStatement --> ==>  Executing: INSERT INTO contacto(id,nombre,calle,colonia,telefono,correo) VALUES(?,?,?,?,?,?)  
+2016-08-17 17:20:09,300 DEBUG java.sql.PreparedStatement --> ==> Parameters: 0(Integer), HIOSHIRU(String), CAMINO VERDE(String), SANTA FE(String), 5567893345(String), citralime@fygsolutions.com(String) 
+2016-08-17 17:20:09,642 INFO  com.fyg.MultiSitioDAO.RegistraMicroSitio --> 9a971b8fc0a8017a536aaa8d32f2f405 :: RegistraMicroSitio :: CORRECTISISIMO 
+2016-08-17 17:20:09,643 DEBUG java.sql.Connection --> xxx Connection Closed 
+2016-08-17 17:20:09,643 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Returned connection 1273765644 to pool. 
+2016-08-17 17:22:20,153 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:22:20,153 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:22:20,154 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:22:20,154 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:22:21,433 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Created connection 1273765644. 
+2016-08-17 17:22:21,436 DEBUG java.sql.Connection --> ooo Connection Opened 
+2016-08-17 17:22:21,612 DEBUG java.sql.PreparedStatement --> ==>  Executing: INSERT INTO contacto(id,nombre,calle,colonia,telefono,correo) VALUES(?,?,?,?,?,?)  
+2016-08-17 17:22:21,612 DEBUG java.sql.PreparedStatement --> ==> Parameters: 0(Integer), HIOSHIRU(String), CAMINO VERDE(String), SANTA FE(String), 5567893345(String), citralime@fygsolutions.com(String) 
+2016-08-17 17:22:22,013 INFO  com.fyg.MultiSitioDAO.RegistraMicroSitio --> 9a99208dc0a8017a536aaa8dd1ae36dc :: RegistraMicroSitio :: CORRECTISISIMO 
+2016-08-17 17:22:22,014 DEBUG java.sql.Connection --> xxx Connection Closed 
+2016-08-17 17:22:22,014 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Returned connection 1273765644 to pool. 
+2016-08-17 17:26:04,561 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:26:04,561 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:26:04,562 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:26:04,562 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:26:05,478 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Created connection 1273765644. 
+2016-08-17 17:26:05,481 DEBUG java.sql.Connection --> ooo Connection Opened 
+2016-08-17 17:26:05,608 DEBUG java.sql.PreparedStatement --> ==>  Executing: INSERT INTO contacto(id,nombre,calle,colonia,telefono,correo) VALUES(?,?,?,?,?,?)  
+2016-08-17 17:26:05,608 DEBUG java.sql.PreparedStatement --> ==> Parameters: 0(Integer), HIOSHIRU(String), CAMINO VERDE(String), SANTA FE(String), 5567893345(String), citralime@fygsolutions.com(String) 
+2016-08-17 17:26:05,815 INFO  com.fyg.MultiSitioDAO.RegistraMicroSitio --> 9a9c8ae6c0a8017a536aaa8dd1e9e6a3 :: RegistraMicroSitio :: CORRECTISISIMO 
+2016-08-17 17:26:05,816 DEBUG java.sql.Connection --> xxx Connection Closed 
+2016-08-17 17:26:05,816 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Returned connection 1273765644 to pool. 
+2016-08-17 17:28:47,616 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:28:47,617 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:28:47,618 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:28:47,618 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:28:48,525 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Created connection 1273765644. 
+2016-08-17 17:28:48,528 DEBUG java.sql.Connection --> ooo Connection Opened 
+2016-08-17 17:28:48,722 DEBUG java.sql.PreparedStatement --> ==>  Executing: INSERT INTO contacto(id,nombre,calle,colonia,telefono,correo) VALUES(?,?,?,?,?,?)  
+2016-08-17 17:28:48,722 DEBUG java.sql.PreparedStatement --> ==> Parameters: 0(Integer), HIOSHIRU(String), CAMINO VERDE(String), SANTA FE(String), 5567893345(String), citralime@fygsolutions.com(String) 
+2016-08-17 17:28:49,030 INFO  com.fyg.MultiSitioDAO.RegistraMicroSitio --> 9a9f0834c0a8017a536aaa8dba1b65ce :: RegistraMicroSitio :: CORRECTISISIMO 
+2016-08-17 17:28:49,031 DEBUG java.sql.Connection --> xxx Connection Closed 
+2016-08-17 17:28:49,031 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Returned connection 1273765644 to pool. 
+2016-08-17 17:29:23,659 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:29:23,660 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:29:23,660 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:29:23,660 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:29:24,794 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Created connection 1273765644. 
+2016-08-17 17:29:24,797 DEBUG java.sql.Connection --> ooo Connection Opened 
+2016-08-17 17:29:24,919 DEBUG java.sql.PreparedStatement --> ==>  Executing: INSERT INTO contacto(id,nombre,calle,colonia,telefono,correo) VALUES(?,?,?,?,?,?)  
+2016-08-17 17:29:24,919 DEBUG java.sql.PreparedStatement --> ==> Parameters: 0(Integer), null, CAMINO VERDE(String), SANTA FE(String), 5567893345(String), citralime@fygsolutions.com(String) 
+2016-08-17 17:29:25,193 ERROR com.fyg.MultiSitioDAO.RegistraMicroSitio --> 9a9f9550c0a8017a6ee52dcdaec45cc3 :: RegistraMicroSitio :: Error:  :: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'nombre' cannot be null :: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'nombre' cannot be null
+### The error may involve com.fyg.MultiSitio.resources.OperacionesMultiSitioDAO.insertaRegistroContacto-Inline
+### The error occurred while setting parameters
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'nombre' cannot be null :: 
+	org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:8)
+	org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:100)
+	org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:87)
+	com.fyg.MultiSitioDAO.RegistraMicroSitio.registraContacto(RegistraMicroSitio.java:302)
+	com.fyg.MultiSitioDAOTest.MultiSitioDAOTest.testRegistraContacto(MultiSitioDAOTest.java:33)
+	sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	java.lang.reflect.Method.invoke(Unknown Source)
+	org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)
+	org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192) 
+2016-08-17 17:29:25,194 DEBUG java.sql.Connection --> xxx Connection Closed 
+2016-08-17 17:29:25,194 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Returned connection 1273765644 to pool. 
+2016-08-17 17:30:09,184 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:30:09,185 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:30:09,185 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:30:09,185 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:30:10,230 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Created connection 1273765644. 
+2016-08-17 17:30:10,233 DEBUG java.sql.Connection --> ooo Connection Opened 
+2016-08-17 17:30:10,372 DEBUG java.sql.PreparedStatement --> ==>  Executing: INSERT INTO contacto(id,nombre,calle,colonia,telefono,correo) VALUES(?,?,?,?,?,?)  
+2016-08-17 17:30:10,372 DEBUG java.sql.PreparedStatement --> ==> Parameters: 0(Integer), null, CAMINO VERDE(String), SANTA FE(String), 5567893345(String), citralime@fygsolutions.com(String) 
+2016-08-17 17:30:10,576 ERROR com.fyg.MultiSitioDAO.RegistraMicroSitio --> 9aa046d1c0a8017a6ee52dcd7848d675 :: RegistraMicroSitio :: Error:  :: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'nombre' cannot be null :: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'nombre' cannot be null
+### The error may involve com.fyg.MultiSitio.resources.OperacionesMultiSitioDAO.insertaRegistroContacto-Inline
+### The error occurred while setting parameters
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Column 'nombre' cannot be null :: 
+	org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:8)
+	org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:100)
+	org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:87)
+	com.fyg.MultiSitioDAO.RegistraMicroSitio.registraContacto(RegistraMicroSitio.java:302)
+	com.fyg.MultiSitioDAOTest.MultiSitioDAOTest.testRegistraContacto(MultiSitioDAOTest.java:33)
+	sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	java.lang.reflect.Method.invoke(Unknown Source)
+	org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)
+	org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192) 
+2016-08-17 17:30:10,577 DEBUG java.sql.Connection --> xxx Connection Closed 
+2016-08-17 17:30:10,578 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Returned connection 1273765644 to pool. 
+2016-08-17 17:32:50,960 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:32:50,961 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:32:50,961 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:32:50,961 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:32:52,084 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Created connection 1273765644. 
+2016-08-17 17:32:52,086 DEBUG java.sql.Connection --> ooo Connection Opened 
+2016-08-17 17:32:52,258 DEBUG java.sql.PreparedStatement --> ==>  Executing: INSERT INTO contacto(id,nombre,calle,colonia,telefono,correo) VALUES(?,?,?,?,?,?)  
+2016-08-17 17:32:52,258 DEBUG java.sql.PreparedStatement --> ==> Parameters: 0(Integer), HIOSHIRU(String), CAMINO VERDE(String), SANTA FE(String), 5567893345(String), citralime@fygsolutions.com(String) 
+2016-08-17 17:32:52,540 INFO  com.fyg.MultiSitioDAO.RegistraMicroSitio --> 9aa2bf74c0a8017a536aaa8ddf9d6443 :: RegistraMicroSitio :: CORRECTISISIMO 
+2016-08-17 17:32:52,541 DEBUG java.sql.Connection --> xxx Connection Closed 
+2016-08-17 17:32:52,541 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Returned connection 1273765644 to pool. 
+2016-08-17 17:33:30,431 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:33:30,431 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:33:30,432 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:33:30,432 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:33:31,441 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Created connection 1273765644. 
+2016-08-17 17:33:31,444 DEBUG java.sql.Connection --> ooo Connection Opened 
+2016-08-17 17:33:31,598 DEBUG java.sql.PreparedStatement --> ==>  Executing: INSERT INTO contacto(id,nombre,calle,colonia,telefono,correo) VALUES(?,?,?,?,?,?)  
+2016-08-17 17:33:31,598 DEBUG java.sql.PreparedStatement --> ==> Parameters: 0(Integer), halbean(String), CAMINO VERDE(String), SANTA FE(String), 5567893345(String), citralime@fygsolutions.com(String) 
+2016-08-17 17:33:31,823 INFO  com.fyg.MultiSitioDAO.RegistraMicroSitio --> 9aa35918c0a8017a536aaa8d6ac11bdd :: RegistraMicroSitio :: CORRECTISISIMO 
+2016-08-17 17:33:31,824 DEBUG java.sql.Connection --> xxx Connection Closed 
+2016-08-17 17:33:31,824 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Returned connection 1273765644 to pool. 
+2016-08-17 17:36:20,131 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:36:20,132 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:36:20,132 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:36:20,132 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:36:21,393 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Created connection 1447689627. 
+2016-08-17 17:36:21,395 DEBUG java.sql.Connection --> ooo Connection Opened 
+2016-08-17 17:36:21,534 DEBUG java.sql.PreparedStatement --> ==>  Executing: INSERT INTO contacto(id,nombre,calle,colonia,telefono,correo) VALUES(?,?,?,?,?,?)  
+2016-08-17 17:36:21,534 DEBUG java.sql.PreparedStatement --> ==> Parameters: 0(Integer), halbean(String), CAMINO VERDE(String), SANTA FE(String), 5567893345(String), citralime@fygsolutions.com(String) 
+2016-08-17 17:36:21,813 INFO  com.fyg.MultiSitioDAO.RegistraMicroSitio --> 9aa5f102c0a8017a01f5753909ab2fe3 :: RegistraMicroSitio :: CORRECTISISIMO 
+2016-08-17 17:36:21,813 DEBUG java.sql.Connection --> xxx Connection Closed 
+2016-08-17 17:36:21,814 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Returned connection 1447689627 to pool. 
+2016-08-17 17:37:41,249 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:37:41,250 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:37:41,250 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:37:41,250 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:37:42,370 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Created connection 1273765644. 
+2016-08-17 17:37:42,373 DEBUG java.sql.Connection --> ooo Connection Opened 
+2016-08-17 17:37:42,561 DEBUG java.sql.PreparedStatement --> ==>  Executing: INSERT INTO contacto(id,nombre,calle,colonia,telefono,correo) VALUES(?,?,?,?,?,?)  
+2016-08-17 17:37:42,561 DEBUG java.sql.PreparedStatement --> ==> Parameters: 0(Integer), halbean(String), CAMINO VERDE(String), SANTA FE(String), 5567893345(String), citralime@fygsolutions.com(String) 
+2016-08-17 17:37:42,855 INFO  com.fyg.MultiSitioDAO.RegistraMicroSitio --> 9aa72d57c0a8017a536aaa8d9bdf48b5 :: RegistraMicroSitio :: CORRECTISISIMO 
+2016-08-17 17:37:42,856 DEBUG java.sql.Connection --> xxx Connection Closed 
+2016-08-17 17:37:42,856 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Returned connection 1273765644 to pool. 
+2016-08-17 17:39:34,298 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:39:34,298 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:39:34,299 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:39:34,299 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:39:35,205 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Created connection 1273765644. 
+2016-08-17 17:39:35,208 DEBUG java.sql.Connection --> ooo Connection Opened 
+2016-08-17 17:39:35,366 DEBUG java.sql.PreparedStatement --> ==>  Executing: INSERT INTO contacto(id,nombre,calle,colonia,telefono,correo) VALUES(?,?,?,?,?,?)  
+2016-08-17 17:39:35,367 DEBUG java.sql.PreparedStatement --> ==> Parameters: 0(Integer), halbean(String), CAMINO VERDE(String), SANTA FE(String), 5567893345(String), citralime@fygsolutions.com(String) 
+2016-08-17 17:39:35,661 INFO  com.fyg.MultiSitioDAO.RegistraMicroSitio --> 9aa8e612c0a8017a536aaa8dd763c528 :: RegistraMicroSitio :: CORRECTISISIMO 
+2016-08-17 17:39:35,662 DEBUG java.sql.Connection --> xxx Connection Closed 
+2016-08-17 17:39:35,662 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Returned connection 1273765644 to pool. 
+2016-08-17 17:40:18,966 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:40:18,967 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:40:18,967 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:40:18,967 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:40:20,093 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Created connection 1273765644. 
+2016-08-17 17:40:20,096 DEBUG java.sql.Connection --> ooo Connection Opened 
+2016-08-17 17:40:20,263 DEBUG java.sql.PreparedStatement --> ==>  Executing: INSERT INTO contacto(id,nombre,calle,colonia,telefono,correo) VALUES(?,?,?,?,?,?)  
+2016-08-17 17:40:20,263 DEBUG java.sql.PreparedStatement --> ==> Parameters: 0(Integer), halbean(String), CAMINO VERDE(String), SANTA FE(String), 5567893345(String), citralime@fygsolutions.com(String) 
+2016-08-17 17:41:49,734 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:41:49,735 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:41:49,735 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:41:49,735 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> PooledDataSource forcefully closed/removed all connections. 
+2016-08-17 17:41:50,653 DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource --> Created connection 1273765644. 
+2016-08-17 17:41:50,656 DEBUG java.sql.Connection --> ooo Connection Opened 
+2016-08-17 17:41:50,814 DEBUG java.sql.PreparedStatement --> ==>  Executing: INSERT INTO contacto(id,nombre,calle,colonia,telefono,correo) VALUES(?,?,?,?,?,?)  
+2016-08-17 17:41:50,815 DEBUG java.sql.PreparedStatement --> ==> Parameters: 0(Integer), shanukk(String), CAMINO VERDE(String), SANTA FE(String), 5567893345(String), citralime@fygsolutions.com(String) 
