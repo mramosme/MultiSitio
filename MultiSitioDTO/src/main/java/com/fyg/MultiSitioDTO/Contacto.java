@@ -20,11 +20,30 @@ public class Contacto extends ObjetoValor {
 	 *        
 	 */
 	private int id;
+	
+	/**
+	 * Dato que almacena la calle del contacto
+	 */
 	private String calle;
+	/**
+	 * Dato que almacena una colonia
+	 */
 	private String colonia;
+	/**
+	 * Dato que almacena el telefono del contacto
+	 */
 	private String telefono;
+	/**
+	 * Dato que almacena el correo del contacto
+	 */
 	private String correo;
+	/**
+	 * Dato que almacena el nombre del contacto
+	 */
 	private String nombre;
+	/**
+	 * Dato que almacena el estatus
+	 */
 	private int estatus;
 	
 	public int getId() {
