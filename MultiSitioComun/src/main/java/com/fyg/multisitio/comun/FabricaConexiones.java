@@ -109,7 +109,7 @@ public final class FabricaConexiones {
 			LogHandler.error(null, FabricaConexiones.class, "Error : " + e.getMessage(), e );
 			LogHandler.error(null, FabricaConexiones.class, "Error : " + e.getCause(), e );
 			LogHandler.error(null, FabricaConexiones.class, "Error : " + e.getClass().getName(), e );
-			LogHandler.error(null, FabricaConexiones.class, "Existio un erorr en la Fabrica de Conexiones Tx", e);
+			LogHandler.error(null, FabricaConexiones.class, "Existio un error en la Fabrica de Conexiones Tx", e);
  		}
 		fACTORY_TX = sqlMapperTx;
 		}
@@ -127,7 +127,7 @@ public final class FabricaConexiones {
 			builderNTx 		= new SqlSessionFactoryBuilder( );
 			sqlMapperNTx 	= builderNTx.build( readerNTx );
 		} catch ( Exception e ) {
-			LogHandler.error(null, FabricaConexiones.class, "Exsitio un erorr en la Fabrica de Conexiones NTx", e);
+			LogHandler.error(null, FabricaConexiones.class, "Existio un error en la Fabrica de Conexiones NTx", e);
  		}
 		fACTORY_NTX = sqlMapperNTx;
 		}
@@ -145,7 +145,7 @@ public final class FabricaConexiones {
 			builderBatch 	= new SqlSessionFactoryBuilder( );
 			sqlMapperBatch 	= builderBatch.build( readerBatch );
 		} catch ( Exception e ) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un erorr en la Fabrica de Conexiones Batch", e);
+			LogHandler.error(null, FabricaConexiones.class, "Existio un error en la Fabrica de Conexiones Batch", e);
  		}
 		fACTORY_BATCH = sqlMapperBatch;
 		}
@@ -164,7 +164,7 @@ public final class FabricaConexiones {
 			sqlMapperOrclNTx 	= builderOrclNTx.build( readerOrclNTx );
 		} catch ( Exception e ) {
 			LogHandler.error(null, FabricaConexiones.class,
-					"Existio un erorr en la Fabrica de Conexiones Orcl NTx", e);
+					"Existio un error en la Fabrica de Conexiones Orcl NTx", e);
  		}
 		fACTORY_ORCL_NTX = sqlMapperOrclNTx;
 		}
@@ -183,7 +183,7 @@ public final class FabricaConexiones {
 			sqlMapperOrclTx 	= builderOrclTx.build( readerOrclTx );
 		} catch ( Exception e ) {
 			LogHandler.error(null, FabricaConexiones.class,
-					"Existio un erorr en la Fabrica de Conexiones Orcl Tx", e);
+					"Existio un error en la Fabrica de Conexiones Orcl Tx", e);
  		}
 		fACTORY_ORCL_TX = sqlMapperOrclTx;
 		}
@@ -202,7 +202,7 @@ public final class FabricaConexiones {
 			sqlMapperOrclNTx 	= builderOrclNTx.build( readerOrclNTx );
 		} catch ( Exception e ) {
 			LogHandler.error(null, FabricaConexiones.class,
-					"Existio un erorr en la Fabrica de Conexiones Orcl Tx", e);
+					"Existio un error en la Fabrica de Conexiones Orcl Tx", e);
 			}
 		fACTORY_ORCL_CU_TX = sqlMapperOrclNTx;
 		}
@@ -220,7 +220,7 @@ public final class FabricaConexiones {
 		builderOrclNTx 		= new SqlSessionFactoryBuilder( );
 		sqlMapperOrclNTx 	= builderOrclNTx.build( readerOrclNTx );
 	} catch ( Exception e ) {
-		LogHandler.error(null, FabricaConexiones.class, "Existio un erorr en la Fabrica de Conexiones Orcl Tx", e);
+		LogHandler.error(null, FabricaConexiones.class, "Existio un error en la Fabrica de Conexiones Orcl Tx", e);
 		}
 		fACTORY_ORCL_CU_NTX = sqlMapperOrclNTx;
 	}
@@ -239,7 +239,7 @@ public final class FabricaConexiones {
 			sqlMapperBatch 	= builderBatch.build( readerBatch );
 		} catch ( Exception e ) {
 			LogHandler.error(null, FabricaConexiones.class,
-					"Existio un erorr en la Fabrica de Conexiones SQL Server Batch", e);
+					"Existio un error en la Fabrica de Conexiones SQL Server Batch", e);
 			}
 		fACTORY_SQL_BATCH = sqlMapperBatch;
 		}
@@ -257,7 +257,7 @@ public final class FabricaConexiones {
 			sqlMapperBatch 	= builderBatch.build( readerBatch );
 		} catch ( Exception e ) {
 			LogHandler.error(null, FabricaConexiones.class,
-					"Existio un erorr en la Fabrica de Conexiones SQL Server Batch", e);
+					"Existio un error en la Fabrica de Conexiones SQL Server Batch", e);
 			}
 		fACTORY_SYBASE_IQ = sqlMapperBatch;
 		}
@@ -280,7 +280,7 @@ public final class FabricaConexiones {
 				throw new Exception(  );
 			}
 		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un erorr al obtenerSesionTx", e);
+			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSesionTx", e);
 			throw new SQLException( "Sin conexion TX a la base de datos" );
 		}
 		return regreso;
@@ -305,7 +305,7 @@ public final class FabricaConexiones {
 				throw new Exception(  );
 			}
 		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Exsitio un erorr al obtenerSesionNTx", e);
+			LogHandler.error(null, FabricaConexiones.class, "Exsitio un error al obtenerSesionNTx", e);
 			throw new SQLException( "Sin conexion NTX a la base de datos" );
 		}
 		return regreso;
@@ -329,7 +329,7 @@ public final class FabricaConexiones {
 				throw new Exception(  );
 			}
 		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Exsitio un erorr al obtenerSesionBatch", e);
+			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSesionBatch", e);
 			throw new SQLException( "Sin conexion BATCH a la base de datos" );
 		}
 		return regreso;
@@ -353,7 +353,7 @@ public final class FabricaConexiones {
 				throw new Exception(  );
 			}
 		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un erorr al obtenerSesionOrclNTx", e);
+			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSesionOrclNTx", e);
 			throw new SQLException( "Sin conexion ORACLE NTX a la base de datos" );
 		}
 		return regreso;
@@ -377,7 +377,7 @@ public final class FabricaConexiones {
 				throw new Exception(  );
 			}
 		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un erorr al obtenerSesionOrclTx", e);
+			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSesionOrclTx", e);
 			throw new SQLException( "Sin conexion ORACLE TX a la base de datos" );
 		}
 		return regreso;
@@ -401,7 +401,7 @@ public final class FabricaConexiones {
 				throw new Exception(  );
 			}
 		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un erorr al obtenerSesionOrclCUTx", e);
+			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSesionOrclCUTx", e);
 			throw new SQLException( "Sin conexion ORACLE TX a la base de datos" );
 		}
 		return regreso;
@@ -425,7 +425,7 @@ public final class FabricaConexiones {
 				throw new Exception(  );
 			}
 		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un erorr al obtenerSesionOrclCUNTx", e);
+			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSesionOrclCUNTx", e);
 			throw new SQLException( "Sin conexion ORACLE TX a la base de datos" );
 		}
 		return regreso;
@@ -449,7 +449,7 @@ public final class FabricaConexiones {
 				throw new Exception(  );
 			}
 		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un erorr al obtenerSesionSqlBatch", e);
+			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSesionSqlBatch", e);
 			throw new SQLException( "Sin conexion SQL Server a la base de datos" );
 		}
 		return regreso;
@@ -473,7 +473,7 @@ public final class FabricaConexiones {
 				throw new Exception(  );
 			}
 		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un erorr al obtenerSessionSybaseIQ", e);
+			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSessionSybaseIQ", e);
 			throw new SQLException( "Sin conexion Sybase IQ a la base de datos" );
 		}
 		return regreso;
