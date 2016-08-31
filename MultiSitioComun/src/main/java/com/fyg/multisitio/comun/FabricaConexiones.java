@@ -102,7 +102,7 @@ public final class FabricaConexiones {
 		SqlSessionFactoryBuilder 	builderTx;
 		SqlSessionFactory 			sqlMapperTx = null;
 		try {
-			readerTx 		= Resources.getResourceAsReader( "entidad/ConfigTx.xml" );
+			readerTx 		= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
 			builderTx 		= new SqlSessionFactoryBuilder( );
 			sqlMapperTx 	= builderTx.build( readerTx );
 		} catch ( Exception e ) {
@@ -123,7 +123,7 @@ public final class FabricaConexiones {
 		SqlSessionFactoryBuilder 	builderNTx;
 		SqlSessionFactory 			sqlMapperNTx = null;
 		try {
-			readerNTx 		= Resources.getResourceAsReader( "entidad/ConfigNTx.xml" );
+			readerNTx 		= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
 			builderNTx 		= new SqlSessionFactoryBuilder( );
 			sqlMapperNTx 	= builderNTx.build( readerNTx );
 		} catch ( Exception e ) {
@@ -141,7 +141,7 @@ public final class FabricaConexiones {
 		SqlSessionFactoryBuilder 	builderBatch;
 		SqlSessionFactory 			sqlMapperBatch = null;
 		try {
-			readerBatch 	= Resources.getResourceAsReader( "entidad/ConfigBatch.xml" );
+			readerBatch 	= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
 			builderBatch 	= new SqlSessionFactoryBuilder( );
 			sqlMapperBatch 	= builderBatch.build( readerBatch );
 		} catch ( Exception e ) {
@@ -159,7 +159,7 @@ public final class FabricaConexiones {
 		SqlSessionFactoryBuilder 	builderOrclNTx;
 		SqlSessionFactory 			sqlMapperOrclNTx = null;
 		try {
-			readerOrclNTx 		= Resources.getResourceAsReader( "entidad/ConfigOrclNTx.xml" );
+			readerOrclNTx 		= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
 			builderOrclNTx 		= new SqlSessionFactoryBuilder( );
 			sqlMapperOrclNTx 	= builderOrclNTx.build( readerOrclNTx );
 		} catch ( Exception e ) {
@@ -178,7 +178,7 @@ public final class FabricaConexiones {
 		SqlSessionFactoryBuilder 	builderOrclTx;
 		SqlSessionFactory 			sqlMapperOrclTx = null;
 		try {
-			readerOrclTx 		= Resources.getResourceAsReader( "entidad/ConfigOrclNTx.xml" );
+			readerOrclTx 		= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
 			builderOrclTx 		= new SqlSessionFactoryBuilder( );
 			sqlMapperOrclTx 	= builderOrclTx.build( readerOrclTx );
 		} catch ( Exception e ) {
@@ -197,7 +197,7 @@ public final class FabricaConexiones {
 		SqlSessionFactoryBuilder 	builderOrclNTx;
 		SqlSessionFactory 			sqlMapperOrclNTx = null;
 		try {
-			readerOrclNTx 		= Resources.getResourceAsReader( "entidad/ConfigOrclTx.xml" );
+			readerOrclNTx 		= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
 			builderOrclNTx 		= new SqlSessionFactoryBuilder( );
 			sqlMapperOrclNTx 	= builderOrclNTx.build( readerOrclNTx );
 		} catch ( Exception e ) {
@@ -216,7 +216,7 @@ public final class FabricaConexiones {
 	SqlSessionFactoryBuilder 	builderOrclNTx;
 	SqlSessionFactory 			sqlMapperOrclNTx = null;
 	try {
-		readerOrclNTx 		= Resources.getResourceAsReader( "entidad/ConfigOrclTx.xml" );
+		readerOrclNTx 		= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
 		builderOrclNTx 		= new SqlSessionFactoryBuilder( );
 		sqlMapperOrclNTx 	= builderOrclNTx.build( readerOrclNTx );
 	} catch ( Exception e ) {
@@ -234,7 +234,7 @@ public final class FabricaConexiones {
 		SqlSessionFactoryBuilder 	builderBatch;
 		SqlSessionFactory 			sqlMapperBatch = null;
 		try {
-			readerBatch 	= Resources.getResourceAsReader( "entidad/ConfigSqlBatch.xml" );
+			readerBatch 	= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
 			builderBatch 	= new SqlSessionFactoryBuilder( );
 			sqlMapperBatch 	= builderBatch.build( readerBatch );
 		} catch ( Exception e ) {
@@ -252,7 +252,7 @@ public final class FabricaConexiones {
 		SqlSessionFactoryBuilder 	builderBatch;
 		SqlSessionFactory 			sqlMapperBatch = null;
 		try {
-			readerBatch 	= Resources.getResourceAsReader( "entidad/ConfigIQSybase.xml" );
+			readerBatch 	= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
 			builderBatch 	= new SqlSessionFactoryBuilder( );
 			sqlMapperBatch 	= builderBatch.build( readerBatch );
 		} catch ( Exception e ) {
