@@ -1,19 +1,8 @@
 package com.fyg.multisitio.dao;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.util.Properties;
-
-
-import org.apache.ibatis.io.Resources;
+import java.sql.SQLException;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.exceptions.IbatisException;
-
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PropertiesLoaderUtils;
 
 import com.fyg.multisitio.dto.Contacto;
 import com.fyg.multisitio.dto.Galeria;
@@ -23,6 +12,12 @@ import com.fyg.multisitio.dto.Zona;
 import com.fyg.multisitio.comun.ExcepcionesMultiSitioComun;
 import com.fyg.multisitio.comun.GUIDGenerator;
 import com.fyg.multisitio.comun.LogHandler;
+
+/**
+ *  Se hace el llamado a fabrica de conexiones
+ *
+ */
+import com.fyg.multisitio.dao.resources.FabricaConexiones;
 
 /**
  * Contiene los metodos para guardar en BD las entidades correspondientes al Micro-
@@ -37,35 +32,10 @@ import com.fyg.multisitio.comun.LogHandler;
 public class RegistraMicroSitio {
 	IbatisException msgError;
 	private static GUIDGenerator uid;
-	private static SqlSessionFactory sqlMapper;
-	private static Reader reader; 
 	private Contacto ObjContacto;
 
 	
-	static{
-		try{
-			reader	  = Resources.getResourceAsReader("com/fyg/multisitio/dao/resources/database-config.xml");
-			sqlMapper = new SqlSessionFactoryBuilder().build(reader,getDatabaseProperties());
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	}
-
-	public static SqlSessionFactory getSqlSessionFactory(){
-		return sqlMapper;
-	}
 	
-	private static Properties getDatabaseProperties(){
-		Resource resource = new ClassPathResource("com/fyg/multisitio/dao/resources/database.properties");
-		Properties databaseProperties = null;
-		try {
-			databaseProperties = PropertiesLoaderUtils.loadProperties(resource);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return databaseProperties;
-	}
 	
 	private void cerrarConexion(SqlSession session) {
 		try {
@@ -86,7 +56,7 @@ public class RegistraMicroSitio {
 	 */
 	@SuppressWarnings("static-access")
 	private void modificaContacto(Contacto contacto)throws Exception{
-		SqlSession session = RegistraMicroSitio.getSqlSessionFactory().openSession();
+		SqlSession session = FabricaConexiones.obtenerSesionTx();
 		Boolean result = false;
 		try {
 			Integer actualizados = session.update("RegistraMicroSitio.actualizaRegistroContacto",contacto);
@@ -118,7 +88,7 @@ Integer valor =  new Integer (1);
 	 */
 	public  void modificaGaleria(Galeria galeria, String guid)throws Exception{
 		
-		SqlSession session = RegistraMicroSitio.getSqlSessionFactory().openSession();
+		SqlSession session = FabricaConexiones.obtenerSesionTx();
 		Boolean result = false;
 		try {
 			Integer actualizados = session.update("RegistraMicroSitio.actualizaRegistroGaleria",galeria);
@@ -149,7 +119,7 @@ Integer valor =  new Integer (1);
 	 */
 
 	public void inactivaGaleria(Galeria galeria, String guid)throws Exception{
-		SqlSession session = RegistraMicroSitio.getSqlSessionFactory().openSession();
+		SqlSession session = FabricaConexiones.obtenerSesionTx();
 		Boolean result = false;
 		
 		try {
@@ -179,7 +149,7 @@ Integer valor =  new Integer (1);
 	 */
 
 	public void modificaNegocio(Negocio negocio, String guid)throws Exception{
-		SqlSession session = RegistraMicroSitio.getSqlSessionFactory().openSession();
+		SqlSession session = FabricaConexiones.obtenerSesionTx();
 		Boolean result = false;
 		
 		 /**
@@ -219,7 +189,7 @@ Integer valor =  new Integer (1);
 	 */
 	
 	public void modificaSitio(Sitio sitio, String guid)throws Exception{
-		SqlSession session = RegistraMicroSitio.getSqlSessionFactory().openSession();
+		SqlSession session = FabricaConexiones.obtenerSesionTx();
 		Boolean result = false;
 		try {
 			Integer actualizados = session.update("RegistraMicroSitio.actualizaRegistroSitio",sitio);
@@ -248,7 +218,7 @@ Integer valor =  new Integer (1);
 	 */
 	
 	public void modificaZona(Zona zona, String guid)throws Exception{
-		SqlSession session = RegistraMicroSitio.getSqlSessionFactory().openSession();
+		SqlSession session = FabricaConexiones.obtenerSesionTx();
 		Boolean result = false;
 		try {
 			Integer actualizados = session.update("RegistraMicroSitio.actualizaRegistroZona",zona);
@@ -276,12 +246,12 @@ Integer valor =  new Integer (1);
 
 	/**
 	 * Ingresa un  registro a la tabla contacto
+	 * @throws SQLException 
 	 */
 	@SuppressWarnings("static-access")
-	private void registraContacto(Contacto contacto)throws ExcepcionesMultiSitioComun{
+	private void registraContacto(Contacto contacto)throws ExcepcionesMultiSitioComun, SQLException{
 		
-		SqlSession session = RegistraMicroSitio.getSqlSessionFactory().openSession();
-		
+		SqlSession session = FabricaConexiones.obtenerSesionTx();
 		Boolean result = false;
 		
 		try {
@@ -291,9 +261,7 @@ Integer valor =  new Integer (1);
             ObjContacto = contacto;
 			if(actualizados.equals(valor)) {
 				result = true;
-			}
-		
-			
+			}	
 		}
            catch(IbatisException e) {
         	String guid = uid.generateGUID(contacto);  
@@ -319,7 +287,7 @@ Integer valor =  new Integer (1);
 	 */
 	@SuppressWarnings("static-access")
 	public void registraGaleria(Galeria galeria)throws Exception{
-		SqlSession session = RegistraMicroSitio.getSqlSessionFactory().openSession();
+		SqlSession session = FabricaConexiones.obtenerSesionTx();
 		Boolean result = false;
 		try {
         	Integer actualizados = session.insert("RegistraMicroSitio.insertaRegistroGaleria",galeria);
@@ -353,7 +321,7 @@ catch(IbatisException e) {
 	 */
 	
 	public void registraNegocio(Negocio negocio , String guid)throws Exception{
-		SqlSession session = RegistraMicroSitio.getSqlSessionFactory().openSession();
+		SqlSession session = FabricaConexiones.obtenerSesionTx();
 		Boolean result = false;
 		try {
 			/**
@@ -398,7 +366,7 @@ catch(IbatisException e) {
 	 */
 
 	public void registraSitio(Sitio sitio,String guid)throws Exception{
-		SqlSession session = RegistraMicroSitio.getSqlSessionFactory().openSession();
+		SqlSession session =FabricaConexiones.obtenerSesionTx();
 		Boolean result = false;
 		
 		try {
@@ -439,7 +407,7 @@ catch(IbatisException e) {
 	
 	
 	public void registraZona(Zona zona, String guid)throws Exception{
-		SqlSession session = RegistraMicroSitio.getSqlSessionFactory().openSession();
+		SqlSession session = FabricaConexiones.obtenerSesionTx();
 		Boolean result = false;
 		try {
         	Integer actualizados = session.insert("RegistraMicroSitio.insertaRegistroZona",zona);
@@ -450,8 +418,6 @@ catch(IbatisException e) {
 			}
 		}
 catch(IbatisException e) {
-        	
-			 
             LogHandler.error(guid, this.getClass(), "Error: ", e);
             throw e;
 		}
