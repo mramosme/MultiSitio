@@ -9,9 +9,9 @@ import com.fyg.multisitio.comun.ObjetoValor;
  * @version 1.0
  * @created 21-jul-2016 12:36:58 p.m.
  */
-public class Negocio  extends ObjetoValor{
+public class Negocio  extends ObjetoValor {
 	/**
-	 * 
+	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 2622164735608068022L;
 	/**
