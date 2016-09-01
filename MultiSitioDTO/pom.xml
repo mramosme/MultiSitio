@@ -4,7 +4,7 @@
 
   <groupId>com.fyg</groupId>
   <artifactId>MultiSitioDTO</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>MultiSitioDTO</name>
@@ -39,21 +39,12 @@
 </build>
 
   <dependencies>
-  <dependency>
-    <groupId>com.fyg</groupId>
-    <artifactId>MultiSitioComun</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <type>war</type>
-    <scope>compile</scope>
-  </dependency>
-  
-  <dependency>
-    <groupId>com.fyg</groupId>
-    <artifactId>MultiSitioComun</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <classifier>classes</classifier>
-  </dependency>
-  
+	<!-- Proyecto COMUN -->
+	<dependency>
+	<groupId>com.fyg</groupId>
+	<artifactId>MultiSitioComun</artifactId>
+	<version>1.0.0</version>    
+	</dependency>	  
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -61,4 +52,5 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
 </project>
