@@ -1,110 +1,127 @@
 package com.fyg.multisitio.negocio;
 
-
-
-import com.fyg.multisitio.dto.Negocio;
-import com.fyg.multisitio.dto.Sitio;
-import com.fyg.multisitio.dto.Zona;
+import com.fyg.multisitio.comun.EncabezadoRespuesta;
 import com.fyg.multisitio.comun.GUIDGenerator;
 import com.fyg.multisitio.comun.LogHandler;
 import com.fyg.multisitio.dao.RegistraMicroSitio;
+import com.fyg.multisitio.dto.Negocio;
+import com.fyg.multisitio.dto.Sitio;
+import com.fyg.multisitio.dto.Zona;
 
 public class OperacionesMultiSitioNegocio {
-	private GUIDGenerator uid;
-	RegistraMicroSitio dat = new RegistraMicroSitio();
-	
+
+
 	/**
-	 * 
-	 * @param negocio
+	 * Metodo para registrar negocio
+	 * @param negocio variable con los datos del negocio
+	 * @return estatus de la transaccion
 	 * @throws Exception
 	 */
-	@SuppressWarnings("static-access")
-	public void registraNegocio(Negocio negocio) throws Exception {
-		String guid = uid.generateGUID(negocio);
-		
-		negocio.setObjetoContacto(negocio.getObjetoContacto());
-		negocio.setIdSitio(negocio.getIdSitio());
-		negocio.setNombre(negocio.getNombre());
-		negocio.setDescripcionCorta(negocio.getDescripcionCorta());
-		negocio.setDescripcionLarga(negocio.getDescripcionLarga());
-		negocio.setUrlLogotipo(negocio.getUrlLogotipo());
-		negocio.setEstatus(negocio.getEstatus());
-		negocio.setLigaFB(negocio.getLigaFB());
-		negocio.setLigaPagina(negocio.getLigaPagina());
-		negocio.setCalificacion(negocio.getCalificacion());
-		negocio.setWifi(negocio.getWifi());
-		negocio.setEstacionamiento(negocio.getEstacionamiento());
-		negocio.setAreaNinos(negocio.getAreaNinos());
-		negocio.setMascotas(negocio.getMascotas());
-		
-		try{
-			
-			new RegistraMicroSitio().registraNegocio(negocio , guid);
-		
-		   }
-		catch(Exception Excepcion){
-		Excepcion.printStackTrace();
-		
-        LogHandler.error(guid, this.getClass(), "Error al registrar, intente mas tarde: ", Excepcion);
-			
-		}
-		
-	}
-	
-	
-	
-	/**
-	 * 
-	 * @param sitio
-	 * @throws Exception
-	 */
-	@SuppressWarnings("static-access")
-	public void registraSitio(Sitio sitio) throws Exception{
-		String guid = uid.generateGUID(sitio);
-		
-	  
-		sitio.setObjetoContacto(sitio.getObjetoContacto());
-		
-		sitio.setNombre(sitio.getNombre());
-		sitio.setDomicilio(sitio.getDomicilio());
-		sitio.setTelefono(sitio.getTelefono());
-		sitio.setEstatus(sitio.getEstatus());
-		sitio.setIdZona(sitio.getIdZona());
-		
-		
+	public EncabezadoRespuesta registraNegocio(Negocio negocio) {
+
+		//Primero generamos el identificador unico de la transaccion
+		String uid = GUIDGenerator.generateGUID(negocio);
+		//Mandamos a log el objeto de entrada
+		LogHandler.debug(uid, this.getClass(), "registraNegocio - Daton Entrada: " + negocio);
+		//Variable de resultado
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
 		try {
-			new RegistraMicroSitio().registraSitio(sitio , guid);
+			//Validaciones Negocio
+
+			if (negocio.getNombre() == null || negocio.getNombre().isEmpty()) {
+				throw new Exception("El nombre del negocio es obligatorio.");
+			}
+
+			//Seguro aqui faltan muchas valdiaciones --Agregar Robert
+
+			//Mandamos a la parte del dao
+			RegistraMicroSitio dao = new RegistraMicroSitio();
+			respuesta = dao.registraNegocio(uid, negocio);
 		}
-		catch(Exception e){
-			e.printStackTrace();
-	        LogHandler.error(guid, this.getClass(), "Error al registrar, intente mas tarde: ", e);
+		catch  (Exception ex) {
+			LogHandler.error(uid, this.getClass(), "registraNegocio - Error: " + ex.getMessage(), ex);
+			respuesta.setUid(uid);
+			respuesta.setEstatus(false);
+			respuesta.setMensajeFuncional(ex.getMessage());
+			respuesta.setMensajeTecnico(ex.getMessage());
 		}
+		LogHandler.debug(uid, this.getClass(), "registraNegocio - Daton Salida: " + respuesta);
+		return respuesta;
 	}
-	
-	
+
+
 	/**
-	 * 
-	 * @param zona
-	 * @throws Exception
+	 * Metodo para registrar sitio
+	 * @param sitio variable con los datos del sitio
+	 * @return estatus de la transaccion
 	 */
-	@SuppressWarnings("static-access")
-	public void registraZona(Zona zona) throws Exception
-	{
-		String guid = uid.generateGUID(zona);
-		
-		zona.setId(zona.getId());
-		zona.setNombre(zona.getNombre());
-		zona.setDescripcion(zona.getDescripcion());
-		zona.setUrlImagen(zona.getUrlImagen());
-        zona.setEstatus(zona.getEstatus());
-        
-        try{
-        	new RegistraMicroSitio().registraZona(zona, guid);
-        }
-        catch (Exception e){
-        	e.printStackTrace();
-            LogHandler.error(guid, this.getClass(), "Error al registrar, intente mas tarde: ", e);
-        }
+	public EncabezadoRespuesta registraSitio(Sitio sitio) {
+		//Primero generamos el identificador unico de la transaccion
+		String uid = GUIDGenerator.generateGUID(sitio);
+		//Mandamos a log el objeto de entrada
+		LogHandler.debug(uid, this.getClass(), "registraSitio - Daton Entrada: " + sitio);
+		//Variable de resultado
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		try {
+			//Validaciones Negocio
+
+			if (sitio.getNombre() == null || sitio.getNombre().isEmpty()) {
+				throw new Exception("El nombre del sitio es obligatorio.");
+			}
+
+			//Seguro aqui faltan muchas valdiaciones --Agregar Robert
+
+			//Mandamos a la parte del dao
+			RegistraMicroSitio dao = new RegistraMicroSitio();
+			respuesta = dao.registraSitio(uid, sitio);
+		}
+		catch  (Exception ex) {
+			LogHandler.error(uid, this.getClass(), "registraSitio - Error: " + ex.getMessage(), ex);
+			respuesta.setUid(uid);
+			respuesta.setEstatus(false);
+			respuesta.setMensajeFuncional(ex.getMessage());
+			respuesta.setMensajeTecnico(ex.getMessage());
+		}
+		LogHandler.debug(uid, this.getClass(), "registraSitio - Daton Salida: " + respuesta);
+		return respuesta;
 	}
-	
+
+
+
+	/**
+	 * Metodo para registrar una zona
+	 * @param zona variable con los datos de la zona
+	 * @return estatus de la transaccion
+	 */
+	public EncabezadoRespuesta registraZona(Zona zona)
+	{
+		//Primero generamos el identificador unico de la transaccion
+		String uid = GUIDGenerator.generateGUID(zona);
+		//Mandamos a log el objeto de entrada
+		LogHandler.debug(uid, this.getClass(), "registraZona - Daton Entrada: " + zona);
+		//Variable de resultado
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		try {
+			//Validaciones Negocio
+
+			if (zona.getNombre() == null || zona.getNombre().isEmpty()) {
+				throw new Exception("El nombre de la zona es obligatorio.");
+			}
+
+			//Seguro aqui faltan muchas valdiaciones --Agregar Robert
+
+			//Mandamos a la parte del dao
+			RegistraMicroSitio dao = new RegistraMicroSitio();
+			respuesta = dao.registraZona(uid, zona);
+		}
+		catch  (Exception ex) {
+			LogHandler.error(uid, this.getClass(), "registraZona - Error: " + ex.getMessage(), ex);
+			respuesta.setUid(uid);
+			respuesta.setEstatus(false);
+			respuesta.setMensajeFuncional(ex.getMessage());
+			respuesta.setMensajeTecnico(ex.getMessage());
+		}
+		LogHandler.debug(uid, this.getClass(), "registraZona - Daton Salida: " + respuesta);
+		return respuesta;
+	}
 }

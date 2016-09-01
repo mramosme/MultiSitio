@@ -6,7 +6,7 @@ public class ExcepcionesMultiSitioComun extends Exception {
 
 	public ExcepcionesMultiSitioComun(String msg) {
 	        super(msg);
-	    }
+	}
 	
 	
 }

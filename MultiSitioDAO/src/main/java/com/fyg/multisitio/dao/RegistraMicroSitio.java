@@ -1,23 +1,16 @@
 package com.fyg.multisitio.dao;
 
-import java.sql.SQLException;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.exceptions.IbatisException;
 
+import com.fyg.multisitio.comun.EncabezadoRespuesta;
+import com.fyg.multisitio.comun.ExcepcionesMultiSitioComun;
+import com.fyg.multisitio.comun.LogHandler;
+import com.fyg.multisitio.dao.resources.FabricaConexiones;
 import com.fyg.multisitio.dto.Contacto;
 import com.fyg.multisitio.dto.Galeria;
 import com.fyg.multisitio.dto.Negocio;
 import com.fyg.multisitio.dto.Sitio;
 import com.fyg.multisitio.dto.Zona;
-import com.fyg.multisitio.comun.ExcepcionesMultiSitioComun;
-import com.fyg.multisitio.comun.GUIDGenerator;
-import com.fyg.multisitio.comun.LogHandler;
-
-/**
- *  Se hace el llamado a fabrica de conexiones
- *
- */
-import com.fyg.multisitio.dao.resources.FabricaConexiones;
 
 /**
  * Contiene los metodos para guardar en BD las entidades correspondientes al Micro-
@@ -27,422 +20,469 @@ import com.fyg.multisitio.dao.resources.FabricaConexiones;
  * @updated 21-jul-2016 02:09:22 p.m.
  */
 
-
-/*lee el archivo XML de la configuracion y el llamado de los mappers*/
 public class RegistraMicroSitio {
-	IbatisException msgError;
-	private static GUIDGenerator uid;
-	private Contacto ObjContacto;
-
-	
-	
-	
-	private void cerrarConexion(SqlSession session) {
-		try {
-			if(session != null) {
-				session.clearCache();
-		    	session.close();
-			}
-		} catch(Exception excepcion) {
-			excepcion.printStackTrace();
-		}
-	}
-
-	
-	                                                            /*INICIA OPERACIONES*/
 
 	/**
-	 * Modifica un  registro de la tabla 
+	 * Metodo ...
+	 * @param uid identificador unico de la transaccion
+	 * @param contacto variable para la actualizacion
+	 * @param session sesion, en caso de ser atomica la transaccion
+	 * @return estatus actualizacion
 	 */
-	@SuppressWarnings("static-access")
-	private void modificaContacto(Contacto contacto)throws Exception{
-		SqlSession session = FabricaConexiones.obtenerSesionTx();
-		Boolean result = false;
+	private EncabezadoRespuesta modificaContacto(String uid, Contacto contacto, SqlSession session) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Actualizacion correcta.");
 		try {
-			Integer actualizados = session.update("RegistraMicroSitio.actualizaRegistroContacto",contacto);
-Integer valor =  new Integer (1);
-			
-			if(actualizados.equals(valor)) {
-				result = true;
+			//Abrimos conexion Transaccional
+			//Logica para saber si es atomica la transaccion
+			if ( session == null ) {
+				 sessionTx = FabricaConexiones.obtenerSesionTx();
+			} else {
+				sessionTx = session;
+			}
+
+        	Integer actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroContacto", contacto);
+			if ( actualizados == 0) {
+				throw new ExcepcionesMultiSitioComun("Error en actualizar el contacto.");
+			}
+			//Realizamos commit
+			//La conexion no es atomica realizamos commit
+			if ( session == null ) {
+				LogHandler.debug(uid, this.getClass(), "Commit conexion.");
+				sessionTx.commit();
 			}
 		}
-		catch(IbatisException e) {
-        	
-			String guid = uid.generateGUID(contacto);  
-            LogHandler.error(guid, this.getClass(), "Error: ", e);
+		catch (Exception ex) {
+			//Realizamos rollBack
+			if ( session == null ) {
+				LogHandler.debug(uid, this.getClass(), "RollBack!!!");
+				FabricaConexiones.rollBack(sessionTx);
+			}
+            LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
 		}
 		finally {
-			if (result)
-			{
-				session.commit();
-				String guid = uid.generateGUID(contacto);
-				LogHandler.debug(guid,this.getClass(), "REGISTRO ACTUALIZADO EN LA BD");
+			if ( session == null ) {
+				LogHandler.debug(uid, this.getClass(), "Cerramos conexion.");
+				FabricaConexiones.close(sessionTx);
 			}
-			
-			this.cerrarConexion(session);
 		}
+		return respuesta;
+	}
+
+
+	/**
+	 * Metodo ...
+	 * @param uid identificador unico de la transaccion
+	 * @param galeria  variable para la actualizacion
+	 * @return estatus actualizacion
+	 */
+	public EncabezadoRespuesta modificaGaleria(String uid, Galeria galeria) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Actualizacion correcta.");
+		try {
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+        	Integer actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroGaleria", galeria);
+			if ( actualizados == 0) {
+				throw new ExcepcionesMultiSitioComun("Error en actualizar la galeria.");
+			}
+			//Realizamos commit
+			LogHandler.debug(uid, this.getClass(), "Commit!!!");
+			sessionTx.commit();
+		}
+		catch (Exception ex) {
+			//Realizamos rollBack
+			LogHandler.debug(uid, this.getClass(), "RollBack!!!");
+			FabricaConexiones.rollBack(sessionTx);
+            LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
+		}
+		finally {
+			FabricaConexiones.close(sessionTx);
+		}
+		return respuesta;
 	}
 
 	/**
-	 * Modifica un  registro de la tabla 
-	 */
-	public  void modificaGaleria(Galeria galeria, String guid)throws Exception{
-		
-		SqlSession session = FabricaConexiones.obtenerSesionTx();
-		Boolean result = false;
-		try {
-			Integer actualizados = session.update("RegistraMicroSitio.actualizaRegistroGaleria",galeria);
-			Integer valor =  new Integer (1);
-			if(actualizados.equals(valor)) {
-				result = true;
-			}
-			
-		}
-		 catch(IbatisException e) { 
-	            LogHandler.error(guid, this.getClass(), "Error: ", e);
-			}
-			finally {
-				if (result)
-				{
-					session.commit();
-					LogHandler.debug(guid,this.getClass(), "Modificación correcta de galeria");
-				}
-				this.cerrarConexion(session);
-			}
-	}
-	
-	/**
-	 * 
 	 * Inactiva un registro de la galeria
-	 * 
-	 *
+	 * @param uid identificador unico de la transaccion
+	 * @param galeria variable para la actualizacion
+	 * @return estatus actualizacion
 	 */
-
-	public void inactivaGaleria(Galeria galeria, String guid)throws Exception{
-		SqlSession session = FabricaConexiones.obtenerSesionTx();
-		Boolean result = false;
-		
+	public EncabezadoRespuesta inactivaGaleria(String uid, Galeria galeria) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Inactivacion correcta.");
 		try {
-			Integer actualizados = session.update("RegistraMicroSitio.actualizaEstatusGaleria",galeria);
-
-			Integer valor =  new Integer (1);
-			if(actualizados.equals(valor)) {
-				result = true;
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+        	Integer actualizados = sessionTx.update("RegistraMicroSitio.actualizaEstatusGaleria", galeria);
+			if ( actualizados == 0) {
+				throw new ExcepcionesMultiSitioComun("Error en inactivar la galeria.");
 			}
+			//Realizamos commit
+			LogHandler.debug(uid, this.getClass(), "Commit!!!");
+			sessionTx.commit();
 		}
-		catch(IbatisException e) {
-        	  
-            LogHandler.error(guid, this.getClass(), "Error: ", e);
+		catch (Exception ex) {
+			//Realizamos rollBack
+			LogHandler.debug(uid, this.getClass(), "RollBack!!!");
+			FabricaConexiones.rollBack(sessionTx);
+            LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
 		}
 		finally {
-			if (result)
-			{
-				session.commit();
-				LogHandler.debug(guid,this.getClass(), "Inactivación correcta de galeria");
-			}
-			this.cerrarConexion(session);
+			FabricaConexiones.close(sessionTx);
 		}
+		return respuesta;
 	}
 
 	/**
 	 * Modifica un  registro de la tabla negocio
+	 * @param uid identificador unico de la transaccion
+	 * @param negocio variable para la actualizacion
+	 * @return estatus actualizacion
 	 */
-
-	public void modificaNegocio(Negocio negocio, String guid)throws Exception{
-		SqlSession session = FabricaConexiones.obtenerSesionTx();
-		Boolean result = false;
-		
-		 /**
-		  * Se crea un objecto tipo Contacto para recibir informacion del contacto
-		  */
-		Contacto contact = new Contacto();
-		
+	public EncabezadoRespuesta modificaNegocio(String uid, Negocio negocio) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Inactivacion correcta.");
 		try {
-			Integer actualizados = session.update("RegistraMicroSitio.actualizaRegistroNegocio",negocio);
-            
-			/**
-			 * Llamada al metodo modificaContacto
-			 */
-			modificaContacto(contact);
-			
-			Integer valor =  new Integer (1);
-			if(actualizados.equals(valor)) {
-				result = true;
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+
+			//Modificamos Contacto
+			modificaContacto(uid, negocio.getObjetoContacto(), sessionTx);
+
+        	Integer actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroNegocio", negocio);
+			if ( actualizados == 0) {
+				throw new ExcepcionesMultiSitioComun("Error en actualizar el negocio.");
 			}
+			//Realizamos commit
+			LogHandler.debug(uid, this.getClass(), "Commit!!!");
+			sessionTx.commit();
 		}
-		catch(IbatisException e) {
-            LogHandler.error(guid, this.getClass(), "Error: ", e);
-            
+		catch (Exception ex) {
+			//Realizamos rollBack
+			LogHandler.debug(uid, this.getClass(), "RollBack!!!");
+			FabricaConexiones.rollBack(sessionTx);
+            LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
 		}
 		finally {
-			if (result)
-			{
-				session.commit();
-				LogHandler.debug(guid,this.getClass(), "Modificación correcta de contacto");
-			}
-			this.cerrarConexion(session);
+			LogHandler.debug(uid, this.getClass(), "Cerrar conexion.");
+			FabricaConexiones.close(sessionTx);
 		}
+		return respuesta;
 	}
 
 	/**
 	 * Modifica un  registro a la tabla sitio
+	 * @param uid identificador unico de la transaccion
+	 * @param sitio variable para la actualizacion
+	 * @return estatus actualizacion
 	 */
-	
-	public void modificaSitio(Sitio sitio, String guid)throws Exception{
-		SqlSession session = FabricaConexiones.obtenerSesionTx();
-		Boolean result = false;
+	public EncabezadoRespuesta modificaSitio(String uid, Sitio sitio) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Actualizacion correcta.");
 		try {
-			Integer actualizados = session.update("RegistraMicroSitio.actualizaRegistroSitio",sitio);
-			Integer valor =  new Integer (1);
-			if(actualizados.equals(valor)) {
-				result = true;
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+        	Integer actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroSitio", sitio);
+			if ( actualizados == 0) {
+				throw new ExcepcionesMultiSitioComun("Error en actualizar el sitio.");
 			}
+			//Realizamos commit
+			LogHandler.debug(uid, this.getClass(), "Commit!!!");
+			sessionTx.commit();
 		}
-		catch(IbatisException e) {
-        
-            LogHandler.error(guid, this.getClass(), "Error: ", e);
-      
+		catch (Exception ex) {
+			//Realizamos rollBack
+			LogHandler.debug(uid, this.getClass(), "RollBack!!!");
+			FabricaConexiones.rollBack(sessionTx);
+            LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
 		}
 		finally {
-			if (result)
-			{
-				session.commit();
-				LogHandler.debug(guid,this.getClass(), "Modificación correcta de sitio");
-			}
-			this.cerrarConexion(session);
+			FabricaConexiones.close(sessionTx);
 		}
+		return respuesta;
 	}
 
 	/**
 	 * Modifica un  registro de la tabla zona
+	 * @param uid identificador unico de la transaccion
+	 * @param zona  variable para la actualizacion
+	 * @return estatus actualizacion
 	 */
-	
-	public void modificaZona(Zona zona, String guid)throws Exception{
-		SqlSession session = FabricaConexiones.obtenerSesionTx();
-		Boolean result = false;
+	public EncabezadoRespuesta modificaZona(String uid, Zona zona) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Actualizacion correcta.");
 		try {
-			Integer actualizados = session.update("RegistraMicroSitio.actualizaRegistroZona",zona);
-
-			Integer valor =  new Integer (1);
-			if(actualizados.equals(valor)) {
-				result = true;
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+        	Integer actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroZona", zona);
+			if ( actualizados == 0) {
+				throw new ExcepcionesMultiSitioComun("Error en actualizar el sitio.");
 			}
-			 
+			//Realizamos commit
+			LogHandler.debug(uid, this.getClass(), "Commit!!!");
+			sessionTx.commit();
 		}
-		catch(IbatisException e) {
-        	
-            LogHandler.error(guid, this.getClass(), "Error: ", e);
-           
+		catch (Exception ex) {
+			//Realizamos rollBack
+			LogHandler.debug(uid, this.getClass(), "RollBack!!!");
+			FabricaConexiones.rollBack(sessionTx);
+            LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
 		}
 		finally {
-			if (result)
-			{
-				session.commit();
-				LogHandler.debug(guid,this.getClass(), "Modificación correctade la zona");
-			}
-			this.cerrarConexion(session);
+			FabricaConexiones.close(sessionTx);
 		}
+		return respuesta;
+	}
+
+
+
+	/**
+	 * Metodo ...
+	 * @param uid identificador unico de la transaccion
+	 * @param contacto variable para registro
+	 * @param session sesion, en caso de ser atomica la transaccion
+	 * @return contacto registrado
+	 * @throws Exception en caso de existir un error
+	 */
+	private Contacto registraContacto(String uid, Contacto contacto, SqlSession session)
+			throws Exception {
+		SqlSession sessionTx = null;
+
+		//Logica para saber si es atomica la transaccion
+		if ( session == null ) {
+			 sessionTx = FabricaConexiones.obtenerSesionTx();
+		} else {
+			sessionTx = session;
+		}
+		//Registramos el contacto
+    	Integer registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroContacto", contacto);
+        //Validamos el registro
+		if ( registros == 0) {
+			if ( session == null ) {
+				FabricaConexiones.rollBack(sessionTx);
+				FabricaConexiones.close(sessionTx);
+			}
+			throw new ExcepcionesMultiSitioComun("No se pudo registrar el contacto.");
+		}
+
+		//La conexion no es atomica realizamos commit
+		if ( session == null ) {
+			LogHandler.debug(uid, this.getClass(), "Commit conexion.");
+			sessionTx.commit();
+		}
+		//La conexion no es atomica cerramos
+		if ( session == null ) {
+			LogHandler.debug(uid, this.getClass(), "Cerramos conexion.");
+			FabricaConexiones.close(sessionTx);
+		}
+		return contacto;
 	}
 
 	/**
-	 * Ingresa un  registro a la tabla contacto
-	 * @throws SQLException 
+	 * Ingresa un  registro a la tabla galeria
+	 * @param uid identificador unico de la transaccion
+	 * @param galeria variable para registro
+	 * @return estatus respuesta
 	 */
-	@SuppressWarnings("static-access")
-	private void registraContacto(Contacto contacto)throws ExcepcionesMultiSitioComun, SQLException{
-		
-		SqlSession session = FabricaConexiones.obtenerSesionTx();
-		Boolean result = false;
-		
+	public EncabezadoRespuesta registraGaleria(String uid, Galeria galeria) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Registro correcto.");
 		try {
-        	Integer actualizados = session.insert("RegistraMicroSitio.insertaRegistroContacto",contacto);
-            Integer valor =  new Integer (1);
-            
-            ObjContacto = contacto;
-			if(actualizados.equals(valor)) {
-				result = true;
-			}	
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+        	Integer registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroGaleria", galeria);
+			if ( registros == 0) {
+				throw new ExcepcionesMultiSitioComun("Error en registrar la galeria.");
+			}
+			//Realizamos commit
+			LogHandler.debug(uid, this.getClass(), "Commit!!!");
+			sessionTx.commit();
 		}
-           catch(IbatisException e) {
-        	String guid = uid.generateGUID(contacto);  
-            LogHandler.error(guid, this.getClass(), "Error: ", e);
-            throw e;
+		catch (Exception ex) {
+			//Realizamos rollBack
+			LogHandler.debug(uid, this.getClass(), "RollBack!!!");
+			FabricaConexiones.rollBack(sessionTx);
+            LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
 		}
 		finally {
-			if (result)
-			{
-				session.commit();
-				String guid = uid.generateGUID(contacto);
-				LogHandler.debug(guid,this.getClass(), "REGISTRO CONTACTO CORRECTO EN LA BD");
-			}
-			
-			this.cerrarConexion(session);
+			FabricaConexiones.close(sessionTx);
 		}
-		
-		
+		return respuesta;
+	}
+
+
+	/**
+	 * Metodo ...
+	 * @param uid identificador unico de la transaccion
+	 * @param negocio variable para registro
+	 * @return estatus trasaccion
+	 */
+	public EncabezadoRespuesta registraNegocio(String uid, Negocio negocio) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Registro correcto.");
+		try {
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+
+			//Primero registramos el contacto
+			registraContacto(uid, negocio.getObjetoContacto() , sessionTx);
+			//Validar si trae el id del contacto
+			LogHandler.debug(uid, this.getClass(), "contacto: " + negocio.getObjetoContacto());
+
+        	Integer registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroNegocio", negocio);
+			if ( registros == 0) {
+				throw new ExcepcionesMultiSitioComun("Error en registrar Negocio.");
+			}
+			//Realizamos commit
+			LogHandler.debug(uid, this.getClass(), "Commit!!!");
+			sessionTx.commit();
+		}
+		catch (Exception ex) {
+			//Realizamos rollBack
+			LogHandler.debug(uid, this.getClass(), "RollBack!!!");
+			FabricaConexiones.rollBack(sessionTx);
+            LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
+		}
+		finally {
+			FabricaConexiones.close(sessionTx);
+		}
+		return respuesta;
+
+	}
+
+
+	/**
+	 * Metodo ...
+	 * @param uid identificador unico de la transaccion
+	 * @param sitio variable para registro
+	 * @return estatus trasaccion
+	 */
+	public EncabezadoRespuesta registraSitio(String uid, Sitio sitio) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Registro correcto.");
+		try {
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+
+			//Primero registramso el contacto
+			registraContacto(uid, sitio.getObjetoContacto() , sessionTx);
+			//Validar si trae el id del contacto
+			LogHandler.debug(uid, this.getClass(), "contacto: " + sitio.getObjetoContacto());
+
+        	Integer registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroSitio", sitio);
+			if ( registros == 0) {
+				throw new ExcepcionesMultiSitioComun("Error en registrar Sitio.");
+			}
+			//Realizamos commit
+			LogHandler.debug(uid, this.getClass(), "Commit!!!");
+			sessionTx.commit();
+		}
+		catch (Exception ex) {
+			//Realizamos rollBack
+			LogHandler.debug(uid, this.getClass(), "RollBack!!!");
+			FabricaConexiones.rollBack(sessionTx);
+            LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
+		}
+		finally {
+			FabricaConexiones.close(sessionTx);
+		}
+		return respuesta;
 	}
 
 	/**
-	 * Ingrega un  registro a la tabla galeria
+	 * Metodo ...
+	 * @param uid identificador unico de la transaccion
+	 * @param zona variable para registro
+	 * @return estatus trasaccion
 	 */
-	@SuppressWarnings("static-access")
-	public void registraGaleria(Galeria galeria)throws Exception{
-		SqlSession session = FabricaConexiones.obtenerSesionTx();
-		Boolean result = false;
+	public EncabezadoRespuesta registraZona(String uid, Zona zona) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Registro correcto.");
 		try {
-        	Integer actualizados = session.insert("RegistraMicroSitio.insertaRegistroGaleria",galeria);
-Integer valor =  new Integer (1);
-			
-			if(actualizados.equals(valor)) {
-				result = true;
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+        	Integer registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroZona", zona);
+			if ( registros == 0) {
+				throw new ExcepcionesMultiSitioComun("Error en registrar la zona.");
 			}
+			//Realizamos commit
+			LogHandler.debug(uid, this.getClass(), "Commit!!!");
+			sessionTx.commit();
 		}
-catch(IbatisException e) {
-        	
-			String guid = uid.generateGUID(galeria);  
-            LogHandler.error(guid, this.getClass(), "Error: ", e);
-            throw e;
+		catch (Exception ex) {
+			//Realizamos rollBack
+			LogHandler.debug(uid, this.getClass(), "RollBack!!!");
+			FabricaConexiones.rollBack(sessionTx);
+            LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
 		}
 		finally {
-			if (result)
-			{
-				session.commit();
-				String guid = uid.generateGUID(galeria);
-				LogHandler.debug(guid,this.getClass(), "REGISTRO GALERIA CORRECTA EN LA BD");
-				
-			}
-			
-			this.cerrarConexion(session);
+			FabricaConexiones.close(sessionTx);
 		}
-	}
-
-	/**
-	 * Ingrega un  registro a la tabla negocio
-	 */
-	
-	public void registraNegocio(Negocio negocio , String guid)throws Exception{
-		SqlSession session = FabricaConexiones.obtenerSesionTx();
-		Boolean result = false;
-		try {
-			/**
-			 * llama al metodo privado Contacto
-			 */
-			registraContacto(negocio.getObjetoContacto());
-			
-			/**
-			 * se le asigna el id resultante 
-			 */
-			negocio.setIdContacto(ObjContacto.getId());
-			
-        	Integer actualizados = session.insert("RegistraMicroSitio.insertaRegistroNegocio",negocio);
-            Integer valor =  new Integer (1);
-
-			if(actualizados.equals(valor)) {
-				result = true;
-			}
-			
-		}
-		catch(IbatisException e) {
-        	//AQUI
-
-            LogHandler.error(guid, this.getClass(), "Error: ", e);
-            throw e;
-		}
-		finally {
-			if (result)
-			{
-				session.commit();
-				LogHandler.debug(guid,this.getClass(), "REGISTRO CORRECTO DEL NEGOCIO EN LA BD");
-			}
-			
-			this.cerrarConexion(session);
-		}
-		
-		
-	}
-
-	/**
-	 * Ingrega un  registro a la tabla sitio
-	 */
-
-	public void registraSitio(Sitio sitio,String guid)throws Exception{
-		SqlSession session =FabricaConexiones.obtenerSesionTx();
-		Boolean result = false;
-		
-		try {
-			/**
-			 * Llama al metodo privado registraContacto
-			 */
-			 registraContacto(sitio.getObjetoContacto());
-		
-			sitio.setContacto(ObjContacto.getId()); 
-			
-        	Integer actualizados = session.insert("RegistraMicroSitio.insertaRegistroSitio",sitio);
-        	Integer valor =  new Integer (1);
-			
-			if(actualizados.equals(valor)) {
-				result = true;
-			}
-		}
-           catch(IbatisException e) {
-        	
-            LogHandler.error(guid, this.getClass(), "Error: ", e);
-            throw e;
-            
-		}
-		finally {
-			if (result)
-			{
-				session.commit();
-				LogHandler.debug(guid,this.getClass(), "REGISTRO CORRECTO EN LA BD");
-			}
-			
-			this.cerrarConexion(session);
-		}
-	}
-
-	/**
-	 * Ingrega un  registro a la tabla zona
-	 */
-	
-	
-	public void registraZona(Zona zona, String guid)throws Exception{
-		SqlSession session = FabricaConexiones.obtenerSesionTx();
-		Boolean result = false;
-		try {
-        	Integer actualizados = session.insert("RegistraMicroSitio.insertaRegistroZona",zona);
-            Integer valor =  new Integer (1);
-			
-			if(actualizados.equals(valor)) {
-				result = true;
-			}
-		}
-catch(IbatisException e) {
-            LogHandler.error(guid, this.getClass(), "Error: ", e);
-            throw e;
-		}
-		finally {
-			if (result)
-			{
-				session.commit();
-				LogHandler.debug(guid,this.getClass(), "REGISTRO CORRECTO EN LA BD");
-			}
-			
-			this.cerrarConexion(session);
-		}
+		return respuesta;
 	}
 
 	/**
 	 * Modifica un  registro de la tabla promocion
 	 */
-	public void modificaPromocion(){
+	public void modificaPromocion() {
 
 	}
 
 	/**
 	 * Ingrega un  registro a la tabla promocion
 	 */
-	public void registraPromocion(){
+	public void registraPromocion() {
 
 	}
 

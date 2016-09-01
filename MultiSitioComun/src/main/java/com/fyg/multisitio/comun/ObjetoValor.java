@@ -3,20 +3,14 @@ package com.fyg.multisitio.comun;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 
-import org.apache.log4j.Logger;
-
 /**
  * The Class ObjetoValor.
  *
- * @author Gerardo Corzo Herrera
- * Objeto Serializable que serà la base para todos los mensajes.
+ * @author Mario Mejorada
+ * Objeto Serializable que ser&aacute; la base para todos los mensajes.
  */
 public abstract class ObjetoValor implements Serializable {
 
-	/**
-	 *Variable que permite el logging de las actividades.
-	 */
-	 private static final Logger LOGGER = Logger.getLogger(ObjetoValor.class);
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 8L;
@@ -28,6 +22,7 @@ public abstract class ObjetoValor implements Serializable {
 	 * Instancia una nueva objeto valor.
 	 */
 	public ObjetoValor() {
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -56,11 +51,10 @@ public abstract class ObjetoValor implements Serializable {
 		StringBuffer stringbuffer = new StringBuffer();
 		StringBuffer stringbufferObjects =  new StringBuffer();
 		try {
-            Method[] m = this.getClass().getDeclaredMethods();
+            Method m[] = this.getClass().getDeclaredMethods();
             for (Method miM : m) {
-            	if ( stringbuffer.length() > 0 ) {
-            		stringbuffer.append(" | ");
-            	}
+            	if ( stringbuffer.length() > 0 )
+            			stringbuffer.append(" | ");
             	if ( miM.getName().startsWith("get") ||  miM.getName().startsWith("is") ) {
             		stringbuffer.append( miM.getName() );
             		stringbuffer.append("=" );
@@ -70,36 +64,25 @@ public abstract class ObjetoValor implements Serializable {
             				Object[] array = (Object[]) res;
 
             				for (Object miO : array ) {
-            					if ( stringbufferObjects.length() > 0 ) {
+            					if ( stringbufferObjects.length() > 0 )
             						stringbufferObjects.append( ", " );
-            					}
-            					if ( miO != null ) {
+            					if ( miO != null )
             						stringbufferObjects.append(  miO.toString() );
-            					}
             				}
             				stringbuffer.append(stringbufferObjects  );
-            			} else {
+            			} else
             				stringbuffer.append(  res.toString() );
-            				}
-            		} else {
+            		} else
             			stringbuffer.append( res );
-            			}
             	}
             }
-         } catch (Exception e) {
-        	 LOGGER.info( "Error : " + e.getMessage(), e );
+         }
+         catch (Throwable e) {
+        	 e.printStackTrace();
          }
          stringbuffer.insert(0, this.getClass().getName() + "[");
          stringbuffer.append("]");
          return   stringbuffer.toString();
 	}
-	
-	public abstract int getId();
-	public abstract void setId(int Id);
-	public abstract int getEstatus();
-	public abstract void setEstatus(int estatus);
-	public abstract String getNombre();
-	public abstract void setNombre(String nombre);
-	
+
 }
-	

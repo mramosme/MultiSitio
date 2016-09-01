@@ -2,7 +2,6 @@ package com.fyg.multisitio.dao.resources;
 
 import java.io.Reader;
 import java.sql.SQLException;
-import java.util.Properties;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -11,21 +10,14 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.fyg.multisitio.comun.LogHandler;
 
-/**
- * @author Juan Moreno
- * Encapsula las funciones de acceso a bd a traves de iBatis
- * <ul>
- *  <li>Obtener conexion</li>
- * </ul>
- */
+
 public final class FabricaConexiones {
 
 	/**
 	 * Constructor de la clase FabricaConexiones
 	 */
 	private FabricaConexiones() {
-		//;//Evita que se generen objetos de esta clase
-		}
+	}
 
 	/**
 	 * sesion SqlSessionFactory
@@ -35,34 +27,6 @@ public final class FabricaConexiones {
 	 * sesion FACTORY_NTX
 	 */
 	private static SqlSessionFactory fACTORY_NTX;
-	/**
-	 * sesion FACTORY_BATCH
-	 */
-	private static SqlSessionFactory fACTORY_BATCH;
-	/**
-	 * sesion FACTORY_ORCL_NTX
-	 */
-	private static SqlSessionFactory fACTORY_ORCL_NTX;
-	/**
-	 * sesion FACTORY_ORCL_TX
-	 */
-	private static SqlSessionFactory fACTORY_ORCL_TX;
-	/**
-	 * sesion FACTORY_ORCL_CU_TX
-	 */
-	private static SqlSessionFactory fACTORY_ORCL_CU_TX;
-	/**
-	 * sesion FACTORY_ORCL_CU_NTX
-	 */
-	private static SqlSessionFactory fACTORY_ORCL_CU_NTX;
-	/**
-	 * sesion FACTORY_SQL_BATCH
-	 */
-	private static SqlSessionFactory fACTORY_SQL_BATCH;
-	/**
-	 * sesion FACTORY_SYBASE_IQ para conexion con IQ
-	 */
-	private static SqlSessionFactory fACTORY_SYBASE_IQ;
 
 	static {
 		//Tx
@@ -70,27 +34,6 @@ public final class FabricaConexiones {
 
 		//NTx
 		iobtenerSesionNTx();
-
-		//Batch
-		iobtenerSesionBatch();
-
-		//ORCL CU Tx
-		iobtenerSesionOrclCUTx();
-
-		//ORCL CU NTx
-		iobtenerSesionOrclCUNTx();
-
-		//ORCL NTx
-		iobtenerSesionOrclNTx();
-
-		//ORCL NTx
-		iobtenerSesionOrclTx();
-
-		//Sql Server
-		iobtenerSesionSqlBatch();
-
-		//Sybase IQ
-		iobtenerSesionSybaseIQ();
 	}
 
 	/**
@@ -134,136 +77,6 @@ public final class FabricaConexiones {
 
 	/**
 	 * Obtiene una sesion a la base de datos.
-	 * @throws IOException
-	 */
-	private static void iobtenerSesionBatch() {
-		Reader 						readerBatch;
-		SqlSessionFactoryBuilder 	builderBatch;
-		SqlSessionFactory 			sqlMapperBatch = null;
-		try {
-			readerBatch 	= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
-			builderBatch 	= new SqlSessionFactoryBuilder( );
-			sqlMapperBatch 	= builderBatch.build( readerBatch );
-		} catch ( Exception e ) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un error en la Fabrica de Conexiones Batch", e);
- 		}
-		fACTORY_BATCH = sqlMapperBatch;
-		}
-
-	/**
-	 * Obtiene una sesion a la base de datos.
-	 * @throws IOException
-	 */
-	private static void iobtenerSesionOrclNTx()	{
-		Reader 						readerOrclNTx;
-		SqlSessionFactoryBuilder 	builderOrclNTx;
-		SqlSessionFactory 			sqlMapperOrclNTx = null;
-		try {
-			readerOrclNTx 		= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
-			builderOrclNTx 		= new SqlSessionFactoryBuilder( );
-			sqlMapperOrclNTx 	= builderOrclNTx.build( readerOrclNTx );
-		} catch ( Exception e ) {
-			LogHandler.error(null, FabricaConexiones.class,
-					"Existio un error en la Fabrica de Conexiones Orcl NTx", e);
- 		}
-		fACTORY_ORCL_NTX = sqlMapperOrclNTx;
-		}
-
-	/**
-	 * Obtiene una sesion a la base de datos.
-	 * @throws IOException
-	 */
-	private static void iobtenerSesionOrclTx()	{
-		Reader 						readerOrclTx;
-		SqlSessionFactoryBuilder 	builderOrclTx;
-		SqlSessionFactory 			sqlMapperOrclTx = null;
-		try {
-			readerOrclTx 		= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
-			builderOrclTx 		= new SqlSessionFactoryBuilder( );
-			sqlMapperOrclTx 	= builderOrclTx.build( readerOrclTx );
-		} catch ( Exception e ) {
-			LogHandler.error(null, FabricaConexiones.class,
-					"Existio un error en la Fabrica de Conexiones Orcl Tx", e);
- 		}
-		fACTORY_ORCL_TX = sqlMapperOrclTx;
-		}
-
-	/**
-	 * Obtiene una sesion a la base de datos.
-	 * @throws IOException
-	 */
-	private static void iobtenerSesionOrclCUTx() {
-		Reader 						readerOrclNTx;
-		SqlSessionFactoryBuilder 	builderOrclNTx;
-		SqlSessionFactory 			sqlMapperOrclNTx = null;
-		try {
-			readerOrclNTx 		= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
-			builderOrclNTx 		= new SqlSessionFactoryBuilder( );
-			sqlMapperOrclNTx 	= builderOrclNTx.build( readerOrclNTx );
-		} catch ( Exception e ) {
-			LogHandler.error(null, FabricaConexiones.class,
-					"Existio un error en la Fabrica de Conexiones Orcl Tx", e);
-			}
-		fACTORY_ORCL_CU_TX = sqlMapperOrclNTx;
-		}
-
-	/**
-	 * Obtiene una sesion a la base de datos.
-	 * @throws IOException
-	 */
-	private static void iobtenerSesionOrclCUNTx() {
-	Reader 						readerOrclNTx;
-	SqlSessionFactoryBuilder 	builderOrclNTx;
-	SqlSessionFactory 			sqlMapperOrclNTx = null;
-	try {
-		readerOrclNTx 		= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
-		builderOrclNTx 		= new SqlSessionFactoryBuilder( );
-		sqlMapperOrclNTx 	= builderOrclNTx.build( readerOrclNTx );
-	} catch ( Exception e ) {
-		LogHandler.error(null, FabricaConexiones.class, "Existio un error en la Fabrica de Conexiones Orcl Tx", e);
-		}
-		fACTORY_ORCL_CU_NTX = sqlMapperOrclNTx;
-	}
-
-	/**
-	 * Obtiene una sesion a la base de datos.
-	 * @throws IOException
-	 */
-	private static void iobtenerSesionSqlBatch() {
-		Reader 						readerBatch;
-		SqlSessionFactoryBuilder 	builderBatch;
-		SqlSessionFactory 			sqlMapperBatch = null;
-		try {
-			readerBatch 	= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
-			builderBatch 	= new SqlSessionFactoryBuilder( );
-			sqlMapperBatch 	= builderBatch.build( readerBatch );
-		} catch ( Exception e ) {
-			LogHandler.error(null, FabricaConexiones.class,
-					"Existio un error en la Fabrica de Conexiones SQL Server Batch", e);
-			}
-		fACTORY_SQL_BATCH = sqlMapperBatch;
-		}
-
-	/**
-	 * Obtiene una sesion a IQ
-	 */
-	private static void iobtenerSesionSybaseIQ() {
-		Reader 						readerBatch;
-		SqlSessionFactoryBuilder 	builderBatch;
-		SqlSessionFactory 			sqlMapperBatch = null;
-		try {
-			readerBatch 	= Resources.getResourceAsReader( "com/fyg/multisitio/dao/resources/database-config.xml" );
-			builderBatch 	= new SqlSessionFactoryBuilder( );
-			sqlMapperBatch 	= builderBatch.build( readerBatch );
-		} catch ( Exception e ) {
-			LogHandler.error(null, FabricaConexiones.class,
-					"Existio un error en la Fabrica de Conexiones SQL Server Batch", e);
-			}
-		fACTORY_SYBASE_IQ = sqlMapperBatch;
-		}
-
-	/**
-	 * Obtiene una sesion a la base de datos.
 	 * @return Sesion.
 	 * @throws IOException
 	 */
@@ -280,7 +93,7 @@ public final class FabricaConexiones {
 				throw new Exception(  );
 			}
 		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSesionTx", e);
+			LogHandler.error(null, FabricaConexiones.class, "Existio un erorr al obtenerSesionTx", e);
 			throw new SQLException( "Sin conexion TX a la base de datos" );
 		}
 		return regreso;
@@ -305,176 +118,8 @@ public final class FabricaConexiones {
 				throw new Exception(  );
 			}
 		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Exsitio un error al obtenerSesionNTx", e);
+			LogHandler.error(null, FabricaConexiones.class, "Exsitio un erorr al obtenerSesionNTx", e);
 			throw new SQLException( "Sin conexion NTX a la base de datos" );
-		}
-		return regreso;
-	}
-
-	/**
-	 * Obtiene una sesion a la base de datos.
-	 * @return Sesion.
-	 * @throws IOException
-	 */
-	public static SqlSession obtenerSesionBatch( ) throws SQLException {
-		SqlSession regreso = null;
-		try {
-			if ( fACTORY_BATCH == null ) {
-				iobtenerSesionBatch();
-			}
-			if ( fACTORY_BATCH != null ) {
-				regreso = fACTORY_BATCH.openSession( true ); //Autocommit ON, no permite transacciones
-			}
-			if ( regreso == null ) {
-				throw new Exception(  );
-			}
-		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSesionBatch", e);
-			throw new SQLException( "Sin conexion BATCH a la base de datos" );
-		}
-		return regreso;
-	}
-
-	/**
-	 * Obtiene una sesion a la base de datos.
-	 * @return Sesion.
-	 * @throws IOException
-	 */
-	public static SqlSession obtenerSesionOrclNTx( ) throws SQLException {
-		SqlSession regreso = null;
-		try {
-			if ( fACTORY_ORCL_NTX == null ) {
-				iobtenerSesionOrclNTx();
-			}
-			if ( fACTORY_ORCL_NTX != null ) {
-				regreso = fACTORY_ORCL_NTX.openSession( true ); //Autocommit ON, no permite transacciones
-			}
-			if ( regreso == null ) {
-				throw new Exception(  );
-			}
-		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSesionOrclNTx", e);
-			throw new SQLException( "Sin conexion ORACLE NTX a la base de datos" );
-		}
-		return regreso;
-	}
-
-	/**
-	 * Obtiene una sesion a la base de datos.
-	 * @return Sesion.
-	 * @throws IOException
-	 */
-	public static SqlSession obtenerSesionOrclTx( ) throws SQLException {
-		SqlSession regreso = null;
-		try {
-			if ( fACTORY_ORCL_TX == null ) {
-				iobtenerSesionOrclTx();
-			}
-			if ( fACTORY_ORCL_TX != null ) {
-				regreso = fACTORY_ORCL_TX.openSession( false ); //Autocommit ON, no permite transacciones
-			}
-			if ( regreso == null ) {
-				throw new Exception(  );
-			}
-		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSesionOrclTx", e);
-			throw new SQLException( "Sin conexion ORACLE TX a la base de datos" );
-		}
-		return regreso;
-	}
-
-	/**
-	 * Obtiene una sesion a la base de datos.
-	 * @return Sesion.
-	 * @throws IOException
-	 */
-	public static SqlSession obtenerSesionOrclCUTx( ) throws SQLException {
-		SqlSession regreso = null;
-		try {
-			if ( fACTORY_ORCL_CU_TX == null ) {
-				iobtenerSesionOrclCUTx();
-			}
-			if ( fACTORY_ORCL_CU_TX != null ) {
-				regreso = fACTORY_ORCL_CU_TX.openSession( false ); //Autocommit ON, no permite transacciones
-			}
-			if ( regreso == null ) {
-				throw new Exception(  );
-			}
-		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSesionOrclCUTx", e);
-			throw new SQLException( "Sin conexion ORACLE TX a la base de datos" );
-		}
-		return regreso;
-	}
-
-	/**
-	 * Obtiene una sesion a la base de datos.
-	 * @return Sesion.
-	 * @throws IOException
-	 */
-	public static SqlSession obtenerSesionOrclCUNTx( ) throws SQLException {
-		SqlSession regreso = null;
-		try {
-			if ( fACTORY_ORCL_CU_NTX == null ) {
-				iobtenerSesionOrclCUTx();
-			}
-			if ( fACTORY_ORCL_CU_NTX != null ) {
-				regreso = fACTORY_ORCL_CU_NTX.openSession( true ); //Autocommit ON, no permite transacciones
-			}
-			if ( regreso == null ) {
-				throw new Exception(  );
-			}
-		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSesionOrclCUNTx", e);
-			throw new SQLException( "Sin conexion ORACLE TX a la base de datos" );
-		}
-		return regreso;
-	}
-
-	/**
-	 * Obtiene una sesion a la base de datos.
-	 * @return Sesion.
-	 * @throws IOException
-	 */
-	public static SqlSession obtenerSesionSqlBatch( ) throws SQLException {
-		SqlSession regreso = null;
-		try {
-			if ( fACTORY_SQL_BATCH == null ) {
-				iobtenerSesionSqlBatch();
-			}
-			if ( fACTORY_SQL_BATCH != null ) {
-				regreso = fACTORY_SQL_BATCH.openSession( true ); //Autocommit ON, no permite transacciones
-			}
-			if ( regreso == null ) {
-				throw new Exception(  );
-			}
-		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSesionSqlBatch", e);
-			throw new SQLException( "Sin conexion SQL Server a la base de datos" );
-		}
-		return regreso;
-	}
-
-	/**
-	 * Obtiene una sesion a la base de datos.
-	 * @return Sesion.
-	 * @throws IOException
-	 */
-	public static SqlSession obtenerSesionSybaseIQ( ) throws SQLException {
-		SqlSession regreso = null;
-		try {
-			if ( fACTORY_SYBASE_IQ == null ) {
-				iobtenerSesionSybaseIQ();
-			}
-			if ( fACTORY_SYBASE_IQ != null ) {
-				regreso = fACTORY_SYBASE_IQ.openSession( true ); //Autocommit ON, no permite transacciones
-			}
-			if ( regreso == null ) {
-				throw new Exception(  );
-			}
-		} catch (Exception e) {
-			LogHandler.error(null, FabricaConexiones.class, "Existio un error al obtenerSessionSybaseIQ", e);
-			throw new SQLException( "Sin conexion Sybase IQ a la base de datos" );
 		}
 		return regreso;
 	}
@@ -500,73 +145,5 @@ public final class FabricaConexiones {
 			conn.rollback( true );
 		}
 	}
-
-	/**
-	 * obtiene los datos para hostear en sybase
-	 * @return respuesta
-	 */
-	public static String hostSybase( ) {
-		final Properties properties = new Properties();
-		final java.lang.StringBuffer respuesta = new StringBuffer();
-		try {
-			properties.load( Resources.getResourceAsReader( "entidad/config.properties" ) );
-			respuesta.append( properties.getProperty( "sybase.ip" ) );
-			} catch ( java.lang.Exception exception ) {
-					respuesta.append( "Fallo IP" );
-			}
-		return respuesta.toString();
-		}
-
-	/**
-	 * Obtiene datos para una sesion en Oracle
-	 * @return respuesta
-	 */
-	public static String hostOracle( ) {
-		final Properties properties = new Properties();
-		final java.lang.StringBuffer respuesta = new StringBuffer();
-		try {
-			properties.load( Resources.getResourceAsReader( "entidad/config.properties" ) );
-			respuesta.append( properties.getProperty( "oracle.ip" ) );
-			}
-		catch ( java.lang.Exception exception ) {
-			respuesta.append( "Fallo IP" );
-			}
-		return respuesta.toString();
-		}
-
-	/**
-	 * Obtiene los datos para una sesion SqlServer
-	 * @return respuesta
-	 */
-	public static String hostSqlServer( ) {
-		final Properties properties = new Properties();
-		final java.lang.StringBuffer respuesta = new StringBuffer();
-		try {
-			properties.load(Resources.getResourceAsReader( "entidad/config.properties" ) );
-			respuesta.append( properties.getProperty( "sqlserver.ip" ) );
-			}
-		catch ( java.lang.Exception exception ) {
-			respuesta.append( "Fallo IP" );
-			}
-		return respuesta.toString();
-		}
-
-	/**
-	 * Recupera los datos para Sybase IQ
-	 * @return respuesta
-	 */
-	public static String hostSybaseIQ( ) {
-		final Properties properties = new Properties();
-		final java.lang.StringBuffer respuesta = new StringBuffer();
-		try {
-			properties.load( Resources.getResourceAsReader( "entidad/config.properties" ) );
-			respuesta.append( properties.getProperty( "iqsybase.ip" ) );
-			}
-		catch ( java.lang.Exception exception ) {
-			respuesta.append( "Fallo IP" );
-			}
-		return respuesta.toString();
-		}
-
 
 }
