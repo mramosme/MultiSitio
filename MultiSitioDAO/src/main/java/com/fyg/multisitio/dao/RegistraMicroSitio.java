@@ -23,6 +23,11 @@ import com.fyg.multisitio.dto.Zona;
 public class RegistraMicroSitio {
 
 	/**
+	 * Se crea un ObjetoContacto para obtener el id cuando se registra en la tabla contacto
+	 */
+	private Contacto ObjContacto;
+	
+	/**
 	 * Metodo ...
 	 * @param uid identificador unico de la transaccion
 	 * @param contacto variable para la actualizacion
@@ -295,6 +300,8 @@ public class RegistraMicroSitio {
 			}
 			throw new ExcepcionesMultiSitioComun("No se pudo registrar el contacto.");
 		}
+		//Obtenemos el id contacto que se genero al insertar y se le asiga al objeto contacto
+			ObjContacto = contacto;
 
 		//La conexion no es atomica realizamos commit
 		if ( session == null ) {
@@ -365,8 +372,12 @@ public class RegistraMicroSitio {
 
 			//Primero registramos el contacto
 			registraContacto(uid, negocio.getObjetoContacto() , sessionTx);
+			
 			//Validar si trae el id del contacto
 			LogHandler.debug(uid, this.getClass(), "contacto: " + negocio.getObjetoContacto());
+			
+			//Se le asigna el id del contacto resultante en la tabla negocio
+			negocio.setIdContacto(ObjContacto.getId());
 
         	Integer registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroNegocio", negocio);
 			if ( registros == 0) {
@@ -408,10 +419,13 @@ public class RegistraMicroSitio {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
 
-			//Primero registramso el contacto
+			//Primero registramos el contacto
 			registraContacto(uid, sitio.getObjetoContacto() , sessionTx);
 			//Validar si trae el id del contacto
 			LogHandler.debug(uid, this.getClass(), "contacto: " + sitio.getObjetoContacto());
+			
+			//Le asignamos el id de contacto en sitio
+			sitio.setContacto(ObjContacto.getId());
 
         	Integer registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroSitio", sitio);
 			if ( registros == 0) {
