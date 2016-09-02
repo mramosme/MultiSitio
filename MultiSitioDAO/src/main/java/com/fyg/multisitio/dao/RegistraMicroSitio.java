@@ -49,7 +49,7 @@ public class RegistraMicroSitio {
 				sessionTx = session;
 			}
 
-        	Integer actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroContacto", contacto);
+        	int actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroContacto", contacto);
 			if ( actualizados == 0) {
 				throw new ExcepcionesMultiSitioComun("Error en actualizar el contacto.");
 			}
@@ -95,7 +95,7 @@ public class RegistraMicroSitio {
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
-        	Integer actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroGaleria", galeria);
+			int actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroGaleria", galeria);
 			if ( actualizados == 0) {
 				throw new ExcepcionesMultiSitioComun("Error en actualizar la galeria.");
 			}
@@ -132,7 +132,7 @@ public class RegistraMicroSitio {
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
-        	Integer actualizados = sessionTx.update("RegistraMicroSitio.actualizaEstatusGaleria", galeria);
+			int actualizados = sessionTx.update("RegistraMicroSitio.actualizaEstatusGaleria", galeria);
 			if ( actualizados == 0) {
 				throw new ExcepcionesMultiSitioComun("Error en inactivar la galeria.");
 			}
@@ -173,7 +173,7 @@ public class RegistraMicroSitio {
 			//Modificamos Contacto
 			modificaContacto(uid, negocio.getObjetoContacto(), sessionTx);
 
-        	Integer actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroNegocio", negocio);
+			int actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroNegocio", negocio);
 			if ( actualizados == 0) {
 				throw new ExcepcionesMultiSitioComun("Error en actualizar el negocio.");
 			}
@@ -211,7 +211,7 @@ public class RegistraMicroSitio {
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
-        	Integer actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroSitio", sitio);
+			int actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroSitio", sitio);
 			if ( actualizados == 0) {
 				throw new ExcepcionesMultiSitioComun("Error en actualizar el sitio.");
 			}
@@ -248,7 +248,7 @@ public class RegistraMicroSitio {
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
-        	Integer actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroZona", zona);
+			int actualizados = sessionTx.update("RegistraMicroSitio.actualizaRegistroZona", zona);
 			if ( actualizados == 0) {
 				throw new ExcepcionesMultiSitioComun("Error en actualizar el sitio.");
 			}
@@ -291,7 +291,7 @@ public class RegistraMicroSitio {
 			sessionTx = session;
 		}
 		//Registramos el contacto
-    	Integer registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroContacto", contacto);
+		int registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroContacto", contacto);
         //Validamos el registro
 		if ( registros == 0) {
 			if ( session == null ) {
@@ -331,7 +331,7 @@ public class RegistraMicroSitio {
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
-        	Integer registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroGaleria", galeria);
+			int registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroGaleria", galeria);
 			if ( registros == 0) {
 				throw new ExcepcionesMultiSitioComun("Error en registrar la galeria.");
 			}
@@ -372,14 +372,14 @@ public class RegistraMicroSitio {
 
 			//Primero registramos el contacto
 			registraContacto(uid, negocio.getObjetoContacto() , sessionTx);
-			
+
 			//Validar si trae el id del contacto
 			LogHandler.debug(uid, this.getClass(), "contacto: " + negocio.getObjetoContacto());
-			
+
 			//Se le asigna el id del contacto resultante en la tabla negocio
 			negocio.setIdContacto(ObjContacto.getId());
 
-        	Integer registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroNegocio", negocio);
+        	int registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroNegocio", negocio);
 			if ( registros == 0) {
 				throw new ExcepcionesMultiSitioComun("Error en registrar Negocio.");
 			}
@@ -423,11 +423,11 @@ public class RegistraMicroSitio {
 			registraContacto(uid, sitio.getObjetoContacto() , sessionTx);
 			//Validar si trae el id del contacto
 			LogHandler.debug(uid, this.getClass(), "contacto: " + sitio.getObjetoContacto());
-			
+
 			//Le asignamos el id de contacto en sitio
 			sitio.setContacto(ObjContacto.getId());
 
-        	Integer registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroSitio", sitio);
+        	int registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroSitio", sitio);
 			if ( registros == 0) {
 				throw new ExcepcionesMultiSitioComun("Error en registrar Sitio.");
 			}
@@ -464,7 +464,7 @@ public class RegistraMicroSitio {
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
-        	Integer registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroZona", zona);
+        	int registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroZona", zona);
 			if ( registros == 0) {
 				throw new ExcepcionesMultiSitioComun("Error en registrar la zona.");
 			}

@@ -1,6 +1,7 @@
 package com.fyg.multisitio.negocio;
 
 import com.fyg.multisitio.comun.EncabezadoRespuesta;
+import com.fyg.multisitio.comun.ExcepcionesMultiSitioComun;
 import com.fyg.multisitio.comun.GUIDGenerator;
 import com.fyg.multisitio.comun.LogHandler;
 import com.fyg.multisitio.dao.RegistraMicroSitio;
@@ -29,7 +30,7 @@ public class OperacionesMultiSitioNegocio {
 			//Validaciones Negocio
 
 			if (negocio.getNombre() == null || negocio.getNombre().isEmpty()) {
-				throw new Exception("El nombre del negocio es obligatorio.");
+				throw new ExcepcionesMultiSitioComun("El nombre del negocio es obligatorio.");
 			}
 
 			//Seguro aqui faltan muchas valdiaciones --Agregar Robert
@@ -37,6 +38,13 @@ public class OperacionesMultiSitioNegocio {
 			//Mandamos a la parte del dao
 			RegistraMicroSitio dao = new RegistraMicroSitio();
 			respuesta = dao.registraNegocio(uid, negocio);
+		}
+		catch  (ExcepcionesMultiSitioComun ex) {
+			LogHandler.error(uid, this.getClass(), "registraNegocio - ErrorMultisitio: " + ex.getMessage(), ex);
+			respuesta.setUid(uid);
+			respuesta.setEstatus(false);
+			respuesta.setMensajeFuncional(ex.getMessage());
+			respuesta.setMensajeTecnico(ex.getMessage());
 		}
 		catch  (Exception ex) {
 			LogHandler.error(uid, this.getClass(), "registraNegocio - Error: " + ex.getMessage(), ex);
@@ -66,7 +74,7 @@ public class OperacionesMultiSitioNegocio {
 			//Validaciones Negocio
 
 			if (sitio.getNombre() == null || sitio.getNombre().isEmpty()) {
-				throw new Exception("El nombre del sitio es obligatorio.");
+				throw new ExcepcionesMultiSitioComun("El nombre del sitio es obligatorio.");
 			}
 
 			//Seguro aqui faltan muchas valdiaciones --Agregar Robert
@@ -74,6 +82,13 @@ public class OperacionesMultiSitioNegocio {
 			//Mandamos a la parte del dao
 			RegistraMicroSitio dao = new RegistraMicroSitio();
 			respuesta = dao.registraSitio(uid, sitio);
+		}
+		catch  (ExcepcionesMultiSitioComun ex) {
+			LogHandler.error(uid, this.getClass(), "registraSitio - ErrorMultisitio: " + ex.getMessage(), ex);
+			respuesta.setUid(uid);
+			respuesta.setEstatus(false);
+			respuesta.setMensajeFuncional(ex.getMessage());
+			respuesta.setMensajeTecnico(ex.getMessage());
 		}
 		catch  (Exception ex) {
 			LogHandler.error(uid, this.getClass(), "registraSitio - Error: " + ex.getMessage(), ex);
@@ -105,7 +120,7 @@ public class OperacionesMultiSitioNegocio {
 			//Validaciones Negocio
 
 			if (zona.getNombre() == null || zona.getNombre().isEmpty()) {
-				throw new Exception("El nombre de la zona es obligatorio.");
+				throw new ExcepcionesMultiSitioComun("El nombre de la zona es obligatorio.");
 			}
 
 			//Seguro aqui faltan muchas valdiaciones --Agregar Robert
@@ -113,6 +128,13 @@ public class OperacionesMultiSitioNegocio {
 			//Mandamos a la parte del dao
 			RegistraMicroSitio dao = new RegistraMicroSitio();
 			respuesta = dao.registraZona(uid, zona);
+		}
+		catch  (ExcepcionesMultiSitioComun ex) {
+			LogHandler.error(uid, this.getClass(), "registraZona - ErrorMultisitio: " + ex.getMessage(), ex);
+			respuesta.setUid(uid);
+			respuesta.setEstatus(false);
+			respuesta.setMensajeFuncional(ex.getMessage());
+			respuesta.setMensajeTecnico(ex.getMessage());
 		}
 		catch  (Exception ex) {
 			LogHandler.error(uid, this.getClass(), "registraZona - Error: " + ex.getMessage(), ex);
