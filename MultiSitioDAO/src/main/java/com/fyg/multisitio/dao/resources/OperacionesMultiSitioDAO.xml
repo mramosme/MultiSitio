@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.fyg.multisitio.dao.resources.OperacionesMultiSitioDAO">
-	
+
 <!--- INSERTA EN  LA TABLA CONTACTO-->
 <insert id="insertaRegistroContacto" parameterType="contacto" useGeneratedKeys="true" keyProperty="id"  keyColumn="id">
 INSERT INTO contacto(nombre,calle,colonia,telefono,correo)
@@ -16,7 +16,7 @@ INSERT INTO contacto(nombre,calle,colonia,telefono,correo)
 
 <!--- ACTUALIZA LA TABLA CONTACTO-->
 <update id="actualizaRegistroContacto" parameterType="contacto">
-UPDATE contacto SET 
+UPDATE contacto SET
        calle     = #{calle},
        colonia   = #{colonia},
        telefono  = #{telefono},
@@ -26,9 +26,9 @@ WHERE id = #{id}
 
 
                                                        <!--- OPERACIONES EN LA TABLA GALERIA-->
-<!--- ACTUALIZA LA TABLA GALERIA-->                                                     
+<!--- ACTUALIZA LA TABLA GALERIA-->
 <update id="actualizaRegistroGaleria" parameterType="galeria">
-UPDATE galeria SET 
+UPDATE galeria SET
        urlImagen      = #{urlImagen}
 WHERE  idNegocio      = #{idNegocio}
 </update>
@@ -51,7 +51,7 @@ INSERT INTO galeria(id,idNegocio,urlImagen,estatus,fechaRegistro,usuarioAlta)
 
 <!--- ACTUALIZA LA TABLA NEGOCIO-->
 <update id="actualizaRegistroNegocio" parameterType="negocio">
-UPDATE negocio SET 
+UPDATE negocio SET
         nombre           = #{nombre},
         descripcionCorta = #{descripcionCorta},
         descripcionLarga = #{descripcionLarga},
@@ -65,7 +65,7 @@ UPDATE negocio SET
         areaNinos        = #{areaNinos},
         mascotas         = #{mascotas}
 WHERE  id = #{id} AND idSitio = #{idSitio}
-</update>	                                                     
+</update>
 
 <!--- INSERTA EN LA TABLA NEGOCIO-->
 <insert id="insertaRegistroNegocio" parameterType="negocio">
@@ -102,11 +102,27 @@ UPDATE zona SET
        urlImagen  = #{urlImagen},
        estatus = #{estatus}
 WHERE  id = #{id}
-</update>	
+</update>
 
 <!--- INSERTA EN LA TABLA ZONA-->
 <insert id="insertaRegistroZona" parameterType="zona">
 INSERT INTO zona(id,nombre,descripcion,urlImagen,estatus)
 VALUES(#{id},#{nombre},#{descripcion},#{urlImagen},#{estatus})
+</insert>
+														<!--- OPERACIONES EN LA TABLA PROMOCION-->
+<!---ACTUALIZA LA TABLA PROMOCION-->
+<update id="actualizaRegistroPromocion" parameterType="promocion">
+UPDATE promocion SET
+       nombre = #{nombre},
+       fechaInicio = #{fechaInicio},
+       fechaFin = #{fechaFin},
+       usuarioRegistro = #{usuarioRegistro}
+WHERE id = #{id}
+</update>
+
+<!--- INSERTA EN LA TABLA PROMOCION-->
+<insert id="insertaRegistroPromocion" parameterType="promocion">
+INSERT INTO promocion(idSitio,idNegocio,nombre,fechaInicio,fechaFin,usuarioRegistro)
+VALUES(#{idSitio}, #{idNegocio}, #{nombre}, #{fechaInicio}, #{fechaFin}, #{usuarioRegistro})
 </insert>
 </mapper>
