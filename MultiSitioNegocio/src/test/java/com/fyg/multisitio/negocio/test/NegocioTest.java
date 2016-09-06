@@ -11,9 +11,21 @@ import com.fyg.multisitio.dto.Contacto;
 import com.fyg.multisitio.dto.Negocio;
 
 public class NegocioTest {
+	/**
+	 * Se crea el objeto data para mandarle valores a negocio
+	 */
 	private OperacionesMultiSitioNegocio data;
+	/**
+	 * Objeto contacto para mandar valores
+	 */
     private Contacto registroContacto;
+    /**
+     * Objeto negoocio para mandar valores
+     */
     private Negocio  registroNegocio;
+    /**
+     * Generador uid unico
+     */
     private GUIDGenerator uid;
     /**
      * @author Roberto Coto
@@ -31,8 +43,7 @@ public class NegocioTest {
 	       registroContacto.setColonia("Polanco");
 	       registroContacto.setCorreo("prueba@fygsolutions.com");
 	       registroContacto.setTelefono("5578902232");
-		   
-	       
+
 	       /**
 		    * Datos que se enviaran al negocio
 		    */
@@ -46,28 +57,28 @@ public class NegocioTest {
 		   registroNegocio.setEstatus(1);
 		   registroNegocio.setLigaFB("https://www.facebook.com/pages/PlayaAzul");
 		   registroNegocio.setLigaPagina("https://www.playazul.com.mx");
-		   registroNegocio.setCalificacion(5);
+		   registroNegocio.setCalificacion(1);
 		   registroNegocio.setWifi(true);
 		   registroNegocio.setEstacionamiento(true);
 		   registroNegocio.setAreaNinos(false);
 		   registroNegocio.setMascotas(true);
-		   
-	}
 
+	}
+	/**
+	 * @Test ,para las pruebas unitarias
+	 */
 	@Test
 	@SuppressWarnings("static-access")
 	public void testRegistraContacto() {
 		String guid = uid.generateGUID(data);
-	    
-		try{
-			data.registraNegocio(registroNegocio);
-			LogHandler.debug(guid,this.getClass(), "PRUEBA EXITOSA EN JUNIT");
-		}
-		catch(Exception e){
-		 LogHandler.error(guid, this.getClass(), "Error: ", e);
-		}
-		
-		
-	}
 
+		try {
+			data.registraNegocio(registroNegocio);
+			LogHandler.debug(guid,this.getClass(),"PRUEBA EXITOSA EN JUNIT");
+		}
+		catch (Exception ex) {
+		 LogHandler.error(guid, this.getClass(), "Error: ", ex);
+		}
+
+	}
 }
