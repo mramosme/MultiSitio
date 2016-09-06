@@ -15,7 +15,10 @@ public class NegocioTest {
     private Contacto registroContacto;
     private Negocio  registroNegocio;
     private GUIDGenerator uid;
-    
+    /**
+     * @author Roberto Coto
+     * @throws Exception
+     */
 	@Before
 	public void setUp() throws Exception {
 		   data = new OperacionesMultiSitioNegocio();
