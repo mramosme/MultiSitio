@@ -22,7 +22,6 @@ public class NegocioTest {
 	@Before
 	public void setUp() throws Exception {
 		   data = new OperacionesMultiSitioNegocio();
-		  
 		   /**
 		    * Datos que se enviaran a contactos
 		    */
