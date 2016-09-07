@@ -1,20 +1,29 @@
 package com.fyg.multisitio.comun;
 
 public class EncabezadoRespuesta extends ObjetoValor {
-	
 	/**
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 2016482701904470431L;
-
+	/**
+	 * Estatus
+	 */
 	private boolean estatus;
-	
+	/**
+	 * UID unico de registro
+	 */
 	private String uid;
-	
+	/**
+	 * Mensaje tecnico
+	 */
 	private String mensajeTecnico;
-	
+	/**
+	 * Mensaje funcional
+	 */
 	private String mensajeFuncional;
-	
+	/**
+	 * Codigo generado
+	 */
 	private String codigo;
 
 	/**
