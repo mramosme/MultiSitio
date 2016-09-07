@@ -129,9 +129,4 @@ public class Contacto extends ObjetoValor {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
-
-	
-
 }
