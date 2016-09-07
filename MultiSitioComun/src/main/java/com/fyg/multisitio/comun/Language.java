@@ -4,47 +4,52 @@ package com.fyg.multisitio.comun;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Language 
+public class Language
 {
-	
-	private String Language  = null;
-	
-	private Map<String, Map<String, String>>    Dictionary = new HashMap<String, Map<String, String>>();
-	
-	
+	/**
+	 * Se crea Language para almacenar
+	 */
+	private String language  = null;
+	/**
+	 * Mapa que almacena los msgs personalizados
+	 */
+	private Map<String, Map<String, String>>    dictionary = new HashMap<String, Map<String, String>>();
+	/**
+	 * @param getLanguage ,Se obtiene el lenguaje a usar
+	 */
 	public Language( String getLanguage )
 	{
-		
-		Language = getLanguage;
 
-		Map<String,String>    Key   = new HashMap<String,String>();
-		
+		language = getLanguage;
+
+		Map<String,String>key = new HashMap<String,String>();
+
 		//Español
-		Key.put("ERROR_REGISTRO"       , "No fue posible completar el registro, Intente mas tarde.");
-		Key.put("IMPOSIBLE_MODIFICAR"           , "No fue posible modificar el registro.");
-		Key.put("ERROR_MODIFICAR_BD"              , "No fue posible modificar el registro en la BD");
-		Key.put("ERROR_CONSULTAR_REGISTRO"    , "No se puede consultar el registro.");
-		Key.put("MODIFICACION_COMPLETA"           , "La modificacion ha sido correcta.");
-		Key.put("ERROR_BAJA"        , "No fue posible dar de baja el registro");
-		Key.put("BAJA_COMPLETA", "La baja ha sido correcta");
-		
-		
-		Dictionary.put("ES", Key);
-		
+		key.put("ERROR_REGISTRO"       , "No fue posible completar el registro, Intente mas tarde.");
+		key.put("IMPOSIBLE_MODIFICAR"           , "No fue posible modificar el registro.");
+		key.put("ERROR_MODIFICAR_BD"              , "No fue posible modificar el registro en la BD");
+		key.put("ERROR_CONSULTAR_REGISTRO"    , "No se puede consultar el registro.");
+		key.put("MODIFICACION_COMPLETA"           , "La modificacion ha sido correcta.");
+		key.put("ERROR_BAJA"        , "No fue posible dar de baja el registro");
+		key.put("BAJA_COMPLETA", "La baja ha sido correcta");
+
+		dictionary.put("ES", key);
+
 		//Inglés
-		Key.put("INCOMPLETE_REGISTRY"		, "Impossible compleer registry.");
-		Key.put("IMPOSSIBLE_MODIFY"    		, "Impossible to edit.");
-		Key.put("ERROR_CONSULT_REGISTRY"	, "Cannot consult registry.");
-		
-		Dictionary.put("EN", Key);
-				
-		
+		key.put("INCOMPLETE_REGISTRY"		, "Impossible compleer registry.");
+		key.put("IMPOSSIBLE_MODIFY"    		, "Impossible to edit.");
+		key.put("ERROR_CONSULT_REGISTRY"	, "Cannot consult registry.");
+
+		dictionary.put("EN", key);
 
 	}
-	 
-	public String get( String Key )
+	/**
+	 * @param key ,Key generada
+	 * @return ,Se obtiene la key
+	 */
+	public String get( String key )
 	{
-		return Dictionary.get(Language).get(Key);
+		return dictionary.get(language).get(key);
 	}
 
 }
