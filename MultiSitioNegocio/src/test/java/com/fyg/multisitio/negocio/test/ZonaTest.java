@@ -12,10 +12,22 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ZonaTest {
+	/**
+	 *UID unico de registro
+	 */
 	private GUIDGenerator uid;
+	/**
+	 * Se crea objeto zona para mandar valores
+	 */
 	private Zona registroZona;
+	/**
+	 * Se crea objeto contacto para mandar valores
+	 */
 	private OperacionesMultiSitioNegocio data;
-	
+	/**
+	 *
+	 * @throws Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		 data = new OperacionesMultiSitioNegocio();
@@ -27,23 +39,25 @@ public class ZonaTest {
 		   registroZona.setDescripcion("Contiene todo lo relacionado a turismo");
 		   registroZona.setUrlImagen("http://www.giphy.com/images/giphy.gif");
 		   registroZona.setEstatus(1);
-		
+
 	}
-	
+	/**
+	 *
+	 * @throws Exception
+	 */
 	@SuppressWarnings("static-access")
 	@Test
 	public void testRegistraZona() throws Exception {
 		String guid = uid.generateGUID(data);
-		
-		try{
+
+		try {
 			data.registraZona(registroZona);
 			LogHandler.debug(guid,this.getClass(), "PRUEBA EXITOSA EN JUNIT");
 		}
-		catch(Exception e){
-			LogHandler.error(guid, this.getClass(), "Error: ", e);
-			
+		catch (Exception ex) {
+			LogHandler.error(guid, this.getClass(), "Error: ", ex);
+
 		}
-		
 	}
 
 }
