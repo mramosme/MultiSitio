@@ -2,41 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.fyg.multisitio.dao.resources.ConsultasMultiSitioDAO">
-<!-- ********************************************************************************
-********************************************************** C O N S U L T A S ****************************************************************************************************************************************** -->		
+
 
 <!--- CONSULTA EN LA TABLA CONTACTO-->
 <select id="consultaContacto" parameterType="contacto">
-SELECT calle,colonia,telefono,correo 
-		FROM contacto 
+SELECT calle,colonia,telefono,correo
+FROM contacto
 WHERE id =#{id}
 </select>
 
 <!--- CONSULTA EN LA TABLA GALERIA-->
 <select id="consultaGaleria" parameterType="galeria">
-SELECT urlImagen 
-		FROM galeria 
+SELECT urlImagen
+FROM galeria
 WHERE idNegocio = #{idNegocio}
 </select>
 
 <!--- CONSULTA EN LA TABLA NEGOCIO-->
 <select id="consultaNegocio" parameterType="negocio">
-SELECT nombre,descripcionCorta,DescripcionLarga,urlLogotipo,estatus,ligaFB,ligaPagina,calificacion,wifi,estacionamiento,areaNinos,mascotas 
-		FROM negocio
+SELECT nombre,descripcionCorta,DescripcionLarga,urlLogotipo,estatus,ligaFB,ligaPagina,calificacion,wifi,estacionamiento,areaNinos,mascotas
+FROM negocio
 WHERE id = #{id} AND idSitio = #{idSitio}
 </select>
 
 <!--- CONSULTA EN LA TABLA SITIO-->
 <select id="consultaSitio" parameterType="sitio">
-SELECT nombre,contacto,domicilio,telefono,fechaRegistro,estatus,idZona 
-		FROM sitio 
+SELECT nombre,contacto,domicilio,telefono,fechaRegistro,estatus,idZona
+FROM sitio
 WHERE id = #{id}
 </select>
 
 <!--- CONSULTA EN LA TABLA ZONA-->
 <select id="consultaZona" parameterType="zona">
-SELECT nombre,descripcion,urlImagen,estatus 
-		FROM zona 
+SELECT nombre,descripcion,urlImagen,estatus
+FROM zona
 WHERE id = #{id}
 </select>
 </mapper>
