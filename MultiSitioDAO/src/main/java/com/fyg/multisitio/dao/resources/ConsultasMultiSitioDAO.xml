@@ -5,35 +5,35 @@
 
 
 <!--- CONSULTA EN LA TABLA CONTACTO-->
-<select id="consultaContacto" parameterType="contacto">
+<select id="consultaContacto" parameterType="contacto" resultType="string">
 SELECT calle,colonia,telefono,correo
 FROM contacto
 WHERE id =#{id}
 </select>
 
 <!--- CONSULTA EN LA TABLA GALERIA-->
-<select id="consultaGaleria" parameterType="galeria">
+<select id="consultaGaleria" parameterType="galeria" resultType="string">
 SELECT urlImagen
 FROM galeria
 WHERE idNegocio = #{idNegocio}
 </select>
 
 <!--- CONSULTA EN LA TABLA NEGOCIO-->
-<select id="consultaNegocio" parameterType="negocio">
+<select id="consultaNegocio" parameterType="negocio" resultType="string">
 SELECT nombre,descripcionCorta,DescripcionLarga,urlLogotipo,estatus,ligaFB,ligaPagina,calificacion,wifi,estacionamiento,areaNinos,mascotas
 FROM negocio
 WHERE id = #{id} AND idSitio = #{idSitio}
 </select>
 
 <!--- CONSULTA EN LA TABLA SITIO-->
-<select id="consultaSitio" parameterType="sitio">
+<select id="consultaSitio" parameterType="sitio" resultType="string">
 SELECT nombre,contacto,domicilio,telefono,fechaRegistro,estatus,idZona
 FROM sitio
 WHERE id = #{id}
 </select>
 
 <!--- CONSULTA EN LA TABLA ZONA-->
-<select id="consultaZona" parameterType="zona">
+<select id="consultaZona" parameterType="zona" resultType="string">
 SELECT nombre,descripcion,urlImagen,estatus
 FROM zona
 WHERE id = #{id}
