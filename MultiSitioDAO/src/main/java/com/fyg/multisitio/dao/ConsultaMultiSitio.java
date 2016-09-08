@@ -65,7 +65,7 @@ public class ConsultaMultiSitio {
 	/**
 	 * Metodo para consultar la zona.
 	 * @param uid ,Identificador unico de registro.
-	 * @param contacto ,se recibe el contacto para consultar la BD.
+	 * @param zona ,se recibe la zona para consultar la BD.
 	 * @return ,Regresa la zona a culsultar.
 	 */
 	@SuppressWarnings("unchecked")
@@ -79,9 +79,10 @@ public class ConsultaMultiSitio {
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
-			
+			zona.setId(7);
 			//Se hace una consulta a la tabla contacto
 			listaZona = sessionTx.selectList("ConsultaMultiSitio.concultaContacto", zona);
+			System.out.println("zona es:" + listaZona);
 		}
 		catch (Exception ex) {
 			LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
