@@ -31,10 +31,17 @@ public class OperacionesMultiSitioNegocio {
 
 			if (negocio.getNombre() == null || negocio.getNombre().isEmpty()) {
 				throw new ExcepcionesMultiSitioComun("El nombre del negocio es obligatorio.");
+			} else if (negocio.getDescripcionCorta() == null || negocio.getDescripcionCorta().isEmpty()) {
+				throw new ExcepcionesMultiSitioComun("Es necesario una descripcion.");
+			} else if (negocio.getDescripcionLarga() == null || negocio.getDescripcionLarga().isEmpty()) {
+				throw new ExcepcionesMultiSitioComun("Es necesario una descripcion larga.");
+			} else if (negocio.getUrlLogotipo() == null || negocio.getUrlLogotipo().isEmpty()) {
+				throw new ExcepcionesMultiSitioComun("Se necesita un logotipo para el negocio.");
+			} else if (negocio.getEstatus() == 0) {
+				throw new ExcepcionesMultiSitioComun("Es necesario asignarle un estatus.");
+			} else if (negocio.getCalificacion() == 0) {
+				throw new ExcepcionesMultiSitioComun("Es necesario asignarle una calificacion.");
 			}
-
-			//Seguro aqui faltan muchas valdiaciones --Agregar Robert
-
 			//Mandamos a la parte del dao
 			RegistraMicroSitio dao = new RegistraMicroSitio();
 			respuesta = dao.registraNegocio(uid, negocio);
@@ -75,10 +82,13 @@ public class OperacionesMultiSitioNegocio {
 
 			if (sitio.getNombre() == null || sitio.getNombre().isEmpty()) {
 				throw new ExcepcionesMultiSitioComun("El nombre del sitio es obligatorio.");
+			} else if (sitio.getDomicilio() == null || sitio.getDomicilio().isEmpty()) {
+				throw new ExcepcionesMultiSitioComun("Es necesario un domicilio del sitio.");
+			} else if (sitio.getTelefono() == null || sitio.getTelefono().isEmpty()) {
+				throw new ExcepcionesMultiSitioComun("Es necesario un telefono del sitio.");
+			} else if (sitio.getEstatus() == 0) {
+				throw new ExcepcionesMultiSitioComun("Es necesario asignarle un estatus.");
 			}
-
-			//Seguro aqui faltan muchas valdiaciones --Agregar Robert
-
 			//Mandamos a la parte del dao
 			RegistraMicroSitio dao = new RegistraMicroSitio();
 			respuesta = dao.registraSitio(uid, sitio);
@@ -121,9 +131,13 @@ public class OperacionesMultiSitioNegocio {
 
 			if (zona.getNombre() == null || zona.getNombre().isEmpty()) {
 				throw new ExcepcionesMultiSitioComun("El nombre de la zona es obligatorio.");
+			} else if (zona.getDescripcion() == null || zona.getDescripcion().isEmpty()) {
+				throw new ExcepcionesMultiSitioComun("Es necesaria una descripcion de la zona.");
+			} else if (zona.getUrlImagen() == null || zona.getUrlImagen().isEmpty()) {
+				throw new ExcepcionesMultiSitioComun("Es necesaria una imagen para la zona.");
+			} else if (zona.getEstatus() == 0) {
+				throw new ExcepcionesMultiSitioComun("Es necesario asignarle un estatus a la zona.");
 			}
-
-			//Seguro aqui faltan muchas valdiaciones --Agregar Robert
 
 			//Mandamos a la parte del dao
 			RegistraMicroSitio dao = new RegistraMicroSitio();
