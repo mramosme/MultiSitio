@@ -8,6 +8,7 @@ import com.fyg.multisitio.comun.EncabezadoRespuesta;
 import com.fyg.multisitio.comun.LogHandler;
 import com.fyg.multisitio.dao.resources.FabricaConexiones;
 import com.fyg.multisitio.dto.Contacto;
+import com.fyg.multisitio.dto.Zona;
 
 
 /**
@@ -68,7 +69,7 @@ public class ConsultaMultiSitio {
 	 * @return ,Regresa la zona a culsultar.
 	 */
 	@SuppressWarnings("unchecked")
-	public List<String> consultaZona(String uid, Contacto contacto) {
+	public List<String> consultaZona(String uid, Zona zona) {
 		SqlSession sessionTx = null;
 		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
 		respuesta.setUid(uid);
@@ -78,8 +79,9 @@ public class ConsultaMultiSitio {
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
+			
 			//Se hace una consulta a la tabla contacto
-			listaZona = sessionTx.selectList("ConsultaMultiSitio.concultaContacto", contacto);
+			listaZona = sessionTx.selectList("ConsultaMultiSitio.concultaContacto", zona);
 		}
 		catch (Exception ex) {
 			LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
