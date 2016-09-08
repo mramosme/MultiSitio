@@ -10,6 +10,7 @@
 		<typeAlias alias="Sitio" type="com.fyg.multisitio.dto.Sitio"/>
 		<typeAlias alias="Zona" type="com.fyg.multisitio.dto.Zona"/>
 		<typeAlias alias="Negocio" type="com.fyg.multisitio.dto.Negocio"/>
+		<typeAlias alias="Promocion" type="com.fyg.multisitio.dto.Promocion"/>
 	</typeAliases>
 
 	<environments default="development">

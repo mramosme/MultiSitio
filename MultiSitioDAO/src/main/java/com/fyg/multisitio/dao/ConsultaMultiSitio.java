@@ -9,6 +9,9 @@ import com.fyg.multisitio.comun.LogHandler;
 import com.fyg.multisitio.dao.resources.FabricaConexiones;
 import com.fyg.multisitio.dto.Contacto;
 import com.fyg.multisitio.dto.Zona;
+import com.fyg.multisitio.dto.Sitio;
+import com.fyg.multisitio.dto.Negocio;
+import com.fyg.multisitio.dto.Galeria;
 
 
 /**
@@ -23,13 +26,13 @@ public class ConsultaMultiSitio {
 
 	/**
 	 * Metodo para consultar contacto mediante sitio y negocio
-	 * @param uid
-	 * @param contacto
-	 * @param session
+	 * @param uid , Identificador unico
+	 * @param contacto ,Objeto contacto para recibir valores
+	 * @param session ,Sesion de BD mybatis
 	 * @return ,Regresa una lista contacto
 	 */
 	@SuppressWarnings("unchecked")
-	private List<String> consultaContacto(String uid, Contacto contacto,SqlSession session)
+	private List<String> consultaContacto(String uid, Contacto contacto, SqlSession session)
 	{
 		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
 		SqlSession sessionTx = null;
@@ -61,6 +64,70 @@ public class ConsultaMultiSitio {
 		}
 		return listaContacto;
 	}
+	/**
+	 * Metodo que consulta sitio y contacto.
+	 * @param uid ,Identificador unico
+	 * @param sitio ,para recibir valor de sitio
+	 * @return ,Regresa una lista de sitio /contacto
+	 */
+	@SuppressWarnings("unchecked")
+	public List<String> consultaSitio(String uid, Sitio sitio) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Consulta correcta.");
+		List<String> listaSitio = null;
+		try {
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+			//se le asigna el id a buscar (sitio)
+			sitio.setId(sitio.getId());
+			//Se hace una consulta a la tabla contacto
+			listaSitio = sessionTx.selectList("ConsultaMultiSitio.consultaSitio", sitio);
+		}
+		catch (Exception ex) {
+			LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
+		}
+		finally {
+			FabricaConexiones.close(sessionTx);
+		}
+		return listaSitio;
+	}
+	/**
+	 * Metodo para consultar negocios
+	 * @param uid ,Identificador unico
+	 * @param negocio ,Para recibir valores de negocio
+	 * @return ,Regresa una lista negocio
+	 */
+	@SuppressWarnings("unchecked")
+	public List<String> consultaNegocio(String uid, Negocio negocio) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Consulta correcta.");
+		List<String> listaNegocio = null;
+		try {
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+			//se le asigna el id a buscar (sitio)
+			negocio.setId(negocio.getId());
+			//Se hace una consulta a la tabla contacto
+			listaNegocio = sessionTx.selectList("ConsultaMultiSitio.consultaSitio", negocio);
+		}
+		catch (Exception ex) {
+			LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
+		}
+		finally {
+			FabricaConexiones.close(sessionTx);
+		}
+		return listaNegocio;
+	}
 
 	/**
 	 * Metodo para consultar la zona.
@@ -74,15 +141,14 @@ public class ConsultaMultiSitio {
 		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
 		respuesta.setUid(uid);
 		respuesta.setEstatus(true);
-		respuesta.setMensajeFuncional("Registro correcto.");
+		respuesta.setMensajeFuncional("Consulta correcta.");
 		List<String> listaZona = null;
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
-			zona.setId(7);
+			zona.setId(zona.getId());
 			//Se hace una consulta a la tabla contacto
-			listaZona = sessionTx.selectList("ConsultaMultiSitio.concultaContacto", zona);
-			System.out.println("zona es:" + listaZona);
+			listaZona = sessionTx.selectList("ConsultaMultiSitio.consultaZona", zona);
 		}
 		catch (Exception ex) {
 			LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
@@ -94,5 +160,35 @@ public class ConsultaMultiSitio {
 		}
 		return listaZona;
 	}
-
+	/**
+	 * Metodo para consultar una imagen
+	 * @param uid , Identificador unico
+	 * @param galeria ,Para recibir valore de galeria
+	 * @return ,Regresa una lista de galeria
+	 */
+	@SuppressWarnings("unchecked")
+	public List<String> consultaGaleria(String uid, Galeria galeria) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Consulta correcta.");
+		List<String> listaGaleria = null;
+		try {
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+			galeria.setId(galeria.getId());
+			//Se hace una consulta a la tabla contacto
+			listaGaleria = sessionTx.selectList("ConsultaMultiSitio.consultaZona", galeria);
+		}
+		catch (Exception ex) {
+			LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
+		}
+		finally {
+			FabricaConexiones.close(sessionTx);
+		}
+		return listaGaleria;
+	}
 }
