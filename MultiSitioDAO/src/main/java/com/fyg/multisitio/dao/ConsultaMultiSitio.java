@@ -61,18 +61,33 @@ public class ConsultaMultiSitio {
 		return listaContacto;
 	}
 
-	public List<String> consultaZona(String uid, Contacto contacto,SqlSession session) {
-		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+	/**
+	 * Metodo para consultar la zona.
+	 * @param uid ,Identificador unico de registro.
+	 * @param contacto ,se recibe el contacto para consultar la BD.
+	 * @return ,Regresa la zona a culsultar.
+	 */
+	@SuppressWarnings("unchecked")
+	public List<String> consultaZona(String uid, Contacto contacto) {
 		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
 		respuesta.setUid(uid);
 		respuesta.setEstatus(true);
-		respuesta.setMensajeFuncional("Consulta correcta.");
+		respuesta.setMensajeFuncional("Registro correcto.");
 		List<String> listaZona = null;
 		try {
-			
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+			//Se hace una consulta a la tabla contacto
+			listaZona = sessionTx.selectList("ConsultaMultiSitio.concultaContacto", contacto);
 		}
 		catch (Exception ex) {
-			
+			LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
+		}
+		finally {
+			FabricaConexiones.close(sessionTx);
 		}
 		return listaZona;
 	}
