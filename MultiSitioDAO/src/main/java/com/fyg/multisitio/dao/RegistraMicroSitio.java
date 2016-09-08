@@ -28,7 +28,7 @@ public class RegistraMicroSitio {
 	 */
 	private Contacto objContacto;
 	/**
-	 * Metodo ...
+	 * Metodo modifica contacto, realiza la modificacion de un contacto (de sitio o de negocio)
 	 * @param uid identificador unico de la transaccion
 	 * @param contacto variable para la actualizacion
 	 * @param session sesion, en caso de ser atomica la transaccion
@@ -81,7 +81,7 @@ public class RegistraMicroSitio {
 
 
 	/**
-	 * Metodo ...
+	 * Metodo modifica galeria ,Modifica una imagen de la galeria del sitio o negocio
 	 * @param uid identificador unico de la transaccion
 	 * @param galeria  variable para la actualizacion
 	 * @return estatus actualizacion
@@ -273,7 +273,7 @@ public class RegistraMicroSitio {
 
 
 	/**
-	 * Metodo ...
+	 * Metodo registra contacto , registra un contacto para sitio o negocio
 	 * @param uid identificador unico de la transaccion
 	 * @param contacto variable para registro
 	 * @param session sesion, en caso de ser atomica la transaccion
@@ -355,7 +355,7 @@ public class RegistraMicroSitio {
 
 
 	/**
-	 * Metodo ...
+	 * Metodo registra negocio, Ingresa un registro en la tabla negocio
 	 * @param uid identificador unico de la transaccion
 	 * @param negocio variable para registro
 	 * @return estatus trasaccion
@@ -404,7 +404,7 @@ public class RegistraMicroSitio {
 
 
 	/**
-	 * Metodo ...
+	 * Metodo registra sitio ,Ingresa un registro en la tabla sitio
 	 * @param uid identificador unico de la transaccion
 	 * @param sitio variable para registro
 	 * @return estatus trasaccion
@@ -450,7 +450,7 @@ public class RegistraMicroSitio {
 	}
 
 	/**
-	 * Metodo ...
+	 * Metodo registra zona ,Ingresa un registro en la tabla zona
 	 * @param uid identificador unico de la transaccion
 	 * @param zona variable para registro
 	 * @return estatus trasaccion
@@ -487,7 +487,7 @@ public class RegistraMicroSitio {
 	}
 
 	/**
-	 * Metodo ...
+	 * Metodo modifica promocion ,Modifica en la tabla promocion
 	 * @param uid identificador unico de la transaccion
 	 * @param promocion variable para registro
 	 * @return estatus modificacion
@@ -524,7 +524,7 @@ public class RegistraMicroSitio {
 	}
 
 	/**
-	 * Metodo ...
+	 * Metodo registra promocion ,Ingresa un registro en la tabla promocion
 	 * @param uid identificador unico de la transaccion
 	 * @param promocion variable para registro
 	 * @return estatus trasaccion
