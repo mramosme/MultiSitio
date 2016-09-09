@@ -32,7 +32,7 @@ public class ConsultaMultiSitio {
 	 * @return ,Regresa una lista contacto
 	 */
 	@SuppressWarnings("unchecked")
-	private List<String> consultaContacto(String uid, Contacto contacto, SqlSession session)
+	public List<String> consultaContacto(String uid, Contacto contacto, SqlSession session)
 	{
 		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
 		SqlSession sessionTx = null;
@@ -81,10 +81,8 @@ public class ConsultaMultiSitio {
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
-			//se le asigna el id a buscar (sitio)
-			sitio.setId(sitio.getId());
 			//Se hace una consulta a la tabla contacto
-			listaSitio = sessionTx.selectList("ConsultaMultiSitio.consultaSitio", sitio);
+			listaSitio = sessionTx.selectList("ConsultaMultiSitio.consultaSitioGeneral", sitio);
 		}
 		catch (Exception ex) {
 			LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
@@ -113,10 +111,9 @@ public class ConsultaMultiSitio {
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
-			//se le asigna el id a buscar (sitio)
-			negocio.setId(negocio.getId());
 			//Se hace una consulta a la tabla contacto
-			listaNegocio = sessionTx.selectList("ConsultaMultiSitio.consultaSitio", negocio);
+			listaNegocio = sessionTx.selectList("ConsultaMultiSitio.consultaNegocioGeneral", negocio);
+			System.out.println("Número total: " + listaNegocio.size() );
 		}
 		catch (Exception ex) {
 			LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
@@ -146,7 +143,6 @@ public class ConsultaMultiSitio {
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
-			zona.setId(zona.getId());
 			//Se hace una consulta a la tabla contacto
 			listaZona = sessionTx.selectList("ConsultaMultiSitio.consultaZona", zona);
 		}
@@ -177,7 +173,6 @@ public class ConsultaMultiSitio {
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
-			galeria.setId(galeria.getId());
 			//Se hace una consulta a la tabla contacto
 			listaGaleria = sessionTx.selectList("ConsultaMultiSitio.consultaZona", galeria);
 		}

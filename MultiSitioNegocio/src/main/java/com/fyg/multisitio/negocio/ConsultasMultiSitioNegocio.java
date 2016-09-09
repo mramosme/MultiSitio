@@ -1,5 +1,7 @@
 package com.fyg.multisitio.negocio;
 
+import java.util.List;
+
 import com.fyg.multisitio.comun.EncabezadoRespuesta;
 import com.fyg.multisitio.comun.GUIDGenerator;
 import com.fyg.multisitio.comun.LogHandler;
@@ -20,8 +22,8 @@ public class ConsultasMultiSitioNegocio {
 		//Variable de resultado
 	    EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
 	    try {
-	    	//Mandamos el id a consultar para el ejemplo
-	    	ConsultaMultiSitio dao = new ConsultaMultiSitio();
+	    	List<String> data = new ConsultaMultiSitio().consultaNegocio(uid, negocio);
+
 	    } catch (Exception ex) {
 	    	LogHandler.error(uid, this.getClass(), "ConsultaMultiSitio - ErrorMultisitio: " + ex.getMessage(), ex);
 			respuesta.setUid(uid);

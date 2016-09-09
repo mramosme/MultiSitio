@@ -3,7 +3,6 @@
 <mapper
 	namespace="com.fyg.multisitio.dao.resources.ConsultasMultiSitioDAO">
 
-
 <!--- CONSULTA EN LA TABLA CONTACTO-->
 <select id="consultaContacto" parameterType="contacto" resultType="string">
 SELECT calle,colonia,telefono,correo
@@ -39,25 +38,20 @@ FROM zona
 WHERE id = #{id}
 </select>
 
-<mapper
-	namespace="com.fyg.multisitio.dao.resources.ConsultasMultiSitioDAO">
-
 <!-- Consulta General Sitio (se estara modificando esta consulta)-->
 <select id="consultaSitioGeneral" parameterType="sitio" resultType="String">
-SELECT sitio.nombre,sitio.domicilio,sitio.telefono,sitio.fechaRegistro,
-	sitio.estatus,sitio.idZona,contacto.nombre,contacto.calle,contacto.colonia,contacto.telefono,contacto.correo,
-	zona.nombre,zona.descripcion
-	FROM sitio
+SELECT sitio.nombre,sitio.domicilio,sitio.telefono,sitio.fechaRegistro,sitio.estatus,sitio.idZona,contacto.nombre,contacto.calle,contacto.colonia,contacto.telefono,contacto.correo,zona.nombre,zona.descripcion
+FROM sitio
 	INNER JOIN contacto ON sitio.contacto = contacto.id
 	INNER JOIN zona ON sitio.idZona = zona.id
 	WHERE sitio.id = #{id}
 </select>
 
 <!-- Consulta Negocio General -->
-<select id="consultaNegocioGeneral" parameterType="negocio" resultType="String">
-SELECT negocio.nombre,negocio.descripcionCorta,negocio.urlLogotipo,negocio.estatus,negocio.ligaFB,negocio.ligaPagina,
-	negocio.calificacion,negocio.wifi,negocio.estacionamiento,negocio.areaNinos,negocio.mascotas,galeria.urlImagen,contacto.nombre,
-	contacto.calle,contacto.colonia,contacto.telefono,contacto.correo,sitio.nombre,sitio.domicilio,sitio.telefono
+<select id="consultaNegocioGeneral" parameterType="negocio" resultType="string">
+SELECT negocio.nombre, negocio.descripcionCorta, negocio.urlLogotipo, negocio.estatus, negocio.ligaFB, negocio.ligaPagina,
+	negocio.calificacion, negocio.wifi, negocio.estacionamiento, negocio.areaNinos, negocio.mascotas, galeria.urlImagen, contacto.nombre,
+	contacto.calle, contacto.colonia, contacto.telefono, contacto.correo, sitio.nombre, sitio.domicilio, sitio.telefono
 	FROM negocio
 	INNER JOIN galeria  ON negocio.id = galeria.idNegocio
 	INNER JOIN contacto ON negocio.idContacto = contacto.id
