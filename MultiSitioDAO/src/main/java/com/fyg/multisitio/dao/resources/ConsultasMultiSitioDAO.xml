@@ -42,11 +42,11 @@ WHERE id = #{id}
 <mapper
 	namespace="com.fyg.multisitio.dao.resources.ConsultasMultiSitioDAO">
 
-<!-- Consulta General Sitio -->
+<!-- Consulta General Sitio (se estara modificando esta consulta)-->
 <select id="consultaSitioGeneral" parameterType="sitio" resultType="String">
 SELECT sitio.nombre,sitio.domicilio,sitio.telefono,sitio.fechaRegistro,
 	sitio.estatus,sitio.idZona,contacto.nombre,contacto.calle,contacto.colonia,contacto.telefono,contacto.correo,
-	zona.nombre,zona.descripcion,zona.urlImagen
+	zona.nombre,zona.descripcion
 	FROM sitio
 	INNER JOIN contacto ON sitio.contacto = contacto.id
 	INNER JOIN zona ON sitio.idZona = zona.id
