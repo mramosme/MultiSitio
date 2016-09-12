@@ -48,14 +48,18 @@ FROM sitio
 </select>
 
 <!-- Consulta Negocio General -->
-<select id="consultaNegocioGeneral" parameterType="negocio" resultType="string">
-SELECT negocio.nombre, negocio.descripcionCorta, negocio.urlLogotipo, negocio.estatus, negocio.ligaFB, negocio.ligaPagina,
-	negocio.calificacion, negocio.wifi, negocio.estacionamiento, negocio.areaNinos, negocio.mascotas, galeria.urlImagen, contacto.nombre,
-	contacto.calle, contacto.colonia, contacto.telefono, contacto.correo, sitio.nombre, sitio.domicilio, sitio.telefono
+<select id="consultaNegocioGeneral" parameterType="negocio" resultType="FiltroNegocio">
+SELECT negocio.nombre AS nombre,negocio.descripcionLarga AS descripcionLarga,negocio.descripcionCorta AS descripcionCorta,
+	negocio.urlLogotipo AS urlLogo, negocio.estatus AS status, negocio.ligaFB AS ligaFB, negocio.ligaPagina AS ligaPagina,
+	negocio.calificacion AS calificacion, negocio.wifi AS wifi, negocio.estacionamiento AS estacionamiento,
+	negocio.areaNinos AS areaNinos, negocio.mascotas AS mascotas,
+	galeria.urlImagen AS urlGaleria, contacto.nombre AS contactoNombre,
+	contacto.calle AS contactoCalle, contacto.colonia AS contactoColonia, contacto.telefono AS contactoTelefono,
+	contacto.correo AS contactoCorreo, sitio.nombre AS sitioNombre, sitio.domicilio AS sitioDomicilio, sitio.telefono AS sitioTelefono
 	FROM negocio
 	INNER JOIN galeria  ON negocio.id = galeria.idNegocio
 	INNER JOIN contacto ON negocio.idContacto = contacto.id
 	INNER JOIN sitio ON negocio.idSitio = sitio.id
-WHERE negocio.id = #{id}
+WHERE negocio.id = #{idNegocio}
 </select>
 </mapper>
