@@ -8,9 +8,9 @@ import com.fyg.multisitio.comun.EncabezadoRespuesta;
 import com.fyg.multisitio.comun.LogHandler;
 import com.fyg.multisitio.dao.resources.FabricaConexiones;
 import com.fyg.multisitio.dto.Contacto;
+import com.fyg.multisitio.dto.FiltroNegocio;
+import com.fyg.multisitio.dto.FiltroSitio;
 import com.fyg.multisitio.dto.Zona;
-import com.fyg.multisitio.dto.Sitio;
-import com.fyg.multisitio.dto.Negocio;
 import com.fyg.multisitio.dto.Galeria;
 
 
@@ -71,13 +71,13 @@ public class ConsultaMultiSitio {
 	 * @return ,Regresa una lista de sitio /contacto
 	 */
 	@SuppressWarnings("unchecked")
-	public List<String> consultaSitio(String uid, Sitio sitio) {
+	public List<FiltroSitio> consultaSitio(String uid, FiltroSitio sitio) {
 		SqlSession sessionTx = null;
 		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
 		respuesta.setUid(uid);
 		respuesta.setEstatus(true);
 		respuesta.setMensajeFuncional("Consulta correcta.");
-		List<String> listaSitio = null;
+		List<FiltroSitio> listaSitio = null;
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
@@ -101,19 +101,18 @@ public class ConsultaMultiSitio {
 	 * @return ,Regresa una lista negocio
 	 */
 	@SuppressWarnings("unchecked")
-	public List<String> consultaNegocio(String uid, Negocio negocio) {
+	public List<FiltroNegocio> consultaNegocio(String uid, FiltroNegocio negocio) {
 		SqlSession sessionTx = null;
 		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
 		respuesta.setUid(uid);
 		respuesta.setEstatus(true);
 		respuesta.setMensajeFuncional("Consulta correcta.");
-		List<String> listaNegocio = null;
+		List<FiltroNegocio> listaNegocio = null;
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
 			//Se hace una consulta a la tabla contacto
 			listaNegocio = sessionTx.selectList("ConsultaMultiSitio.consultaNegocioGeneral", negocio);
-			System.out.println("Número total: " + listaNegocio.size() );
 		}
 		catch (Exception ex) {
 			LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
