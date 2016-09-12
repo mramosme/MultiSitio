@@ -39,8 +39,10 @@ WHERE id = #{id}
 </select>
 
 <!-- Consulta General Sitio (se estara modificando esta consulta)-->
-<select id="consultaSitioGeneral" parameterType="sitio" resultType="String">
-SELECT sitio.nombre,sitio.domicilio,sitio.telefono,sitio.fechaRegistro,sitio.estatus,sitio.idZona,contacto.nombre,contacto.calle,contacto.colonia,contacto.telefono,contacto.correo,zona.nombre,zona.descripcion
+<select id="consultaSitioGeneral" parameterType="sitio" resultType="FiltroSitio">
+SELECT sitio.nombre AS nombre ,sitio.domicilio AS domicilio,sitio.telefono AS telefono,sitio.fechaRegistro AS fechaRegistro,sitio.estatus AS estatus,sitio.idZona AS idZona,
+	contacto.nombre AS contactoNombre,contacto.calle AS contactoCalle,contacto.colonia AS contactoColonia,contacto.telefono AS contactoTelefono,contacto.correo AS contactoCorreo,
+	zona.nombre AS zonaNombre,zona.descripcion AS zonaDescripcion
 FROM sitio
 	INNER JOIN contacto ON sitio.contacto = contacto.id
 	INNER JOIN zona ON sitio.idZona = zona.id
