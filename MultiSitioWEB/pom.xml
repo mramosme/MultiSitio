@@ -8,7 +8,7 @@
   <name>MultiSitioWEB Maven Webapp</name>
   <url>http://maven.apache.org</url>
    <properties>
-        <artifact.name>app</artifact.name>
+        <artifact.name>MultiSitioWEB</artifact.name>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <vendor.loc>src/main/webapp/vendor</vendor.loc>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,11 +41,17 @@
             <version>2.4.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-json-jackson</artifactId>
-            <version>2.12</version>
-            <scope>test</scope>
+       <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-jackson -->
+			<dependency>
+  			  <groupId>org.glassfish.jersey.media</groupId>
+   			  <artifactId>jersey-media-json-jackson</artifactId>
+    		 <version>2.20</version>
+			</dependency>
+   <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
         </dependency>
         
   </dependencies>
@@ -115,6 +121,20 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+              <artifactId>maven-clean-plugin</artifactId>
+              <version>2.5</version>
+              <configuration>
+                  <filesets>
+                      <fileset>
+                          <directory>src/main/webapp/vendor</directory>
+                      </fileset>
+                      <fileset>
+                          <directory>node_modules</directory>
+                      </fileset>
+                  </filesets>
+              </configuration>
+          </plugin>
     </plugins>
   </build>
 </project>
