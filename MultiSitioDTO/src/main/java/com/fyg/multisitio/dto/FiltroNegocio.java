@@ -23,7 +23,7 @@ public class FiltroNegocio extends ObjetoValor {
     /**
      * Descripcion larga del negocio.
      */
-    private String descripcioLarga;
+    private String descripcionLarga;
     /**
      * Direccion URL o unicacion del logotipo.
      */
@@ -123,8 +123,8 @@ public class FiltroNegocio extends ObjetoValor {
 	/**
 	 * @return ,Se obtiene la descripcion completa.
 	 */
-	public String getDescripcioLarga() {
-		return descripcioLarga;
+	public String getDescripcionLarga() {
+		return descripcionLarga;
 	}
 	/**
 	 * @return ,Se obtiene la direccion del logotipo.

@@ -3,15 +3,15 @@
 var controllers = angular.module("controllers", []);
 
 controllers.controller("HomeController", ['$scope', '$http', function ($scope, $http) {
-   $scope.debug = true;
-   $scope.title = 'MULTISITIO PRUEBA ';
-
-   $http.get("json/metallica/get").success(function (data) {
+   
+   $http.get("json/negocio/1").success(function (data) {
       $scope.data = data;
-     
+     return $scope.data
    });
+   
+   $http.get("json/sitio/1").success(function (dataSitio) {
+	      $scope.dataS = dataSitio;
+	     return $scope.dataS
+	   });
 
-   $scope.toggleDebug = function () {
-       $scope.debug = !$scope.debug;
-   };
 }]);

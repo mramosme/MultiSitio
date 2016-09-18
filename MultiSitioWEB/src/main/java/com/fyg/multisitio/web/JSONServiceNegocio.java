@@ -28,7 +28,7 @@ public class JSONServiceNegocio {
 		for(int i = 0; i < lista.size(); i++) {
 			String nombre = lista.get(i).getNombre();
 			String descripcionC =lista.get(i).getDescripcionCorta();
-			String descripcionL = lista.get(i).getDescripcioLarga();
+			String descripcionL = lista.get(i).getDescripcionLarga();
 			String urlLogotipo = lista.get(i).getUrlLogo();
 			Boolean estatus = lista.get(i).getStatus();
 			String ligaFB = lista.get(i).getLigaFB();
@@ -48,8 +48,8 @@ public class JSONServiceNegocio {
 			String sitioTelefono = lista.get(i).getSitioTelefono();
 			
 			jsonObject.put("nombreNegocio", nombre);
-			jsonObject.put("descripcioCorta", descripcionC);
-			jsonObject.put("descripcioLarga", descripcionL);
+			jsonObject.put("descripcionCorta", descripcionC);
+			jsonObject.put("descripcionLarga", descripcionL);
 			jsonObject.putOnce("urlLogotipo", urlLogotipo);
 			jsonObject.putOnce("estatus", estatus);
 			jsonObject.putOnce("ligaFB", ligaFB);
