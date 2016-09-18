@@ -39,6 +39,31 @@
 			<artifactId>jersey-core</artifactId>
 			<version>1.19</version>
 		</dependency>
+		<dependency>
+		<groupId>com.fyg</groupId>
+		<artifactId>MultiSitioComun</artifactId>
+		<version>1.0.0</version>	
+	</dependency>
+  
+	<!-- Proyecto DTO -->
+	<dependency>
+		<groupId>com.fyg</groupId>
+		<artifactId>MultiSitioDTO</artifactId>
+		<version>1.0.0</version>    
+	</dependency> 
+	
+	<!-- Proyecto DAO -->
+	<dependency>
+		<groupId>com.fyg</groupId>
+		<artifactId>MultiSitioDAO</artifactId>
+		<version>1.0.0</version>    
+	</dependency> 
+	<!-- Proyecto Negocio -->
+	<dependency>
+		<groupId>com.fyg</groupId>
+		<artifactId>MultiSitioNegocio</artifactId>
+		<version>1.0.0</version>    
+	</dependency> 
   </dependencies>
   <build>
     <finalName>MultiSitioWEB</finalName>
