@@ -1,6 +1,6 @@
 {
-  "name": "multisitioweb",
-  "description": "Primer proyecto angular js",
+  "name": "multisitio",
+  "description": "Proyecto angularJS",
   "main": "src/main/webapp/index.html",
   "keywords": [
     "java",
