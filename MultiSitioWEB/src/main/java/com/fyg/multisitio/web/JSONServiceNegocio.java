@@ -49,6 +49,7 @@ public class JSONServiceNegocio {
 			
 			jsonObject.put("nombreNegocio", nombre);
 			jsonObject.put("descripcioCorta", descripcionC);
+			jsonObject.put("descripcioLarga", descripcionL);
 			jsonObject.putOnce("urlLogotipo", urlLogotipo);
 			jsonObject.putOnce("estatus", estatus);
 			jsonObject.putOnce("ligaFB", ligaFB);
@@ -59,6 +60,7 @@ public class JSONServiceNegocio {
 			jsonObject.putOnce("mascotas", mascotas);
 			jsonObject.putOnce("urlGaleria", urlGaleria);
 			jsonObject.putOnce("contactoNombre", contactoNombre);
+			jsonObject.put("contactoCalle", contactoCalle);
 			jsonObject.putOnce("contactoColonia", contactoColonia);
 			jsonObject.putOnce("contactoTelefono", contactoTelefono);
 			jsonObject.putOnce("contactoCorreo", contactoCorreo);
