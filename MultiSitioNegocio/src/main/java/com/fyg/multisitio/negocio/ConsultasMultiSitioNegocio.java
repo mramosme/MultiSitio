@@ -16,18 +16,20 @@ public class ConsultasMultiSitioNegocio {
 	 * @param negocio ,Recibe valores de negocio
 	 * @return ,regresa la lista de negocio
 	 */
-	public EncabezadoRespuesta consultaNegocio(FiltroNegocio negocio) {
+	public List<FiltroNegocio> consultaNegocio(FiltroNegocio negocio) {
 		//Primero generamos el identificador unico de la transaccion
 		String uid = GUIDGenerator.generateGUID(negocio);
 		//Mandamos a log el objeto de entrada
 		LogHandler.debug(uid, this.getClass(), "registraNegocio - Daton Entrada: " + negocio);
 		//Variable de resultado
-	    EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Consulta correcta.");
+		List<FiltroNegocio> data = null;
 	    try {
-	    	List<FiltroNegocio> data = new ConsultaMultiSitio().consultaNegocio(uid, negocio);
-	    	Iterator<FiltroNegocio> iter = data.iterator();
-			while (iter.hasNext())
-			{ System.out.println(iter.next()); }
+	    	data = new ConsultaMultiSitio().consultaNegocio(uid, negocio);
+	    	 
 	    } catch (Exception ex) {
 	    	LogHandler.error(uid, this.getClass(), "ConsultaMultiSitio - ErrorMultisitio: " + ex.getMessage(), ex);
 			respuesta.setUid(uid);
@@ -36,7 +38,7 @@ public class ConsultasMultiSitioNegocio {
 			respuesta.setMensajeTecnico(ex.getMessage());
 	    }
 	    LogHandler.debug(uid, this.getClass(), "consultaNegocio - Datos Salida: " + respuesta);
-		return respuesta;
+		return data;
 	}
 /**
  * Metodo que consulta los sitios disponibles
