@@ -47,7 +47,7 @@ SELECT sitio.nombre AS nombre ,sitio.domicilio AS domicilio,sitio.telefono AS te
 FROM sitio
 	INNER JOIN contacto ON sitio.contacto = contacto.id
 	INNER JOIN zona ON sitio.idZona = zona.id
-	WHERE sitio.id = #{id}
+	WHERE sitio.id = #{idSitio}
 </select>
 
 <!-- Consulta Negocio General -->
