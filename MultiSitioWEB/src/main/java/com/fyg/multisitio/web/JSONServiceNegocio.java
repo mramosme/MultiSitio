@@ -15,10 +15,10 @@ import com.fyg.multisitio.dto.FiltroNegocio;
 @Path("/negocio")
 public class JSONServiceNegocio {
 
-	@Path("{i}")
+	  @Path("{i}")
 	  @GET
 	  @Produces("application/json")
-	  public Response convertFtoCfromInput(@PathParam("i") Integer f) throws JSONException {
+	  public Response jsonNegocio(@PathParam("i") Integer f) throws JSONException {
 
 		JSONObject jsonObject = new JSONObject();
 		FiltroNegocio idNegocio = new FiltroNegocio();
