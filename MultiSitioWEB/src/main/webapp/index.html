@@ -271,7 +271,7 @@
 			<div class="swiper-wrapper">
 				<!-- Slides -->
 				<div class="swiper-slide">
-					<div class="slide-bg swiper-lazy" data-background={{data.urlGaleria}}></div>
+					<div data-ng-view></div>
 					<!-- Preloader image -->
 					<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 					<div class="container">
@@ -282,11 +282,12 @@
 										
 										<div class="estate-type">{{data.sitioNombre}}</div>
 										<div class="transaction-type">{{data.sitioDomicilio}}</div>
-										<h4>{{data.nombreNegocio}} <label>Contacto:{{data.contactoNombre}}</label></h4>
+										<h4>{{data.nombreNegocio}}</h4>
+										<h4>{{data.contactoNombre}}</h4>
 										<div class="clearfix"></div>
 										
-										 <p>{{data.descripcionLarga}} <label>Pagina Oficial: {{data.ligaPagina}}</label></p>
-   										<p><img  src={{data.urlLogotipo}}></p>
+										<p>{{data.descripcionLarga}}</p>
+										<p>{{data.urlLogotipo}}</p>
 									</div>
 									<div class="slide-desc-params">	
 										<div class="slide-desc-area">
@@ -317,7 +318,7 @@
 					</div>
 				</div>
 				<div class="swiper-slide">
-					<div class="slide-bg swiper-lazy" data-background={{data.urlGaleria}}></div>
+					<div data-ng-view></div>
 					<!-- Preloader image -->
 					<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 					<div class="container">
@@ -328,11 +329,12 @@
 										
 										<div class="estate-type">{{data.sitioNombre}}</div>
 										<div class="transaction-type">{{data.sitioDomicilio}}</div>
-										<h4>{{data.nombreNegocio}} <label>Contacto:{{data.contactoNombre}}</label></h4>
+										<h4>{{data.nombreNegocio}}</h4>
+										<h4>{{data.contactoNombre}}</h4>
 										<div class="clearfix"></div>
 										
-										<p>{{data.descripcionLarga}} <label>Pagina Oficial: {{data.ligaPagina}}</label></p>
-  										 <p><img  src={{data.urlLogotipo}}></p>
+										<p>{{data.descripcionLarga}}</p>
+										<p>{{data.urlLogotipo}}</p>
 									</div>
 									<div class="slide-desc-params">	
 										<div class="slide-desc-area">
@@ -363,28 +365,28 @@
 					</div>
 					<div class="video-slide">
                         <video poster="images/slides/2.jpg" preload="auto" loop autoplay muted>
-                             <source src='images/slides/2.mp4' type='video/mp4' />
+                             <source src='' type='video/mp4' />
                         </video>
                     </div>
 				</div>
 				<div class="swiper-slide">
-					<div class="slide-bg swiper-lazy" data-background={{data.urlGaleria}}></div>
+					<div data-ng-view></div>
 					<!-- Preloader image -->
 					<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 					<div class="container">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 slide-desc-col animated slide-desc-2">
-								<div class="slide-desc pull-left">
+                            <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-2 col-lg-offset-3 slide-desc-col animated slide-desc-3">
+								<div class="slide-desc center-block">
 									<div class="slide-desc-text">
 										
 										<div class="estate-type">{{data.sitioNombre}}</div>
 										<div class="transaction-type">{{data.sitioDomicilio}}</div>
-										<h4>{{data.nombreNegocio}} <label>Contacto:{{data.contactoNombre}}</label></h4>
+										<h4>{{data.nombreNegocio}}</h4>
+										<h4>{{data.contactoNombre}}</h4>
 										<div class="clearfix"></div>
 										
-										<p>{{data.descripcionLarga}} <label>Pagina Oficial: {{data.ligaPagina}}</label></p>
-  										 <p><img  src={{data.urlLogotipo}}></p>
-									</div>
+										<p>{{data.descripcionLarga}}</p>
+										<p>{{data.urlLogotipo}}</p>
 									</div>
 									<div class="slide-desc-params">	
 										<div class="slide-desc-area">
@@ -838,13 +840,13 @@
 						<div class="featured-offer-photo">
 							<img src="images/featured-offer1.jpg" alt="" />
 							<div class="type-container">
-								<div class="estate-type">{{dataS.zonaNombre}}</div>
-								<div class="transaction-type">{{dataS.zonaDescripcion}}</div>
+								<div class="estate-type">apartment</div>
+								<div class="transaction-type">sale</div>
 							</div>
 						</div>
 						<div class="featured-offer-text">
-							<h4 class="featured-offer-title">{{dataS.nombre}} {{dataS.domicilio}}</h4>
-							<p>{{dataS.contactoNombre}} {{dataS.contactoDomicilio}}</p>
+							<h4 class="featured-offer-title">250 South Dr, Fort Collins, Colorado 80523, USA</h4>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 						</div>
 						<div class="featured-offer-params">
 							<div class="featured-area">
@@ -2106,7 +2108,6 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-
 
 <!-- Register modal -->
 	<div class="modal fade apartment-modal" id="register-modal">
