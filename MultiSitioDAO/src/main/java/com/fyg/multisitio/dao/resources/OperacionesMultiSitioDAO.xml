@@ -125,4 +125,10 @@ WHERE id = #{id}
 INSERT INTO promocion(idSitio,idNegocio,nombre,fechaInicio,fechaFin,usuarioRegistro)
 VALUES(#{idSitio}, #{idNegocio}, #{nombre}, #{fechaInicio}, #{fechaFin}, #{usuarioRegistro})
 </insert>
+
+<!--- INSERTA EN LA TABLA ARTICULO-->
+<insert id="insertaRegistroArticulo" parameterType="articulo">
+INSERT INTO articulo(idNegocio,nombre,descripcion,precio,fechaRegistro,estatus)
+VALUES(#{idNegocio},#{nombre},#{descripcion},#{precio},#{fechaRegistro},#{estatus})
+</insert>
 </mapper>
