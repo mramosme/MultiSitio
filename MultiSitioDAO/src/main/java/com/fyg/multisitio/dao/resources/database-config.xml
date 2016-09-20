@@ -13,6 +13,8 @@
 		<typeAlias alias="Promocion" type="com.fyg.multisitio.dto.Promocion"/>
 		<typeAlias alias="FiltroNegocio" type="com.fyg.multisitio.dto.FiltroNegocio"/>
 		<typeAlias alias="FiltroSitio" type="com.fyg.multisitio.dto.FiltroSitio"/>
+		<typeAlias alias="Articulo" type="com.fyg.multisitio.dto.Articulo"/>
+		<typeAlias alias="Giro" type="com.fyg.multisitio.dto.Giro"/>
 	</typeAliases>
 
 	<environments default="development">
