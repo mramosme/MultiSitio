@@ -126,6 +126,4 @@ public class Articulo extends ObjetoValor {
 	public void setEstatus(Boolean estatus) {
 		this.estatus = estatus;
 	}
-	
-	
 }
