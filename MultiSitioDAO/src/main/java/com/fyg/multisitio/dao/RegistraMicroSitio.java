@@ -9,6 +9,7 @@ import com.fyg.multisitio.dao.resources.FabricaConexiones;
 import com.fyg.multisitio.dto.Articulo;
 import com.fyg.multisitio.dto.Contacto;
 import com.fyg.multisitio.dto.Galeria;
+import com.fyg.multisitio.dto.Giro;
 import com.fyg.multisitio.dto.Negocio;
 import com.fyg.multisitio.dto.Sitio;
 import com.fyg.multisitio.dto.Zona;
@@ -128,11 +129,47 @@ public class RegistraMicroSitio {
 		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
 		respuesta.setUid(uid);
 		respuesta.setEstatus(true);
-		respuesta.setMensajeFuncional("Inactivacion correcta.");
+		respuesta.setMensajeFuncional("Modificacion Correcta.");
 		try {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
 			int actualizados = sessionTx.update("RegistraMicroSitio.actualizaArticulo", articulo);
+			if ( actualizados == 0) {
+				throw new ExcepcionesMultiSitioComun("Error en inactivar la galeria.");
+			}
+			//Realizamos commit
+			LogHandler.debug(uid, this.getClass(), "Commit!!!");
+			sessionTx.commit();
+		}
+		catch (Exception ex) {
+			//Realizamos rollBack
+			LogHandler.debug(uid, this.getClass(), "RollBack!!!");
+			FabricaConexiones.rollBack(sessionTx);
+            LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
+		}
+		finally {
+			FabricaConexiones.close(sessionTx);
+		}
+		return respuesta;
+	}
+	/**
+	 * Metodo que modifica un giro
+	 * @param uid ,UID unico de registro
+	 * @param giro , recibe valores de giro
+	 * @return regresa si fue exitosa la modificacion
+	 */
+	public EncabezadoRespuesta modificaGiro(String uid, Giro giro) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Modificacion correcta.");
+		try {
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+			int actualizados = sessionTx.update("RegistraMicroSitio.actualizaGiro", giro);
 			if ( actualizados == 0) {
 				throw new ExcepcionesMultiSitioComun("Error en inactivar la galeria.");
 			}
