@@ -131,4 +131,26 @@ VALUES(#{idSitio}, #{idNegocio}, #{nombre}, #{fechaInicio}, #{fechaFin}, #{usuar
 INSERT INTO articulo(idNegocio,nombre,descripcion,precio,fechaRegistro,estatus)
 VALUES(#{idNegocio},#{nombre},#{descripcion},#{precio},#{fechaRegistro},#{estatus})
 </insert>
+
+<!--- ACTUALIZA EN LA TABLA ARTICULO-->
+<update id="acualizaArticulo" parameterType="articulo">
+UPDATE articulo SET
+		idNegocio  	=	#{idNegocio},
+		nombre		= 	#{nombre},
+		descripcion	=	#{descripcion},
+		precio		=	#{precio},
+		fechaRegistro	#{fechaRegistro},
+		estatus 	=	#{estatus}
+WHERE id = #{id}
+</update>
+
+<!--- INSERTA EN LA TABLA GIRO-->
+<insert id="insertaRegistroGiro" parameterType="giro">
+INSERT INTO giro(nombreGiro) VALUES(#{nombreGiro})
+</insert>
+
+<!--- ACTUALIZA EN LA TABLA GIRO-->
+<update id="actualizaGiro" parameterType="giro">
+UPDATE giro SET nombreGiro = #{nombreGiro} WHERE idGiro = #{idGiro}
+</update> 
 </mapper>
