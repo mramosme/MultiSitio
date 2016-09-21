@@ -117,7 +117,42 @@ public class RegistraMicroSitio {
 		}
 		return respuesta;
 	}
-
+	/**
+	 * Metodo que modifica el articulo
+	 * @param uid ,UID unico
+	 * @param articulo , recibe valores de articulo
+	 * @return , retorna si la modificacion fue exitosa
+	 */
+	public EncabezadoRespuesta modificaArticulo(String uid, Articulo articulo) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Inactivacion correcta.");
+		try {
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+			int actualizados = sessionTx.update("RegistraMicroSitio.actualizaArticulo", articulo);
+			if ( actualizados == 0) {
+				throw new ExcepcionesMultiSitioComun("Error en inactivar la galeria.");
+			}
+			//Realizamos commit
+			LogHandler.debug(uid, this.getClass(), "Commit!!!");
+			sessionTx.commit();
+		}
+		catch (Exception ex) {
+			//Realizamos rollBack
+			LogHandler.debug(uid, this.getClass(), "RollBack!!!");
+			FabricaConexiones.rollBack(sessionTx);
+            LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
+		}
+		finally {
+			FabricaConexiones.close(sessionTx);
+		}
+		return respuesta;
+	}
 	/**
 	 * Inactiva un registro de la galeria
 	 * @param uid identificador unico de la transaccion
