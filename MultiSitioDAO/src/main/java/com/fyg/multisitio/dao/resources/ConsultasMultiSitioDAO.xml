@@ -38,6 +38,18 @@ FROM zona
 WHERE id = #{id}
 </select>
 
+<!--- CONSULTA EN LA TABLA ARTICULO-->
+<select id="consultaArticulo" parameterType="articulo" resultType="String">
+SELECT nombre , descripcion, precio, fechaRegistro, estatus
+FROM articulo
+WHERE id = #{id}
+</select>
+
+<!--- CONSULTA EN LA TABLA GIRO-->
+<select id="consultaGiro" parameterType="giro" resultType="String">
+SELECT nombreGiro FROM giro WHERE idGiro = #{idGiro}
+</select>
+
 <!-- Consulta General Sitio (se estara modificando esta consulta)-->
 <select id="consultaSitioGeneral" parameterType="sitio" resultType="FiltroSitio">
 SELECT sitio.nombre AS nombre ,sitio.domicilio AS domicilio,sitio.telefono AS telefono,sitio.fechaRegistro AS fechaRegistro,sitio.estatus AS estatus,sitio.idZona AS idZona,
