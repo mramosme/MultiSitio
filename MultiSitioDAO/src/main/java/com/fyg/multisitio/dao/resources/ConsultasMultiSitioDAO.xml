@@ -47,7 +47,7 @@ WHERE id = #{id}
 
 <!--- CONSULTA EN LA TABLA GIRO-->
 <select id="consultaGiro" parameterType="giro" resultType="String">
-SELECT nombreGiro FROM giro WHERE idGiro = #{idGiro}
+SELECT nombreGiro FROM giro WHERE id = #{idGiro}
 </select>
 
 <!-- Consulta General Sitio (se estara modificando esta consulta)-->
