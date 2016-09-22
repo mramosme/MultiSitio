@@ -23,6 +23,10 @@ public class Negocio  extends ObjetoValor {
 	 */
 	private int idSitio;
 	/**
+	 * Identificador del giro
+	 */
+	private int idGiro;
+	/**
 	 * Se crea objeto para el uso del metodo registra contacto
 	 */
 	private Contacto objetoContacto;
@@ -277,5 +281,17 @@ public class Negocio  extends ObjetoValor {
 	 */
 	public void setIdContacto(int idContacto) {
 		this.idContacto = idContacto;
+	}
+	/**
+	 * @return ,Obtiene el id del giro del negocio
+	 */
+	public int getIdGiro() {
+		return idGiro;
+	}
+	/**
+	 * @param idGiro ,Ingresa el id del giro del negocio
+	 */
+	public void setIdGiro(int idGiro) {
+		this.idGiro = idGiro;
 	}
 	}
