@@ -5,6 +5,7 @@ import com.fyg.multisitio.comun.ExcepcionesMultiSitioComun;
 import com.fyg.multisitio.comun.GUIDGenerator;
 import com.fyg.multisitio.comun.LogHandler;
 import com.fyg.multisitio.dao.RegistraMicroSitio;
+import com.fyg.multisitio.dto.Articulo;
 import com.fyg.multisitio.dto.Negocio;
 import com.fyg.multisitio.dto.Sitio;
 import com.fyg.multisitio.dto.Zona;
@@ -158,6 +159,52 @@ public class OperacionesMultiSitioNegocio {
 			respuesta.setMensajeTecnico(ex.getMessage());
 		}
 		LogHandler.debug(uid, this.getClass(), "registraZona - Daton Salida: " + respuesta);
+		return respuesta;
+	}
+	
+	/**
+	 * Metodo para registrar una zona
+	 * @param zona variable con los datos de la zona
+	 * @return estatus de la transaccion
+	 */
+	public EncabezadoRespuesta registraArticulo(Articulo articulo)
+	{
+		//Primero generamos el identificador unico de la transaccion
+		String uid = GUIDGenerator.generateGUID(articulo);
+		//Mandamos a log el objeto de entrada
+		LogHandler.debug(uid, this.getClass(), "registraArticulo - Daton Entrada: " + articulo);
+		//Variable de resultado
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		try {
+			//Validaciones Negocio
+
+			if (articulo.getNombre() == null ||articulo.getNombre().isEmpty()) {
+				throw new ExcepcionesMultiSitioComun("El nombre del articulo es obligatorio.");
+			} else if (articulo.getDescripcion() == null || articulo.getDescripcion().isEmpty()) {
+				throw new ExcepcionesMultiSitioComun("Es necesaria una descripcion del articulo.");
+			} else if (articulo.getPrecio() == 0) {
+				throw new ExcepcionesMultiSitioComun("Es necesario un precio.");
+			}
+
+			//Mandamos a la parte del dao
+			RegistraMicroSitio dao = new RegistraMicroSitio();
+			respuesta = dao.registraArticulo(uid, articulo);
+		}
+		catch  (ExcepcionesMultiSitioComun ex) {
+			LogHandler.error(uid, this.getClass(), "registraArticulo - ErrorMultisitio: " + ex.getMessage(), ex);
+			respuesta.setUid(uid);
+			respuesta.setEstatus(false);
+			respuesta.setMensajeFuncional(ex.getMessage());
+			respuesta.setMensajeTecnico(ex.getMessage());
+		}
+		catch  (Exception ex) {
+			LogHandler.error(uid, this.getClass(), "registraArticulo - Error: " + ex.getMessage(), ex);
+			respuesta.setUid(uid);
+			respuesta.setEstatus(false);
+			respuesta.setMensajeFuncional(ex.getMessage());
+			respuesta.setMensajeTecnico(ex.getMessage());
+		}
+		LogHandler.debug(uid, this.getClass(), "registraArticulo - Datos Salida: " + respuesta);
 		return respuesta;
 	}
 }

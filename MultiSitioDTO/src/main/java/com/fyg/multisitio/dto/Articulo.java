@@ -41,7 +41,7 @@ public class Articulo extends ObjetoValor {
 	/**
 	 * Estatus del articulo
 	 */
-	private Boolean estatus;
+	private int estatus;
 	/**
 	 * @return ,Obtiene el id del articulo
 	 */
@@ -117,13 +117,13 @@ public class Articulo extends ObjetoValor {
 	/**
 	 * @return , obtiene el estatus del articulo
 	 */
-	public Boolean getEstatus() {
+	public int getEstatus() {
 		return estatus;
 	}
 	/**
 	 * @param estatus ,ingresa el estatus del articulo
 	 */
-	public void setEstatus(Boolean estatus) {
+	public void setEstatus(int estatus) {
 		this.estatus = estatus;
 	}
 }
