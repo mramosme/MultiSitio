@@ -30,6 +30,10 @@ public class RegistraMicroSitio {
 	 */
 	private Contacto objContacto;
 	/**
+	 * Se crea objeto giro para recibir el id en la tabla negocio
+	 */
+	private Giro objGiro;
+	/**
 	 * Metodo modifica contacto, realiza la modificacion de un contacto (de sitio o de negocio)
 	 * @param uid identificador unico de la transaccion
 	 * @param contacto variable para la actualizacion
@@ -446,11 +450,20 @@ public class RegistraMicroSitio {
 			//Primero registramos el contacto
 			registraContacto(uid, negocio.getObjetoContacto() , sessionTx);
 
+			//Despues registramos el giro
+			registraGiro(uid, negocio.getObjetoGiro() , sessionTx);
+
 			//Validar si trae el id del contacto
 			LogHandler.debug(uid, this.getClass(), "contacto: " + negocio.getObjetoContacto());
 
+			//Validar si trae el id del giro
+			LogHandler.debug(uid, this.getClass(), "contactoGiro: " + negocio.getObjetoGiro());
+
 			//Se le asigna el id del contacto resultante en la tabla negocio
 			negocio.setIdContacto(objContacto.getId());
+
+			//Se le asigna el id del giro del negocio
+			negocio.setIdGiro(objGiro.getIdGiro());
 
         	int registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroNegocio", negocio);
 			if ( registros == 0) {
@@ -667,5 +680,47 @@ public class RegistraMicroSitio {
 			FabricaConexiones.close(sessionTx);
 		}
 		return respuesta;
+	}
+	/**
+	 * Metodo privado para registrar el giro del negocio
+	 * @param uid , UID unico de registro
+	 * @param giro , recibe valores de giro
+	 * @param session , inicia la sesion de base de datos
+	 * @return regresa si el registro fue correcto
+	 */
+	private Giro registraGiro(String uid, Giro giro, SqlSession session)
+			throws Exception {
+		SqlSession sessionTx = null;
+
+		//Logica para saber si es atomica la transaccion
+		if ( session == null ) {
+			 sessionTx = FabricaConexiones.obtenerSesionTx();
+		} else {
+			sessionTx = session;
+		}
+		//Registramos el giro
+		int registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroGiro", giro);
+        //Validamos el registro
+		if ( registros == 0) {
+			if ( session == null ) {
+				FabricaConexiones.rollBack(sessionTx);
+				FabricaConexiones.close(sessionTx);
+			}
+			throw new ExcepcionesMultiSitioComun("No se pudo registrar el giro.");
+		}
+		//Obtenemos el id giro que se genero al insertar y se le asiga al objeto giro
+			objGiro = giro;
+
+		//La conexion no es atomica realizamos commit
+		if ( session == null ) {
+			LogHandler.debug(uid, this.getClass(), "Commit conexion.");
+			sessionTx.commit();
+		}
+		//La conexion no es atomica cerramos
+		if ( session == null ) {
+			LogHandler.debug(uid, this.getClass(), "Cerramos conexion.");
+			FabricaConexiones.close(sessionTx);
+		}
+		return giro;
 	}
 }

@@ -69,8 +69,8 @@ WHERE  id = #{id} AND idSitio = #{idSitio}
 
 <!--- INSERTA EN LA TABLA NEGOCIO-->
 <insert id="insertaRegistroNegocio" parameterType="negocio">
-INSERT INTO negocio(id,idSitio,idContacto,nombre,descripcionCorta,descripcionLarga,urlLogotipo,estatus,ligaFB,ligaPagina,calificacion,wifi,estacionamiento,areaNinos,mascotas)
-VALUES(#{id},#{idSitio},#{idContacto},#{nombre},#{descripcionCorta},#{descripcionLarga},#{urlLogotipo},#{estatus},#{ligaFB},#{ligaPagina},#{calificacion},#{wifi},#{estacionamiento},#{areaNinos},#{mascotas})
+INSERT INTO negocio(id,idSitio,idContacto,idGiro,nombre,descripcionCorta,descripcionLarga,urlLogotipo,estatus,ligaFB,ligaPagina,calificacion,wifi,estacionamiento,areaNinos,mascotas)
+VALUES(#{id},#{idSitio},#{idContacto},#{idGiro},#{nombre},#{descripcionCorta},#{descripcionLarga},#{urlLogotipo},#{estatus},#{ligaFB},#{ligaPagina},#{calificacion},#{wifi},#{estacionamiento},#{areaNinos},#{mascotas})
 </insert>
 
 														<!--- OPERACIONES EN LA TABLA SITIO-->
@@ -145,12 +145,15 @@ WHERE id = #{id}
 </update>
 
 <!--- INSERTA EN LA TABLA GIRO-->
-<insert id="insertaRegistroGiro" parameterType="giro">
-INSERT INTO giro(nombreGiro) VALUES(#{nombreGiro})
+<insert id="insertaRegistroGiro" parameterType="giro" useGeneratedKeys="true" keyProperty="idGiro"  keyColumn="idGiro">
+INSERT INTO giro(nombre) VALUES(#{nombreGiro})
+ <selectKey keyProperty="idGiro" resultType="Integer" order="AFTER">
+            SELECT LAST_INSERT_ID();
+            </selectKey>
 </insert>
 
 <!--- ACTUALIZA EN LA TABLA GIRO-->
 <update id="actualizaGiro" parameterType="giro">
-UPDATE giro SET nombreGiro = #{nombreGiro} WHERE idGiro = #{idGiro}
-</update> 
+UPDATE giro SET nombre = #{nombreGiro} WHERE idGiro = #{idGiro}
+</update>
 </mapper>

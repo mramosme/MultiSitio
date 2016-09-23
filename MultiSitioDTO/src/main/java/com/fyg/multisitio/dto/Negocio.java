@@ -31,6 +31,10 @@ public class Negocio  extends ObjetoValor {
 	 */
 	private Contacto objetoContacto;
 	/**
+	 * se crea objeto guro para recibir valor del id
+	 */
+	private Giro objetoGiro;
+	/**
 	 * Nombre del negocio
 	 *
 	 */
@@ -293,5 +297,17 @@ public class Negocio  extends ObjetoValor {
 	 */
 	public void setIdGiro(int idGiro) {
 		this.idGiro = idGiro;
+	}
+	/**
+	 * @return ,Se obtiene los valores para giro
+	 */
+	public Giro getObjetoGiro() {
+		return objetoGiro;
+	}
+	/**
+	 * @param recibeGiro , Ingresa el objeto giro
+	 */
+	public void setObjetoGiro(Giro recibeGiro) {
+		this.objetoGiro = recibeGiro;
 	}
 	}

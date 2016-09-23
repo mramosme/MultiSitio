@@ -2,12 +2,13 @@ package com.fyg.multisitio.negocio.test;
 
 
 import org.junit.Before;
-
 import org.junit.Test;
+
 import com.fyg.multisitio.negocio.OperacionesMultiSitioNegocio;
 import com.fyg.multisitio.comun.GUIDGenerator;
 import com.fyg.multisitio.comun.LogHandler;
 import com.fyg.multisitio.dto.Contacto;
+import com.fyg.multisitio.dto.Giro;
 import com.fyg.multisitio.dto.Negocio;
 
 public class NegocioTest {
@@ -28,6 +29,10 @@ public class NegocioTest {
      */
     private GUIDGenerator uid;
     /**
+     * Objeto para giro
+     */
+    private Giro registroGiro;
+    /**
      * @author Roberto Coto
      * @throws Exception
      */
@@ -43,13 +48,19 @@ public class NegocioTest {
 	       registroContacto.setColonia("Polanco");
 	       registroContacto.setCorreo("prueba@fygsolutions.com");
 	       registroContacto.setTelefono("5578902232");
-
+           /**
+            * Datos que se le enviaran para registrar un giro
+            */
+	       registroGiro = new Giro();
+	       registroGiro.setNombreGiro("Restaurante");
+	       
 	       /**
 		    * Datos que se enviaran al negocio
 		    */
 		   registroNegocio = new Negocio();
 		   registroNegocio.setObjetoContacto(registroContacto);
 		   registroNegocio.setIdSitio(1);
+		   registroNegocio.setObjetoGiro(registroGiro);
 		   registroNegocio.setNombre("RESTAURANT LA FINA");
 		   registroNegocio.setDescripcionCorta("Playa ubicada en Catemaco Veracruz");
 		   registroNegocio.setDescripcionLarga("Playa Azul cuenta con todo lo que ves aqui al alcanze de tus manos");
