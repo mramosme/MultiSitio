@@ -175,5 +175,4 @@ public class Sitio extends ObjetoValor {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
 }

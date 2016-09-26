@@ -79,6 +79,7 @@ VALUES(#{id},#{idSitio},#{idContacto},#{idGiro},#{nombre},#{descripcionCorta},#{
 <update id="actualizaRegistroSitio" parameterType="sitio">
 UPDATE sitio SET
       nombre = #{nombre},
+      descripcion = #{descripcion},
       contacto = #{contacto},
       domicilio = #{domicilio},
       telefono = #{telefono},
@@ -90,8 +91,8 @@ WHERE id = #{id}
 
 <!--- INSERTA EN LA TABLA SITIO-->
 <insert id="insertaRegistroSitio" parameterType="sitio">
-INSERT INTO  sitio(id, nombre,contacto,domicilio,telefono,fechaRegistro,estatus,idZona)
-VALUES(#{id},#{nombre},#{contacto},#{domicilio},#{telefono},#{fechaRegistro},#{estatus},#{idZona})
+INSERT INTO  sitio(id, nombre,descripcion,contacto,domicilio,telefono,fechaRegistro,estatus,idZona)
+VALUES(#{id},#{nombre},#{descripcion},#{contacto},#{domicilio},#{telefono},#{fechaRegistro},#{estatus},#{idZona})
 </insert>
 														<!--- OPERACIONES EN LA TABLA ZONA-->
 <!---ACTUALIZA LA TABLA ZONA-->
