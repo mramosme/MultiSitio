@@ -28,6 +28,10 @@ public class Sitio extends ObjetoValor {
 	 */
 	private int contacto;
 	/**
+	 * Dexcripcion de la zona
+	 */
+	private String descripcion;
+	/**
 	 * Crear tabla de domicilios
 	 */
 	private String domicilio;
@@ -159,4 +163,17 @@ public class Sitio extends ObjetoValor {
 	public void setIdZona(int idZona) {
 		this.idZona = idZona;
 	}
+	/**
+	 * @return ,obtiene la descripcion de la zona
+	 */
+	public String getDescripcion() {
+		return descripcion;
+	}
+	/**
+	 * @param descripcion ,Ingresa la descripcion del sitio
+	 */
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	
 }
