@@ -32,6 +32,10 @@ public class Sitio extends ObjetoValor {
 	 */
 	private String descripcion;
 	/**
+	 * Id de la imagen de la galeria 
+	 */
+	private int idGaleria;
+	/**
 	 * Crear tabla de domicilios
 	 */
 	private String domicilio;
@@ -174,5 +178,17 @@ public class Sitio extends ObjetoValor {
 	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	/**
+	 * @return ,Obtiene el id de la galeria
+	 */
+	public int getIdGaleria() {
+		return idGaleria;
+	}
+	/**
+	 * @param idGaleria ,Ingresa el id de la galeria
+	 */
+	public void setIdGaleria(int idGaleria) {
+		this.idGaleria = idGaleria;
 	}
 }
