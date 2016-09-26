@@ -56,6 +56,10 @@ public class Negocio  extends ObjetoValor {
 	 */
 	private String urlLogotipo;
 	/**
+	 * id de la imagen de galeria
+	 */
+	private int idGaleria;
+	/**
 	 * A - Activo
 	 * I - Inactivo
 	 */
@@ -309,5 +313,17 @@ public class Negocio  extends ObjetoValor {
 	 */
 	public void setObjetoGiro(Giro recibeGiro) {
 		this.objetoGiro = recibeGiro;
+	}
+	/**
+	 * @return , obtiene el id de la galeria
+	 */
+	public int getIdGaleria() {
+		return idGaleria;
+	}
+	/**
+	 * @param idGaleria , ingresa el id de la galeria
+	 */
+	public void setIdGaleria(int idGaleria) {
+		this.idGaleria = idGaleria;
 	}
 	}
