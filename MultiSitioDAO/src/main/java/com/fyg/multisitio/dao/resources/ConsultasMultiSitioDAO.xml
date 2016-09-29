@@ -39,7 +39,7 @@ WHERE id = #{id}
 </select>
 
 <!--- CONSULTA EN LA TABLA ARTICULO-->
-<select id="consultaArticulo" parameterType="articulo" resultType="String">
+<select id="consultaArticulo" parameterType="articulo" resultType="Articulo">
 SELECT nombre , descripcion, precio, fechaRegistro, estatus
 FROM articulo
 WHERE id = #{id}
