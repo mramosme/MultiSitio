@@ -5,6 +5,7 @@ import java.util.List;
 import com.fyg.multisitio.comun.EncabezadoRespuesta;
 import com.fyg.multisitio.comun.GUIDGenerator;
 import com.fyg.multisitio.comun.LogHandler;
+import com.fyg.multisitio.dto.Articulo;
 import com.fyg.multisitio.dto.FiltroNegocio;
 import com.fyg.multisitio.dto.FiltroSitio;
 import com.fyg.multisitio.dao.ConsultaMultiSitio;
@@ -67,5 +68,34 @@ public class ConsultasMultiSitioNegocio {
 			    }
 			    LogHandler.debug(uid, this.getClass(), "consultaSitio - Datos Salida: " + respuesta);
 		return listaSitio;
+	}
+	/**
+	 * Metodo para enviar valores al metodo dao articulo
+	 * @param articulo , recibe los valores de articulo
+	 * @return , regresa la lista que se obtuvo en la consulta
+	 */
+	public List<Articulo> consultaArticulo(Articulo articulo) {
+		//Primero generamos el identificador unico de la transaccion
+		String uid = GUIDGenerator.generateGUID(articulo);
+		//Mandamos a log el objeto de entrada
+		LogHandler.debug(uid, this.getClass(), "consultaArticulo - Daton Entrada: " + articulo);
+		//Variable de resultado
+	    EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+	    respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Consulta correcta.");
+	    List<Articulo> listaArticulo = null;
+	    try {
+	    	listaArticulo = new ConsultaMultiSitio().consultaArticulo(uid,articulo);
+		    	
+		    } catch (Exception ex) {
+		    	LogHandler.error(uid, this.getClass(), "ConsultaMultiSitio - ErrorMultisitio: " + ex.getMessage(), ex);
+				respuesta.setUid(uid);
+				respuesta.setEstatus(false);
+				respuesta.setMensajeFuncional(ex.getMessage());
+				respuesta.setMensajeTecnico(ex.getMessage());
+		    }
+		    LogHandler.debug(uid, this.getClass(), "consultaSitio - Datos Salida: " + respuesta);
+	return listaArticulo;
 	}
 }
