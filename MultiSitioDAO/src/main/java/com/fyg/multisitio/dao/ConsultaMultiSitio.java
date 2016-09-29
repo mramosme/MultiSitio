@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.fyg.multisitio.comun.EncabezadoRespuesta;
 import com.fyg.multisitio.comun.LogHandler;
 import com.fyg.multisitio.dao.resources.FabricaConexiones;
+import com.fyg.multisitio.dto.Articulo;
 import com.fyg.multisitio.dto.Contacto;
 import com.fyg.multisitio.dto.FiltroNegocio;
 import com.fyg.multisitio.dto.FiltroSitio;
@@ -184,5 +185,35 @@ public class ConsultaMultiSitio {
 			FabricaConexiones.close(sessionTx);
 		}
 		return listaGaleria;
+	}
+	/**
+	 * Metodo para consultar el articulo
+	 * @param uid , UID unico de registro
+	 * @param articulo , recibira valores del articulo para consultar
+	 * @return , devuelve una lista de los articulos
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Articulo> consultaArticulo(String uid, Articulo articulo) {
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Consulta correcta.");
+		List<Articulo> listaArticulo = null;
+		try {
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+			//Se hace una consulta a la tabla contacto
+			listaArticulo = sessionTx.selectList("ConsultaMultiSitio.consultaArticulo", articulo);
+		}
+		catch (Exception ex) {
+			LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
+		}
+		finally {
+			FabricaConexiones.close(sessionTx);
+		}
+		return listaArticulo;
 	}
 }
