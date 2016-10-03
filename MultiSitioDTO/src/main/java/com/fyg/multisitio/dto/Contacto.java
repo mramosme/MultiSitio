@@ -46,6 +46,14 @@ public class Contacto extends ObjetoValor {
 	 */
 	private int estatus;
 	/**
+	 * Dato que almacena la latitud;
+	 */
+	private String latitud;
+	/**
+	 * Dato que almacena la longitud
+	 */
+	private String longitud;
+	/**
 	 * @return , obtiene el id unico de registro
 	 */
 	public int getId() {
@@ -128,5 +136,29 @@ public class Contacto extends ObjetoValor {
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	/**
+	 * @return ,Obtiene la latitud
+	 */
+	public String getLatitud() {
+		return latitud;
+	}
+	/**
+	 * @param latitud ,Ingresa la latitud
+	 */
+	public void setLatitud(String latitud) {
+		this.latitud = latitud;
+	}
+	/**
+	 * @return ,Obtiene la longitud
+	 */
+	public String getLongitud() {
+		return longitud;
+	}
+	/**
+	 * @param longitud ,Ingresa la longitud
+	 */
+	public void setLongitud(String longitud) {
+		this.longitud = longitud;
 	}
 }
