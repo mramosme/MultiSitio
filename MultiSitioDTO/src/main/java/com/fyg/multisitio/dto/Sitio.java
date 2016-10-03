@@ -32,7 +32,7 @@ public class Sitio extends ObjetoValor {
 	 */
 	private String descripcion;
 	/**
-	 * Id de la imagen de la galeria 
+	 * Id de la imagen de la galeria
 	 */
 	private int idGaleria;
 	/**
@@ -55,6 +55,10 @@ public class Sitio extends ObjetoValor {
 	 * Se crea objeto contacto para el uso del metodo registra ocntacto
 	 */
 	private Contacto objetoContacto;
+	/**
+	 * se crea objeto galeria para el uso del metodo registra galeria
+	 */
+	private Galeria objetoGaleria;
 	/**
 	 * Identificador de la Zona
 	 */
@@ -190,5 +194,17 @@ public class Sitio extends ObjetoValor {
 	 */
 	public void setIdGaleria(int idGaleria) {
 		this.idGaleria = idGaleria;
+	}
+	/**
+	 * @return , obtiene un objeto galeria
+	 */
+	public Galeria getObjetoGaleria() {
+		return objetoGaleria;
+	}
+	/**
+	 * @param recibeGaleria , recibe objeto galeria
+	 */
+	public void setObjetoGaleria(Galeria recibeGaleria) {
+		this.objetoGaleria = recibeGaleria;
 	}
 }

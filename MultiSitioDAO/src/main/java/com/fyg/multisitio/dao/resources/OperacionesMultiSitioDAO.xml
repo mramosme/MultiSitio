@@ -5,8 +5,8 @@
 
 <!--- INSERTA EN  LA TABLA CONTACTO-->
 <insert id="insertaRegistroContacto" parameterType="contacto" useGeneratedKeys="true" keyProperty="id"  keyColumn="id">
-INSERT INTO contacto(nombre,calle,colonia,telefono,correo)
-            VALUES(#{nombre},#{calle},#{colonia},#{telefono},#{correo})
+INSERT INTO contacto(nombre,calle,colonia,telefono,correo,latitud,longitud)
+            VALUES(#{nombre},#{calle},#{colonia},#{telefono},#{correo},#{latitud},#{longitud})
             <selectKey keyProperty="id" resultType="Integer" order="AFTER">
             SELECT LAST_INSERT_ID();
             </selectKey>
@@ -20,7 +20,9 @@ UPDATE contacto SET
        calle     = #{calle},
        colonia   = #{colonia},
        telefono  = #{telefono},
-       correo    = #{correo}
+       correo    = #{correo},
+       latitud   = #{latitud},
+       longitud  = #{longitud}
 WHERE id = #{id}
 </update>
 

@@ -34,6 +34,10 @@ public class RegistraMicroSitio {
 	 */
 	private Giro objGiro;
 	/**
+	 * Se crea objeto galeria para recibir el id
+	 */
+	private Galeria objGaleria;
+	/**
 	 * Metodo modifica contacto, realiza la modificacion de un contacto (de sitio o de negocio)
 	 * @param uid identificador unico de la transaccion
 	 * @param contacto variable para la actualizacion
@@ -399,35 +403,38 @@ public class RegistraMicroSitio {
 	 * @param galeria variable para registro
 	 * @return estatus respuesta
 	 */
-	public EncabezadoRespuesta registraGaleria(String uid, Galeria galeria) {
+	private Galeria registraGaleria(String uid, Galeria galeria, SqlSession session) throws Exception {
 		SqlSession sessionTx = null;
-		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
-		respuesta.setUid(uid);
-		respuesta.setEstatus(true);
-		respuesta.setMensajeFuncional("Registro correcto.");
-		try {
-			//Abrimos conexion Transaccional
-			sessionTx = FabricaConexiones.obtenerSesionTx();
-			int registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroGaleria", galeria);
-			if ( registros == 0) {
-				throw new ExcepcionesMultiSitioComun("Error en registrar la galeria.");
-			}
-			//Realizamos commit
-			LogHandler.debug(uid, this.getClass(), "Commit!!!");
-			sessionTx.commit();
-		}
-		catch (Exception ex) {
-			//Realizamos rollBack
-			LogHandler.debug(uid, this.getClass(), "RollBack!!!");
-			FabricaConexiones.rollBack(sessionTx);
-            LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
-            respuesta.setEstatus(false);
-    		respuesta.setMensajeFuncional(ex.getMessage());
-		}
-		finally {
-			FabricaConexiones.close(sessionTx);
-		}
-		return respuesta;
+		//Logica para saber si es atomica la transaccion
+				if ( session == null ) {
+					 sessionTx = FabricaConexiones.obtenerSesionTx();
+				} else {
+					sessionTx = session;
+				}
+				//Registramos el contacto
+				int registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroGaleria", galeria);
+		        //Validamos el registro
+				if ( registros == 0) {
+					if ( session == null ) {
+						FabricaConexiones.rollBack(sessionTx);
+						FabricaConexiones.close(sessionTx);
+					}
+					throw new ExcepcionesMultiSitioComun("No se pudo registrar el contacto.");
+				}
+				//Obtenemos el id contacto que se genero al insertar y se le asiga al objeto contacto
+					objGaleria = galeria;
+
+				//La conexion no es atomica realizamos commit
+				if ( session == null ) {
+					LogHandler.debug(uid, this.getClass(), "Commit conexion.");
+					sessionTx.commit();
+				}
+				//La conexion no es atomica cerramos
+				if ( session == null ) {
+					LogHandler.debug(uid, this.getClass(), "Cerramos conexion.");
+					FabricaConexiones.close(sessionTx);
+				}
+				return galeria;
 	}
 
 
@@ -507,11 +514,17 @@ public class RegistraMicroSitio {
 
 			//Primero registramos el contacto
 			registraContacto(uid, sitio.getObjetoContacto() , sessionTx);
+
+			//segundo guardamos la imagen en nuestra galeria
+			registraGaleria(uid, sitio.getObjetoGaleria() , sessionTx);
 			//Validar si trae el id del contacto
 			LogHandler.debug(uid, this.getClass(), "contacto: " + sitio.getObjetoContacto());
 
 			//Le asignamos el id de contacto en sitio
 			sitio.setContacto(objContacto.getId());
+			
+			//le asignamos el id de la galeria en el sitio
+			sitio.setIdGaleria(objGaleria.getId());
 
         	int registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroSitio", sitio);
 			if ( registros == 0) {
