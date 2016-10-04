@@ -398,10 +398,12 @@ public class RegistraMicroSitio {
 	}
 
 	/**
-	 * Ingresa un  registro a la tabla galeria
-	 * @param uid identificador unico de la transaccion
-	 * @param galeria variable para registro
-	 * @return estatus respuesta
+	 * Metodo para registrar una imagen en la galeria
+	 * @param uid ,UID unico de registro
+	 * @param galeria , recibe los valores de galeria
+	 * @param session , Abre una session de base de datos
+	 * @return ,regresa el id de la imagen
+	 * @throws Exception , si ocurre una excepcion
 	 */
 	private Galeria registraGaleria(String uid, Galeria galeria, SqlSession session) throws Exception {
 		SqlSession sessionTx = null;
@@ -460,6 +462,9 @@ public class RegistraMicroSitio {
 			//Despues registramos el giro
 			registraGiro(uid, negocio.getObjetoGiro() , sessionTx);
 
+			//Despues registramos la imagen en la galeria
+			registraGaleria(uid, negocio.getObjetoGaleria(), sessionTx);
+
 			//Validar si trae el id del contacto
 			LogHandler.debug(uid, this.getClass(), "contacto: " + negocio.getObjetoContacto());
 
@@ -471,6 +476,9 @@ public class RegistraMicroSitio {
 
 			//Se le asigna el id del giro del negocio
 			negocio.setIdGiro(objGiro.getIdGiro());
+
+			//Se le asigna el id de la imagen guardada
+			negocio.setIdGaleria(objGaleria.getId());
 
         	int registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroNegocio", negocio);
 			if ( registros == 0) {
@@ -522,7 +530,7 @@ public class RegistraMicroSitio {
 
 			//Le asignamos el id de contacto en sitio
 			sitio.setContacto(objContacto.getId());
-			
+
 			//le asignamos el id de la galeria en el sitio
 			sitio.setIdGaleria(objGaleria.getId());
 
