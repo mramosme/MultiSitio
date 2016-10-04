@@ -421,9 +421,9 @@ public class RegistraMicroSitio {
 						FabricaConexiones.rollBack(sessionTx);
 						FabricaConexiones.close(sessionTx);
 					}
-					throw new ExcepcionesMultiSitioComun("No se pudo registrar el contacto.");
+					throw new ExcepcionesMultiSitioComun("No se pudo registrar la imagen.");
 				}
-				//Obtenemos el id contacto que se genero al insertar y se le asiga al objeto contacto
+				//Obtenemos el id contacto que se genero al insertar y se le asiga al objeto galeria
 					objGaleria = galeria;
 
 				//La conexion no es atomica realizamos commit
@@ -478,7 +478,7 @@ public class RegistraMicroSitio {
 			negocio.setIdGiro(objGiro.getIdGiro());
 
 			//Se le asigna el id de la imagen guardada
-			negocio.setIdGaleria(objGaleria.getId());
+			negocio.setIdGaleria(objGaleria.getIdGaleria());
 
         	int registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroNegocio", negocio);
 			if ( registros == 0) {
@@ -522,17 +522,19 @@ public class RegistraMicroSitio {
 
 			//Primero registramos el contacto
 			registraContacto(uid, sitio.getObjetoContacto() , sessionTx);
-
 			//segundo guardamos la imagen en nuestra galeria
 			registraGaleria(uid, sitio.getObjetoGaleria() , sessionTx);
 			//Validar si trae el id del contacto
 			LogHandler.debug(uid, this.getClass(), "contacto: " + sitio.getObjetoContacto());
 
+			//Validar si trae el id de la galeria
+			LogHandler.debug(uid, this.getClass(), "galeria: " + sitio.getObjetoGaleria());
+
 			//Le asignamos el id de contacto en sitio
 			sitio.setContacto(objContacto.getId());
 
 			//le asignamos el id de la galeria en el sitio
-			sitio.setIdGaleria(objGaleria.getId());
+			sitio.setIdGaleria(objGaleria.getIdGaleria());
 
         	int registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroSitio", sitio);
 			if ( registros == 0) {

@@ -19,12 +19,7 @@ public class Galeria extends ObjetoValor {
 	 * Identificador �nico de registro
 	 *
 	 */
-	private int id;
-	/**
-	 * Id de Negocio
-	 *
-	 */
-	private int idNegocio;
+	private int idGaleria;
 	/**
 	 * Ruta de la imagen a publicar
 	 *
@@ -58,26 +53,14 @@ public class Galeria extends ObjetoValor {
 	/**
 	 * @return ,Se obtiene el id unico de registro
 	 */
-	public int getId() {
-		return id;
+	public int getIdGaleria() {
+		return idGaleria;
 	}
 	/**
-	 * @param id ,Ingresa un id unico de registro
+	 * @param idGaleria ,Ingresa un id unico de registro
 	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-	/**
-	 * @return ,Se obtiene el id unico de negocio
-	 */
-	public int getIdNegocio() {
-		return idNegocio;
-	}
-	/**
-	 * @param idNegocio ,Ingresa un id unico de negocio
-	 */
-	public void setIdNegocio(int idNegocio) {
-		this.idNegocio = idNegocio;
+	public void setIdGaleria(int idGaleria) {
+		this.idGaleria = idGaleria;
 	}
 	/**
 	 * @return ,Se obtiene la url de la imagen

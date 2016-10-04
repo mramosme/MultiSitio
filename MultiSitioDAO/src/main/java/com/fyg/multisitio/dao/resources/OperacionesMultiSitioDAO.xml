@@ -45,9 +45,12 @@ WHERE idNegocio       = #{idNegocio}
 </update>
 
 <!--- INSERTA EN LA TABLA GALERIA-->
-<insert id="insertaRegistroGaleria" parameterType="galeria">
-INSERT INTO galeria(id,idNegocio,urlImagen,estatus,fechaRegistro,usuarioAlta)
-            VALUES(#{id},#{idNegocio},#{urlImagen},#{estatus},GETDATE(),#{usuarioAlta})
+<insert id="insertaRegistroGaleria" parameterType="galeria" useGeneratedKeys="true" keyProperty="idGaleria"  keyColumn="idGaleria">
+INSERT INTO galeria(urlImagen,estatus,fechaRegistro,usuarioAlta)
+            VALUES(#{urlImagen},#{estatus},#{fechaRegistro},#{usuarioAlta})
+            <selectKey keyProperty="idGaleria" resultType="Integer" order="AFTER">
+            SELECT LAST_INSERT_ID();
+            </selectKey>
 </insert>
 	                                                     <!--- OPERACIONES EN LA TABLA NEGOCIO-->
 
@@ -95,6 +98,7 @@ WHERE id = #{id}
 <insert id="insertaRegistroSitio" parameterType="sitio">
 INSERT INTO  sitio(id, nombre,descripcion,idGaleria,contacto,domicilio,telefono,fechaRegistro,estatus,idZona)
 VALUES(#{id},#{nombre},#{descripcion},#{idGaleria},#{contacto},#{domicilio},#{telefono},#{fechaRegistro},#{estatus},#{idZona})
+
 </insert>
 														<!--- OPERACIONES EN LA TABLA ZONA-->
 <!---ACTUALIZA LA TABLA ZONA-->
