@@ -35,6 +35,10 @@ public class Negocio  extends ObjetoValor {
 	 */
 	private Giro objetoGiro;
 	/**
+	 * Se crea objeto 
+	 */
+	private Galeria objetoGaleria;
+	/**
 	 * Nombre del negocio
 	 *
 	 */
@@ -325,5 +329,17 @@ public class Negocio  extends ObjetoValor {
 	 */
 	public void setIdGaleria(int idGaleria) {
 		this.idGaleria = idGaleria;
+	}
+	/**
+	 * @return ,Se obtiene el objeto de la galeria
+	 */
+	public Galeria getObjetoGaleria() {
+		return objetoGaleria;
+	}
+	/**
+	 * @param recibeGaleria ,ingresa la galeria
+	 */
+	public void setObjetoGaleria(Galeria recibeGaleria) {
+		this.objetoGaleria = recibeGaleria;
 	}
 	}
