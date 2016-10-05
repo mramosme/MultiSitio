@@ -1,6 +1,8 @@
 package com.fyg.multisitio.negocio.test;
 
 
+import java.util.Date;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,6 +10,7 @@ import com.fyg.multisitio.negocio.OperacionesMultiSitioNegocio;
 import com.fyg.multisitio.comun.GUIDGenerator;
 import com.fyg.multisitio.comun.LogHandler;
 import com.fyg.multisitio.dto.Contacto;
+import com.fyg.multisitio.dto.Galeria;
 import com.fyg.multisitio.dto.Giro;
 import com.fyg.multisitio.dto.Negocio;
 
@@ -24,6 +27,10 @@ public class NegocioTest {
      * Objeto negoocio para mandar valores
      */
     private Negocio  registroNegocio;
+    /**
+     * Objeto galeria para mandar valores
+     */
+    private Galeria registraGaleria;
     /**
      * Generador uid unico
      */
@@ -48,18 +55,28 @@ public class NegocioTest {
 	       registroContacto.setColonia("Polanco");
 	       registroContacto.setCorreo("prueba@fygsolutions.com");
 	       registroContacto.setTelefono("5578902232");
+	       registroContacto.setLatitud("19.4243792");
+	       registroContacto.setLongitud("-99.1954434");
            /**
             * Datos que se le enviaran para registrar un giro
             */
 	       registroGiro = new Giro();
 	       registroGiro.setNombreGiro("Restaurante");
 	       
+	       Date fechaImagen = new Date();
+	       registraGaleria = new Galeria();
+	       registraGaleria.setUrlImagen("http://vignette4.wikia.nocookie.net/zootopia/images/3/3e/Nick_Sly_Fox_Render.png");
+	       registraGaleria.setEstatus(1);
+	       registraGaleria.setFechaRegistro(fechaImagen);
+	       registraGaleria.setUsuarioAlta("Admin");
+	       
 	       /**
 		    * Datos que se enviaran al negocio
 		    */
 		   registroNegocio = new Negocio();
 		   registroNegocio.setObjetoContacto(registroContacto);
-		   registroNegocio.setIdSitio(1);
+		   registroNegocio.setObjetoGaleria(registraGaleria);
+		   registroNegocio.setIdSitio(2);
 		   registroNegocio.setObjetoGiro(registroGiro);
 		   registroNegocio.setNombre("RESTAURANT LA FINA");
 		   registroNegocio.setDescripcionCorta("Playa ubicada en Catemaco Veracruz");
@@ -73,6 +90,7 @@ public class NegocioTest {
 		   registroNegocio.setEstacionamiento(true);
 		   registroNegocio.setAreaNinos(false);
 		   registroNegocio.setMascotas(true);
+		   
 
 	}
 	/**
