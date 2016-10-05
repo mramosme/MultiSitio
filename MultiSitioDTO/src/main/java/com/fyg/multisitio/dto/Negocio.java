@@ -35,7 +35,7 @@ public class Negocio  extends ObjetoValor {
 	 */
 	private Giro objetoGiro;
 	/**
-	 * Se crea objeto 
+	 * Se crea objeto Galeria
 	 */
 	private Galeria objetoGaleria;
 	/**

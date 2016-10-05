@@ -6,6 +6,7 @@ import com.fyg.multisitio.comun.EncabezadoRespuesta;
 import com.fyg.multisitio.comun.ExcepcionesMultiSitioComun;
 import com.fyg.multisitio.comun.LogHandler;
 import com.fyg.multisitio.dao.resources.FabricaConexiones;
+import com.fyg.multisitio.dto.Actividad;
 import com.fyg.multisitio.dto.Articulo;
 import com.fyg.multisitio.dto.Contacto;
 import com.fyg.multisitio.dto.Galeria;
@@ -746,4 +747,40 @@ public class RegistraMicroSitio {
 		}
 		return giro;
 	}
+	/**
+	 * Metodo para registrar una actividad
+	 * @param uid ,UID unico de registro
+	 * @param actividad ,recibe valores de actividad
+	 * @return , regresa si el registro fue exitoso o no
+	 */
+ public EncabezadoRespuesta registraActividad(String uid, Actividad actividad) {
+	 	SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Registro correcto.");
+		try {
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+     	int registros = sessionTx.insert("RegistraMicroSitio.insertaRegistroActividad", actividad);
+			if ( registros == 0) {
+				throw new ExcepcionesMultiSitioComun("Error en registrar la actividad.");
+			}
+			//Realizamos commit
+			LogHandler.debug(uid, this.getClass(), "Commit!!!");
+			sessionTx.commit();
+		}
+		catch (Exception ex) {
+			//Realizamos rollBack
+			LogHandler.debug(uid, this.getClass(), "RollBack!!!");
+			FabricaConexiones.rollBack(sessionTx);
+         LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+         respuesta.setEstatus(false);
+ 		respuesta.setMensajeFuncional(ex.getMessage());
+		}
+		finally {
+			FabricaConexiones.close(sessionTx);
+		}
+		return respuesta;
+ }
 }

@@ -5,6 +5,7 @@ import com.fyg.multisitio.comun.ExcepcionesMultiSitioComun;
 import com.fyg.multisitio.comun.GUIDGenerator;
 import com.fyg.multisitio.comun.LogHandler;
 import com.fyg.multisitio.dao.RegistraMicroSitio;
+import com.fyg.multisitio.dto.Actividad;
 import com.fyg.multisitio.dto.Articulo;
 import com.fyg.multisitio.dto.Negocio;
 import com.fyg.multisitio.dto.Sitio;
@@ -206,5 +207,43 @@ public class OperacionesMultiSitioNegocio {
 		}
 		LogHandler.debug(uid, this.getClass(), "registraArticulo - Datos Salida: " + respuesta);
 		return respuesta;
+	}
+	
+	public EncabezadoRespuesta registraActividad(Actividad actividad) {
+				//Primero generamos el identificador unico de la transaccion
+				String uid = GUIDGenerator.generateGUID(actividad);
+				//Mandamos a log el objeto de entrada
+				LogHandler.debug(uid, this.getClass(), "registraActividad - Datos Entrada: " + actividad);
+				//Variable de resultado
+				EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+				try {
+					//Validaciones Negocio
+
+					if (actividad.getNombre() == null ||actividad.getNombre().isEmpty()) {
+						throw new ExcepcionesMultiSitioComun("El nombre de la actividad es obligatorio.");
+					} else if (actividad.getDescripcion() == null || actividad.getDescripcion().isEmpty()) {
+						throw new ExcepcionesMultiSitioComun("Es necesaria una descripcion.");
+					}
+
+					//Mandamos a la parte del dao
+					RegistraMicroSitio dao = new RegistraMicroSitio();
+					respuesta = dao.registraActividad(uid, actividad);
+				}
+				catch  (ExcepcionesMultiSitioComun ex) {
+					LogHandler.error(uid, this.getClass(), "registraActividad - ErrorMultisitio: " + ex.getMessage(), ex);
+					respuesta.setUid(uid);
+					respuesta.setEstatus(false);
+					respuesta.setMensajeFuncional(ex.getMessage());
+					respuesta.setMensajeTecnico(ex.getMessage());
+				}
+				catch  (Exception ex) {
+					LogHandler.error(uid, this.getClass(), "registraActividad - Error: " + ex.getMessage(), ex);
+					respuesta.setUid(uid);
+					respuesta.setEstatus(false);
+					respuesta.setMensajeFuncional(ex.getMessage());
+					respuesta.setMensajeTecnico(ex.getMessage());
+				}
+				LogHandler.debug(uid, this.getClass(), "registraActividad - Datos Salida: " + respuesta);
+				return respuesta;
 	}
 }

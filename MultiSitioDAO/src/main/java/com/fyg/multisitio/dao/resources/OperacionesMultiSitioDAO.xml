@@ -163,4 +163,9 @@ INSERT INTO giro(nombre) VALUES(#{nombreGiro})
 <update id="actualizaGiro" parameterType="giro">
 UPDATE giro SET nombre = #{nombreGiro} WHERE idGiro = #{idGiro}
 </update>
+
+<!--- INSERTA EN LA TABLA GIRO-->
+<insert id="insertaRegistroActividad" parameterType="actividad">
+INSERT INTO actividad(nombre,descripcion,idGiro) VALUES(#{nombre},#{descripcion},#{idGiro})
+</insert>
 </mapper>

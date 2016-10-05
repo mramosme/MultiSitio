@@ -15,6 +15,7 @@
 		<typeAlias alias="FiltroSitio" type="com.fyg.multisitio.dto.FiltroSitio"/>
 		<typeAlias alias="Articulo" type="com.fyg.multisitio.dto.Articulo"/>
 		<typeAlias alias="Giro" type="com.fyg.multisitio.dto.Giro"/>
+		<typeAlias alias="Actividad" type="com.fyg.multisitio.dto.Actividad"/>
 	</typeAliases>
 
 	<environments default="development">
