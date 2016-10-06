@@ -76,7 +76,7 @@ public class NegocioTest {
 		   registroNegocio = new Negocio();
 		   registroNegocio.setObjetoContacto(registroContacto);
 		   registroNegocio.setObjetoGaleria(registraGaleria);
-		   registroNegocio.setIdSitio(2);
+		   registroNegocio.setIdSitio(1);
 		   registroNegocio.setObjetoGiro(registroGiro);
 		   registroNegocio.setNombre("RESTAURANT LA FINA");
 		   registroNegocio.setDescripcionCorta("Playa ubicada en Catemaco Veracruz");

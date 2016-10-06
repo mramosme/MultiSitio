@@ -66,6 +66,7 @@ public class SitioTest {
 		   registraSitio.setObjetoContacto(registroContacto);
 		   registraSitio.setObjetoGaleria(registraGaleria);
 		   registraSitio.setNombre("Valle de Bravo");
+		   registraSitio.setDescripcion("sitio descripcion sitio");
 		   registraSitio.setDomicilio("ESTADO DE MEXICO");
 		   registraSitio.setTelefono("5567384774");
 		   registraSitio.setFechaRegistro(fecha);
