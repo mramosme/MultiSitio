@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.fyg.multisitio.comun.EncabezadoRespuesta;
 import com.fyg.multisitio.comun.LogHandler;
 import com.fyg.multisitio.dao.resources.FabricaConexiones;
+import com.fyg.multisitio.dto.Actividad;
 import com.fyg.multisitio.dto.Articulo;
 import com.fyg.multisitio.dto.Contacto;
 import com.fyg.multisitio.dto.FiltroNegocio;
@@ -215,5 +216,15 @@ public class ConsultaMultiSitio {
 			FabricaConexiones.close(sessionTx);
 		}
 		return listaArticulo;
+	}
+	/**
+	 * Metodo para consultar las actividades mediante etiquetas en el buscador
+	 * @param uid
+	 * @param actividad
+	 * @return
+	 */
+	public List<Actividad> consultaActividad(String uid, Actividad actividad) {
+		
+		
 	}
 }
