@@ -218,13 +218,33 @@ public class ConsultaMultiSitio {
 		return listaArticulo;
 	}
 	/**
-	 * Metodo para consultar las actividades mediante etiquetas en el buscador
-	 * @param uid
-	 * @param actividad
-	 * @return
+	 * Metodo de busqueda para consultar actividades mediante la etiqueta
+	 * @param uid , UID unico de registro
+	 * @param actividad ,acepta valores de actividad
+	 * @return ,regresa una lista actividad
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Actividad> consultaActividad(String uid, Actividad actividad) {
-		
-		
+		SqlSession sessionTx = null;
+		EncabezadoRespuesta respuesta = new EncabezadoRespuesta();
+		respuesta.setUid(uid);
+		respuesta.setEstatus(true);
+		respuesta.setMensajeFuncional("Consulta correcta.");
+		List<Actividad> listaActividad = null;
+		try {
+			//Abrimos conexion Transaccional
+			sessionTx = FabricaConexiones.obtenerSesionTx();
+			//Se hace una consulta a la tabla contacto
+			listaActividad = sessionTx.selectList("ConsultaMultiSitio.consultaActividad", actividad);
+		}
+		catch (Exception ex) {
+			LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
+            respuesta.setEstatus(false);
+    		respuesta.setMensajeFuncional(ex.getMessage());
+		}
+		finally {
+			FabricaConexiones.close(sessionTx);
+		}
+		return listaActividad;
 	}
 }
