@@ -77,4 +77,7 @@ SELECT negocio.nombre AS nombre,negocio.descripcionLarga AS descripcionLarga,neg
 	INNER JOIN sitio ON negocio.idSitio = sitio.id
 WHERE negocio.id = #{idNegocio}
 </select>
+<select id="busquedaActividad" parameterType="actividad" resultType="Actividad">
+SELECT descripcion, idGiro FROM actividad WHERE nombre = #{nombre}
+</select>
 </mapper>
