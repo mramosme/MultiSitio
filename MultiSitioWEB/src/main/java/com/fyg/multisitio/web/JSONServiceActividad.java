@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import com.fyg.multisitio.negocio.ConsultasMultiSitioNegocio;
 import com.fyg.multisitio.dto.Actividad;
 
+
 @Path("/busqueda")
 public class JSONServiceActividad {
 
@@ -23,6 +24,10 @@ public class JSONServiceActividad {
 	 @Produces("application/json")
 	 public  Response jsonActividadBusqueda (@PathParam("i") String f) throws JSONException {
 		 JSONObject jsonObject = new JSONObject();
+		 Actividad paramNombre = new Actividad();
+		 
+		 paramNombre.setNombre(f);
+		 List<Actividad> lista = new ConsultasMultiSitioNegocio().busquedaActividad(paramNombre);
 		 
 		 String result = "" + jsonObject;
 		 return Response.status(200).entity(result).build();
