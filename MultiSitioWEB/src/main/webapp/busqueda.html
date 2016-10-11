@@ -5,12 +5,12 @@
 <title>Busqueda por localizacion y por actividad</title>
 </head>
 <body>
-<form>
+<form action="/json/" method="GET">
 <label>Busqueda por localizacion:</label> <input type="text" name="localizacion" id="localizacion" placeholder="teclee la localizacion"/>
 </form>
 
-<form>
-<label>Busqueda por actividad: </label> <input type="text" name="actividad" id="actividad" placeholder="">
+<form action="json/actividad/" method="GET">
+<label>Busqueda por actividad: </label> <input type="text" name="actividad" id="actividad" placeholder="teclee la actividad">
 </form>
 </body>
 </html>
