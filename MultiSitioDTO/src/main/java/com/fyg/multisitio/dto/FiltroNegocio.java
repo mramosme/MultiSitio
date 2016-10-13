@@ -105,6 +105,10 @@ public class FiltroNegocio extends ObjetoValor {
      */
     private String sitioTelefono;
     /**
+     * url de la imagen
+     */
+    private String urlImagen;
+    /**
      * @return ,Obtiene el id del negocio de la consulta.
      */
     public Integer getIdNegocio() {
@@ -253,5 +257,11 @@ public class FiltroNegocio extends ObjetoValor {
 	 */
 	public String getLongitud() {
 		return longitud;
+	}
+	/**
+	 * @return url de la imagen
+	 */
+	public String getUrlImagen() {
+		return urlImagen;
 	}
 }

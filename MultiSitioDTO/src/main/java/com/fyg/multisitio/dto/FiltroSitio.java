@@ -75,6 +75,10 @@ public class FiltroSitio extends ObjetoValor {
      */
     private String zonaDescripcion;
     /**
+     * Url de la imagen
+     */
+    private String urlImagen;
+    /**
      * @return ,Obtiene el id del sitio para consulta
      */
 	public Integer getIdSitio() {
@@ -175,5 +179,11 @@ public class FiltroSitio extends ObjetoValor {
 	 */
 	public String getLongitud() {
 		return longitud;
+	}
+	/**
+	 * @return , regresa la url de la imagen
+	 */
+	public String getUrlImagen() {
+		return urlImagen;
 	}
 }
