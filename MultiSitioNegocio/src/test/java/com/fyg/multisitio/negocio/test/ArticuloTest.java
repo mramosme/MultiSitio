@@ -34,7 +34,7 @@ public class ArticuloTest {
 		  */
 		 Date fechaRegistro = new Date();
 		 registraArticulo = new Articulo();
-		 registraArticulo.setIdNegocio(2);
+		 registraArticulo.setIdNegocio(1);
 		 registraArticulo.setNombre("Platillo regional de mariscos");
 		 registraArticulo.setDescripcion("Platillo de mariscos con salsa y pimientos");
 		 registraArticulo.setPrecio(50.5);

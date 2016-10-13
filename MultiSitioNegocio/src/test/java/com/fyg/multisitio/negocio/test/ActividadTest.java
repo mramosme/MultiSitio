@@ -33,7 +33,7 @@ public class ActividadTest {
 		 registraActividad = new Actividad();
 		 registraActividad.setNombre("Nadar");
 		 registraActividad.setDescripcion("Natacion, nadar,agua");
-		 registraActividad.setIdGiro(2);
+		 registraActividad.setIdGiro(1);
 	}
 
 	@Test
