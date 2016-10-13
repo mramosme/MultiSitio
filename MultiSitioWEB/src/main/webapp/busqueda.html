@@ -1,16 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<meta charset="ISO-8859-1">
-<title>Busqueda por localizacion y por actividad</title>
-</head>
-<body>
-<form action="/json/" method="GET">
-<label>Busqueda por localizacion:</label> <input type="text" name="localizacion" id="localizacion" placeholder="teclee la localizacion"/>
-</form>
-
-<form action="json/actividad/" method="GET">
-<label>Busqueda por actividad: </label> <input type="text" name="actividad" id="actividad" placeholder="teclee la actividad">
-</form>
+    <meta charset="UTF-8">
+    <title>Busqueda Angular</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+    <script>
+        angular.module('busquedaAvanzada', [])
+        .controller('busquedaController', ['$scope','$http', function($scope, $http){
+             $http.get("json/busqueda/nadar").success(function (data) {
+      $scope.data = data;
+     return $scope.data
+   });
+        }]);
+    </script>
+    </head>
+<body ng-app="busquedaAvanzada">
+    <label>busqueda por actividad:</label>
+    <input type="text" ng-model="busqueda" placeholder="ingrese una palabra a buscar">
+    <table ng-controller="busquedaController">
+        <thead>
+            <tr>
+                <th>{{data.descripcion}}</th>
+                <th>{{data.negocio}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in lista | filter: busqueda">
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

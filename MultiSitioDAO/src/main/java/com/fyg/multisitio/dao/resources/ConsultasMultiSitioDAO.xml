@@ -77,8 +77,12 @@ SELECT negocio.nombre AS nombre,negocio.descripcionLarga AS descripcionLarga,neg
 	INNER JOIN sitio ON negocio.idSitio = sitio.id
 WHERE negocio.id = #{idNegocio}
 </select>
+
 <!-- Consulta Actividad General -->
 <select id="busquedaActividad" parameterType="actividad" resultType="Actividad">
-SELECT descripcion, idGiro FROM actividad WHERE nombre = #{nombre}
+SELECT actividad.descripcion, actividad.idGiro, negocio.nombre,negocio.descripcionLarga
+FROM actividad
+INNER JOIN giro ON actividad.idGiro = giro.idGiro
+INNER JOIN negocio ON giro.idGiro = negocio.idGiro WHERE actividad.nombre = #{nombre}
 </select>
 </mapper>

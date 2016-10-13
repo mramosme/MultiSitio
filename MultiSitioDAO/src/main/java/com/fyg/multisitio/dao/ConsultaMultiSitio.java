@@ -235,7 +235,7 @@ public class ConsultaMultiSitio {
 			//Abrimos conexion Transaccional
 			sessionTx = FabricaConexiones.obtenerSesionTx();
 			//Se hace una consulta a la tabla contacto
-			listaActividad = sessionTx.selectList("ConsultaMultiSitio.consultaActividad", actividad);
+			listaActividad = sessionTx.selectList("ConsultaMultiSitio.busquedaActividad", actividad);
 		}
 		catch (Exception ex) {
 			LogHandler.error(uid, this.getClass(), "Error: " + ex.getMessage(), ex);
