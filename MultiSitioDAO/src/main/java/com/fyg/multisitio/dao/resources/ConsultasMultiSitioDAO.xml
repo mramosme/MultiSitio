@@ -55,9 +55,10 @@ SELECT nombreGiro FROM giro WHERE id = #{idGiro}
 SELECT sitio.nombre AS nombre ,sitio.domicilio AS domicilio,sitio.telefono AS telefono,sitio.fechaRegistro AS fechaRegistro,sitio.estatus AS estatus,sitio.idZona AS idZona,
 	contacto.nombre AS contactoNombre,contacto.calle AS contactoCalle,contacto.colonia AS contactoColonia,contacto.telefono AS contactoTelefono,
 	contacto.correo AS contactoCorreo,contacto.latitud AS latitud, contacto.longitud AS longitud,
-	zona.nombre AS zonaNombre,zona.descripcion AS zonaDescripcion
+	zona.nombre AS zonaNombre,zona.descripcion AS zonaDescripcion,galeria.urlImagen AS urlGaleria
 FROM sitio
 	INNER JOIN contacto ON sitio.contacto = contacto.id
+	INNER JOIN galeria on sitio.idGaleria = galeria.idGaleria
 	INNER JOIN zona ON sitio.idZona = zona.id
 	WHERE sitio.id = #{idSitio}
 </select>
@@ -65,16 +66,14 @@ FROM sitio
 <!-- Consulta Negocio General -->
 <select id="consultaNegocioGeneral" parameterType="negocio" resultType="FiltroNegocio">
 SELECT negocio.nombre AS nombre,negocio.descripcionLarga AS descripcionLarga,negocio.descripcionCorta AS descripcionCorta,
-	negocio.urlLogotipo AS urlLogo, negocio.estatus AS status, negocio.ligaFB AS ligaFB, negocio.ligaPagina AS ligaPagina,
-	negocio.calificacion AS calificacion, negocio.wifi AS wifi, negocio.estacionamiento AS estacionamiento,
-	negocio.areaNinos AS areaNinos, negocio.mascotas AS mascotas,
-	galeria.urlImagen AS urlGaleria, contacto.nombre AS contactoNombre,
-	contacto.calle AS contactoCalle, contacto.colonia AS contactoColonia, contacto.telefono AS contactoTelefono,
-	contacto.correo AS contactoCorreo,contacto.latitud AS latitud,contacto.longitud AS longitud, sitio.nombre AS sitioNombre, sitio.domicilio AS sitioDomicilio, sitio.telefono AS sitioTelefono
-	FROM negocio
-	INNER JOIN galeria  ON negocio.id = galeria.idNegocio
-	INNER JOIN contacto ON negocio.idContacto = contacto.id
-	INNER JOIN sitio ON negocio.idSitio = sitio.id
+negocio.urlLogotipo AS urlLogo, negocio.estatus AS status, negocio.ligaFB AS ligaFB, negocio.ligaPagina AS ligaPagina, negocio.calificacion AS calificacion,
+negocio.wifi AS wifi, negocio.estacionamiento AS estacionamiento, negocio.areaNinos AS areaNinos, negocio.mascotas AS mascotas, galeria.urlImagen AS urlGaleria,
+contacto.nombre AS contactoNombre, contacto.calle AS contactoCalle, contacto.colonia AS contactoColonia, contacto.telefono AS contactoTelefono,
+contacto.correo AS contactoCorreo,contacto.latitud AS latitud,contacto.longitud AS longitud, sitio.nombre AS sitioNombre, sitio.domicilio AS sitioDomicilio,
+sitio.telefono AS sitioTelefono FROM negocio 
+INNER JOIN galeria ON negocio.idGaleria = galeria.idGaleria 
+INNER JOIN contacto ON negocio.idContacto = contacto.id 
+INNER JOIN sitio ON negocio.idSitio = sitio.id 
 WHERE negocio.id = #{idNegocio}
 </select>
 
