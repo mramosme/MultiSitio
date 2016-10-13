@@ -77,7 +77,7 @@ public class FiltroSitio extends ObjetoValor {
     /**
      * Url de la imagen
      */
-    private String urlImagen;
+    private String urlGaleria;
     /**
      * @return ,Obtiene el id del sitio para consulta
      */
@@ -183,7 +183,7 @@ public class FiltroSitio extends ObjetoValor {
 	/**
 	 * @return , regresa la url de la imagen
 	 */
-	public String getUrlImagen() {
-		return urlImagen;
+	public String getUrlGaleria() {
+		return urlGaleria;
 	}
 }

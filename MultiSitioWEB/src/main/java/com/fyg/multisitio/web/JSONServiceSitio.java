@@ -36,6 +36,7 @@ public class JSONServiceSitio {
 			  String contactoColonia = listaSitio.get(i).getContactoColonia();
 			  String contactoTelefono = listaSitio.get(i).getContactoTelefono();
 			  String contactoCorreo = listaSitio.get(i).getContactoCorreo();
+			  String urlGaleria = listaSitio.get(i).getUrlGaleria();
 			  String latitud = listaSitio.get(i).getLatitud();
 			  String longitud = listaSitio.get(i).getLongitud();
 			  String zonaNombre = listaSitio.get(i).getZonaNombre();
@@ -51,6 +52,9 @@ public class JSONServiceSitio {
 			  jsonObject.put("contactoColonia", contactoColonia);
 			  jsonObject.put("contactoTelefono", contactoTelefono);
 			  jsonObject.put("contactoCorreo", contactoCorreo);
+			  jsonObject.put("urlGaleria", urlGaleria);
+			  jsonObject.put("latitud", latitud);
+			  jsonObject.put("longitud", longitud);
 			  jsonObject.put("zonaNombre", zonaNombre);
 			  jsonObject.put("zonaDescripcion", zonaDescripcion);
 		  }
