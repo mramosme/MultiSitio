@@ -36,6 +36,8 @@ public class JSONServiceSitio {
 			  String contactoColonia = listaSitio.get(i).getContactoColonia();
 			  String contactoTelefono = listaSitio.get(i).getContactoTelefono();
 			  String contactoCorreo = listaSitio.get(i).getContactoCorreo();
+			  String latitud = listaSitio.get(i).getLatitud();
+			  String longitud = listaSitio.get(i).getLongitud();
 			  String zonaNombre = listaSitio.get(i).getZonaNombre();
 			  String zonaDescripcion = listaSitio.get(i).getZonaDescripcion();
 			  

@@ -85,6 +85,14 @@ public class FiltroNegocio extends ObjetoValor {
      */
     private String contactoCorreo;
     /**
+     * longitud
+     */
+    private String latitud;
+    /**
+     * latitud 
+     */
+    private String longitud;
+    /**
      * Nombre del Sitio
      */
     private String sitioNombre;
@@ -233,5 +241,17 @@ public class FiltroNegocio extends ObjetoValor {
 	 */
 	public String getSitioTelefono() {
 		return sitioTelefono;
+	}
+	/**
+	 * @return regresa la latitud del negocio
+	 */
+	public String getLatitud() {
+		return latitud;
+	}
+	/**
+	 * @return regresa la longitud del negocio
+	 */
+	public String getLongitud() {
+		return longitud;
 	}
 }

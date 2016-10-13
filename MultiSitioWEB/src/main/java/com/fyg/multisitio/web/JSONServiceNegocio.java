@@ -43,6 +43,8 @@ public class JSONServiceNegocio {
 			String contactoColonia = lista.get(i).getContactoColonia();
 			String contactoTelefono = lista.get(i).getContactoTelefono();
 			String contactoCorreo = lista.get(i).getContactoCorreo();
+			String latitud = lista.get(i).getLatitud();
+			String longitud = lista.get(i).getLongitud();
 			String sitioNombre = lista.get(i).getSitioNombre();
 			String sitioDomicilio = lista.get(i).getSitioDomicilio();
 			String sitioTelefono = lista.get(i).getSitioTelefono();
@@ -64,6 +66,8 @@ public class JSONServiceNegocio {
 			jsonObject.putOnce("contactoColonia", contactoColonia);
 			jsonObject.putOnce("contactoTelefono", contactoTelefono);
 			jsonObject.putOnce("contactoCorreo", contactoCorreo);
+			jsonObject.putOnce("latitud", latitud);
+			jsonObject.putOnce("longitud", longitud);
 			jsonObject.putOnce("sitioNombre", sitioNombre);
 			jsonObject.putOnce("sitioDomicilio", sitioDomicilio);
 			jsonObject.putOnce("sitioTelefono", sitioTelefono);

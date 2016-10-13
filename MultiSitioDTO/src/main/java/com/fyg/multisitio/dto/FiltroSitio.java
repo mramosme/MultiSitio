@@ -59,6 +59,14 @@ public class FiltroSitio extends ObjetoValor {
      */
     private String contactoCorreo;
     /**
+     * latitud
+     */
+    private String latitud;
+    /**
+     * longitud
+     */
+    private String longitud;
+    /**
      * Nombre de la zona
      */
     private String zonaNombre;
@@ -155,5 +163,17 @@ public class FiltroSitio extends ObjetoValor {
 	 */
 	public String getZonaDescripcion() {
 		return zonaDescripcion;
+	}
+	/**
+	 * @return latitud del sitio
+	 */
+	public String getLatitud() {
+		return latitud;
+	}
+	/**
+	 * @return regresa la longitud del sitio
+	 */
+	public String getLongitud() {
+		return longitud;
 	}
 }
