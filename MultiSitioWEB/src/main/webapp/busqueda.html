@@ -15,21 +15,9 @@
     </script>
     </head>
 <body ng-app="busquedaAvanzada">
-    <label>busqueda por actividad:</label>
-    <input type="text" ng-model="busqueda" placeholder="ingrese una palabra a buscar">
-    <table ng-controller="busquedaController">
-        <thead>
-            <tr>
-                <th>{{data.descripcion}}</th>
-                <th>{{data.negocio}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="item in lista | filter: busqueda">
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
+   <form name="ejemplo" action="22-html5-search-input.php" method="POST">
+	Busqueda por Actividad: <input type="search" name="busqueda"><br>
+	<input type="submit" value="Enviar">
+</form>
 </body>
 </html>
