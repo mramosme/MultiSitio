@@ -60,7 +60,7 @@ FROM sitio
 	INNER JOIN contacto ON sitio.contacto = contacto.id
 	INNER JOIN galeria on sitio.idGaleria = galeria.idGaleria
 	INNER JOIN zona ON sitio.idZona = zona.id
-	WHERE sitio.id = #{idSitio}
+	WHERE sitio.estado = #{estado}
 </select>
 
 <!-- Consulta Negocio General -->

@@ -13,65 +13,37 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript">
-function changeAction()
-{
-	var actividad = document.getElementById('actividad').value;
-	var destino  = document.getElementById('destino').value;
-	
-	//Booleanos
-	var actividad_isEmpty = actividad == null || actividad.length == 0;
-	var destino_isEmpty   = destino == null   || destino.length == 0;
-	
-	//Actividad Vacía pero destino con valor
-	if( actividad_isEmpty )
-	{
-		if( !destino_isEmpty )
-		{
-			document.busqueda.action = "busquedaub.html";
-			return true;
-		}
-		else
-		{
-			alert("Por favor, selecciona una opcion");
-			return false;
-		}
-	}
-	
-	//Destino vacío pero actividad con valor
-	if( destino_isEmpty )
-	{
-		if( !actividad_isEmpty )
-		{
-			document.busqueda.action = "busquedares.html";
-			return true;
-		}
-		else
-		{
-			alert("Por favor, selecciona una opcion");
-			return false;
-		}
-	}
-
-}
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script src="app.js"></script>
 </head>
-<body>
+<body ng-app="busquedaApp" ng-controller="busquedaCtrl" >
 <div class="page-header">
   <h1>PRUEBA BUSQUEDAS PORLARUTA</h1>
 </div>
 <div class="container">
 
 
-<form method="POST" id="busqueda" onsubmit="changeAction()" name="busqueda">
-<label>Busqueda por Actividad:</label> <input type="text" name="actividad" id="actividad" class="form-control"/>
+<form ng-submit="busqueda(actividad)">
+<label>Busqueda por Actividad:</label> 
+<input type="text" id="actividad" data-ng-model="actividad.act" class="form-control" autofocus/>
+{{ actividad.act }}
 <br/>
-<label>Busqueda por Destino:</label>   <input type="text" name="destino" id="destino" class="form-control"/>
+<label>Busqueda por Destino:</label>   
+<input type="text" data-ng-model="destino.des" class="form-control"/>
+{{ destino.des }}
 <br/>
 <input type="submit" id="submit" name="buscar" value="busqueda" class="btn btn-default" />
 </div>
 </form>
-
+<table>
+    <tr>
+        <th>Actividad Buscada </th>
+        <th>&nbsp Negocio encontrado</th>
+    </tr>
+    <tr ng-repeat="e in lista_actividad">
+        <td>{{ e.act }}</td>
+        <td>{{ e.negocio }}</td>
+    </tr>
+</table>
 </body>
 </html>

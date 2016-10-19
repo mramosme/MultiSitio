@@ -19,18 +19,19 @@ public class JSONServiceSitio {
 	  @Path("{i}")
 	  @GET
 	  @Produces("application/json")
-	  public Response jsonSitio(@PathParam("i") Integer f) throws JSONException {
+	  public Response jsonSitio(@PathParam("i") String f) throws JSONException {
 		  JSONObject jsonObject = new JSONObject();
-		  FiltroSitio idSitio = new FiltroSitio();
-		  idSitio.setIdSitio(f);
+		  FiltroSitio estadoBusqueda = new FiltroSitio();
+		  estadoBusqueda.setEstado(f);
 		  
-		  List<FiltroSitio> listaSitio = new ConsultasMultiSitioNegocio().consultaSitio(idSitio);
+		  List<FiltroSitio> listaSitio = new ConsultasMultiSitioNegocio().consultaSitio(estadoBusqueda);
 		  for(int i = 0; i < listaSitio.size(); i++) {
 			  String nombre = listaSitio.get(i).getNombre();
 			  String domicilio = listaSitio.get(i).getDomicilio();
 			  String telefono = listaSitio.get(i).getTelefono();
 			  Date fechaRegistro = listaSitio.get(i).getFechaRegistro();
 			  Boolean estatus = listaSitio.get(i).getEstatus();
+			  String estado = listaSitio.get(i).getEstado();
 			  String contactoNombre = listaSitio.get(i).getContactoNombre();
 			  String contactoCalle = listaSitio.get(i).getContactoCalle();
 			  String contactoColonia = listaSitio.get(i).getContactoColonia();
@@ -56,6 +57,7 @@ public class JSONServiceSitio {
 			  jsonObject.put("latitud", latitud);
 			  jsonObject.put("longitud", longitud);
 			  jsonObject.put("zonaNombre", zonaNombre);
+			  jsonObject.put("estado", estado);
 			  jsonObject.put("zonaDescripcion", zonaDescripcion);
 		  }
 		  String result = "" + jsonObject;

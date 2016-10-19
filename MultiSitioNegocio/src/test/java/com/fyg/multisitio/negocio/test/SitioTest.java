@@ -70,6 +70,7 @@ public class SitioTest {
 		   registraSitio.setDomicilio("ESTADO DE MEXICO");
 		   registraSitio.setTelefono("5567384774");
 		   registraSitio.setFechaRegistro(fecha);
+		   registraSitio.setEstado("ESTADO DE MEXICO");
 		   registraSitio.setEstatus(1);
 		   registraSitio.setIdZona(1);
 

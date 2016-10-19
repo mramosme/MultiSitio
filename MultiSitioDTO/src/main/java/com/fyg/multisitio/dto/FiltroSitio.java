@@ -196,4 +196,10 @@ public class FiltroSitio extends ObjetoValor {
 	public String getEstado() {
 		return estado;
 	}
+	/**
+	 * @param estado , ingresa el estado
+	 */
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 }
