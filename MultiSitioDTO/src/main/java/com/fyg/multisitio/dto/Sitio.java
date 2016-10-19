@@ -52,6 +52,10 @@ public class Sitio extends ObjetoValor {
 	 */
 	private int estatus;
 	/**
+	 * Estado donde se encuentra el sitio
+	 */
+	private String estado;
+	/**
 	 * Se crea objeto contacto para el uso del metodo registra ocntacto
 	 */
 	private Contacto objetoContacto;
@@ -206,5 +210,17 @@ public class Sitio extends ObjetoValor {
 	 */
 	public void setObjetoGaleria(Galeria recibeGaleria) {
 		this.objetoGaleria = recibeGaleria;
+	}
+	/**
+	 * @return , obtiene el estado donde se encuentra el sitio
+	 */
+	public String getEstado() {
+		return estado;
+	}
+	/**
+	 * @param estado ,ingresa el estado.
+	 */
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 }

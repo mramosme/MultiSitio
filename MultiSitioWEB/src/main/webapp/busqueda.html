@@ -13,14 +13,47 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
 function changeAction()
 {
-	var actividad = document.getElementById("actividad");
-	if(actividad ==""){
-		alert("si funciona shabo");
+	var actividad = document.getElementById('actividad').value;
+	var destino  = document.getElementById('destino').value;
+	
+	//Booleanos
+	var actividad_isEmpty = actividad == null || actividad.length == 0;
+	var destino_isEmpty   = destino == null   || destino.length == 0;
+	
+	//Actividad Vacía pero destino con valor
+	if( actividad_isEmpty )
+	{
+		if( !destino_isEmpty )
+		{
+			document.busqueda.action = "busquedaub.html";
+			return true;
+		}
+		else
+		{
+			alert("Por favor, selecciona una opcion");
+			return false;
+		}
 	}
+	
+	//Destino vacío pero actividad con valor
+	if( destino_isEmpty )
+	{
+		if( !actividad_isEmpty )
+		{
+			document.busqueda.action = "busquedares.html";
+			return true;
+		}
+		else
+		{
+			alert("Por favor, selecciona una opcion");
+			return false;
+		}
+	}
+
 }
 </script>
 </head>
@@ -31,12 +64,12 @@ function changeAction()
 <div class="container">
 
 
-<form action="" method="GET" id="busqueda" onsubmit="changeAction()">
+<form method="POST" id="busqueda" onsubmit="changeAction()" name="busqueda">
 <label>Busqueda por Actividad:</label> <input type="text" name="actividad" id="actividad" class="form-control"/>
 <br/>
 <label>Busqueda por Destino:</label>   <input type="text" name="destino" id="destino" class="form-control"/>
 <br/>
-<input type="submit" name="buscar" value="busqueda" class="btn btn-default" />
+<input type="submit" id="submit" name="buscar" value="busqueda" class="btn btn-default" />
 </div>
 </form>
 

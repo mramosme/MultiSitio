@@ -79,6 +79,10 @@ public class FiltroSitio extends ObjetoValor {
      */
     private String urlGaleria;
     /**
+     * se asigna el estado
+     */
+    private String estado;
+    /**
      * @return ,Obtiene el id del sitio para consulta
      */
 	public Integer getIdSitio() {
@@ -185,5 +189,11 @@ public class FiltroSitio extends ObjetoValor {
 	 */
 	public String getUrlGaleria() {
 		return urlGaleria;
+	}
+	/**
+	 * @return obtiene el estado 
+	 */
+	public String getEstado() {
+		return estado;
 	}
 }

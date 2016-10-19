@@ -90,14 +90,15 @@ UPDATE sitio SET
       telefono = #{telefono},
       fechaRegistro =#{fechaRegistro},
       estatus   = #{estatus},
-      idZona    = #{idZona}
+      idZona    = #{idZona},
+      estado    = #{estado}
 WHERE id = #{id}
 </update>
 
 <!--- INSERTA EN LA TABLA SITIO-->
 <insert id="insertaRegistroSitio" parameterType="sitio">
-INSERT INTO  sitio(id, nombre,descripcion,idGaleria,contacto,domicilio,telefono,fechaRegistro,estatus,idZona)
-VALUES(#{id},#{nombre},#{descripcion},#{idGaleria},#{contacto},#{domicilio},#{telefono},#{fechaRegistro},#{estatus},#{idZona})
+INSERT INTO  sitio(id, nombre,descripcion,idGaleria,contacto,domicilio,telefono,fechaRegistro,estatus,idZona,estado)
+VALUES(#{id},#{nombre},#{descripcion},#{idGaleria},#{contacto},#{domicilio},#{telefono},#{fechaRegistro},#{estatus},#{idZona},#{estado})
 
 </insert>
 														<!--- OPERACIONES EN LA TABLA ZONA-->
