@@ -26,11 +26,9 @@
 <form ng-submit="busqueda(actividad)">
 <label>Busqueda por Actividad:</label> 
 <input type="text" id="actividad" data-ng-model="actividad.act" class="form-control" autofocus/>
-{{ actividad.act }}
 <br/>
 <label>Busqueda por Destino:</label>   
-<input type="text" data-ng-model="destino.des" class="form-control"/>
-{{ destino.des }}
+<input type="text"  id="destino" data-ng-model="actividad.des" class="form-control"/>
 <br/>
 <input type="submit" id="submit" name="buscar" value="busqueda" class="btn btn-default" />
 </div>
@@ -39,10 +37,23 @@
     <tr>
         <th>Actividad Buscada </th>
         <th>&nbsp Negocio encontrado</th>
+         
     </tr>
-    <tr ng-repeat="e in lista_actividad">
-        <td>{{ e.act }}</td>
-        <td>{{ e.negocio }}</td>
+    <tr ng-repeat="e in data">
+        <td>{{data.descripcionD}}</td>
+        <td>{{data.nombreNegocio}}</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>sitio buscado </th>
+        <th>pueblos magicos</th>
+         
+    </tr>
+    <tr ng-repeat="e in dataSitio">
+        <td>{{dataSitio.estado}}</td>
+        <td>{{dataSitio.nombre}} {{dataSitio.ContactoNombre}} {{datasitio.zonaNombre}}</td>
     </tr>
 </table>
 </body>

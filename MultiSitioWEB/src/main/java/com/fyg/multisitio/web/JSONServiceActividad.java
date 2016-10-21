@@ -22,20 +22,22 @@ public class JSONServiceActividad {
 	 @GET
 	 @Produces("application/json")
 	 public  Response jsonActividadBusqueda (@PathParam("i") String f) throws JSONException {
-		 JSONObject jsonObject = new JSONObject();
+		
 		 Actividad paramNombre = new Actividad();
 		 
 		 paramNombre.setNombre(f);
 		 List<Actividad> lista = new ConsultasMultiSitioNegocio().busquedaActividad(paramNombre);
+		 JSONObject jsonObject = new JSONObject();
 		 for(int i = 0; i < lista.size(); i++) {
 			 String nombre = lista.get(i).getNombre();
 			 String descripcion = lista.get(i).getDescripcion();
 			 
-			 jsonObject.put("nombre", nombre);
-			 jsonObject.put("descripcion", descripcion);
+			 jsonObject.put("nombreNegocio", nombre);
+			 jsonObject.put("descripcionD", descripcion);
+			 
 		 }
 		 String result = "" + jsonObject;
-		 return Response.status(200).entity(result).build();
+		 return Response.status(200).entity(result).build(); 
 	 }
 	
 }
