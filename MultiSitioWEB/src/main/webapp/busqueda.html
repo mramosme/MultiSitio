@@ -39,21 +39,21 @@
         <th>&nbsp Negocio encontrado</th>
          
     </tr>
-    <tr ng-repeat="e in data">
-        <td>{{data.descripcionD}}</td>
-        <td>{{data.nombreNegocio}}</td>
+    <tr ng-repeat="x in data">
+   <td>{{x.descripcionD}}</td>
+   <td>&nbsp {{x.nombreNegocio}}</td>
     </tr>
 </table>
 
 <table>
     <tr>
         <th>sitio buscado </th>
-        <th>pueblos magicos</th>
+        <th>&nbsppueblos magicos</th>
          
     </tr>
-    <tr ng-repeat="e in dataSitio">
-        <td>{{dataSitio.estado}}</td>
-        <td>{{dataSitio.nombre}} {{dataSitio.ContactoNombre}} {{datasitio.zonaNombre}}</td>
+    <tr ng-repeat="d in dataSitio">
+        <td>{{d.estado}}</td>
+        <td>&nbsp {{d.nombre}}</td>
     </tr>
 </table>
 </body>

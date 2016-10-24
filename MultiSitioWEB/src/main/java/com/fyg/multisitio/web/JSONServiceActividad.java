@@ -8,6 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,21 +23,26 @@ public class JSONServiceActividad {
 	 @GET
 	 @Produces("application/json")
 	 public  Response jsonActividadBusqueda (@PathParam("i") String f) throws JSONException {
-		
+			
 		 Actividad paramNombre = new Actividad();
 		 
 		 paramNombre.setNombre(f);
 		 List<Actividad> lista = new ConsultasMultiSitioNegocio().busquedaActividad(paramNombre);
-		 JSONObject jsonObject = new JSONObject();
-		 for(int i = 0; i < lista.size(); i++) {
-			 String nombre = lista.get(i).getNombre();
-			 String descripcion = lista.get(i).getDescripcion();
-			 
-			 jsonObject.put("nombreNegocio", nombre);
-			 jsonObject.put("descripcionD", descripcion);
+
+                 JSONArray jsonArray   = new JSONArray();
+
+		 for(int i = 0; i < lista.size(); i++) 
+		{
+			JSONObject TEMP = new JSONObject();
+
+			 TEMP.put("nombreNegocio", lista.get(i).getNombre());
+			 TEMP.put("descripcionD", lista.get(i).getDescripcion());
+
+			 jsonArray.put(TEMP);
 			 
 		 }
-		 String result = "" + jsonObject;
+		 String result = "" + jsonArray;
+
 		 return Response.status(200).entity(result).build(); 
 	 }
 	

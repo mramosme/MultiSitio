@@ -1,6 +1,6 @@
 package com.fyg.multisitio.web;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -8,6 +8,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.fyg.multisitio.negocio.ConsultasMultiSitioNegocio;
@@ -20,47 +22,36 @@ public class JSONServiceSitio {
 	  @GET
 	  @Produces("application/json")
 	  public Response jsonSitio(@PathParam("i") String f) throws JSONException {
-		  JSONObject jsonObject = new JSONObject();
+		 
 		  FiltroSitio estadoBusqueda = new FiltroSitio();
 		  estadoBusqueda.setEstado(f);
 		  
 		  List<FiltroSitio> listaSitio = new ConsultasMultiSitioNegocio().consultaSitio(estadoBusqueda);
+		  JSONArray jsonArray   = new JSONArray();
+		  
 		  for(int i = 0; i < listaSitio.size(); i++) {
-			  String nombre = listaSitio.get(i).getNombre();
-			  String domicilio = listaSitio.get(i).getDomicilio();
-			  String telefono = listaSitio.get(i).getTelefono();
-			  Date fechaRegistro = listaSitio.get(i).getFechaRegistro();
-			  Boolean estatus = listaSitio.get(i).getEstatus();
-			  String estado = listaSitio.get(i).getEstado();
-			  String contactoNombre = listaSitio.get(i).getContactoNombre();
-			  String contactoCalle = listaSitio.get(i).getContactoCalle();
-			  String contactoColonia = listaSitio.get(i).getContactoColonia();
-			  String contactoTelefono = listaSitio.get(i).getContactoTelefono();
-			  String contactoCorreo = listaSitio.get(i).getContactoCorreo();
-			  String urlGaleria = listaSitio.get(i).getUrlGaleria();
-			  String latitud = listaSitio.get(i).getLatitud();
-			  String longitud = listaSitio.get(i).getLongitud();
-			  String zonaNombre = listaSitio.get(i).getZonaNombre();
-			  String zonaDescripcion = listaSitio.get(i).getZonaDescripcion();
 			  
-			  jsonObject.put("nombre", nombre);
-			  jsonObject.put("domicilio", domicilio);
-			  jsonObject.put("telefono", telefono);
-			  jsonObject.put("fechaRegistro", fechaRegistro);
-			  jsonObject.put("estatus", estatus);
-			  jsonObject.put("contactoNombre", contactoNombre);
-			  jsonObject.put("contactoCalle", contactoCalle);
-			  jsonObject.put("contactoColonia", contactoColonia);
-			  jsonObject.put("contactoTelefono", contactoTelefono);
-			  jsonObject.put("contactoCorreo", contactoCorreo);
-			  jsonObject.put("urlGaleria", urlGaleria);
-			  jsonObject.put("latitud", latitud);
-			  jsonObject.put("longitud", longitud);
-			  jsonObject.put("zonaNombre", zonaNombre);
-			  jsonObject.put("estado", estado);
-			  jsonObject.put("zonaDescripcion", zonaDescripcion);
+			  JSONObject TEMP = new JSONObject();
+			   
+			  TEMP.put("nombre", listaSitio.get(i).getNombre());
+			  TEMP.put("domicilio", listaSitio.get(i).getDomicilio());
+			  TEMP.put("telefono", listaSitio.get(i).getTelefono());
+			  TEMP.put("fechaRegistro", listaSitio.get(i).getFechaRegistro());
+			  TEMP.put("estatus", listaSitio.get(i).getEstatus());
+			  TEMP.put("contactoNombre", listaSitio.get(i).getContactoNombre());
+			  TEMP.put("contactoCalle", listaSitio.get(i).getContactoCalle());
+			  TEMP.put("contactoColonia", listaSitio.get(i).getContactoColonia());
+			  TEMP.put("contactoTelefono", listaSitio.get(i).getContactoTelefono());
+			  TEMP.put("contactoCorreo", listaSitio.get(i).getContactoCorreo());
+			  TEMP.put("urlGaleria", listaSitio.get(i).getUrlGaleria());
+			  TEMP.put("latitud", listaSitio.get(i).getLatitud());
+			  TEMP.put("longitud", listaSitio.get(i).getLongitud());
+			  TEMP.put("zonaNombre", listaSitio.get(i).getZonaNombre());
+			  TEMP.put("estado", listaSitio.get(i).getEstado());
+			  TEMP.put("zonaDescripcion", listaSitio.get(i).getZonaDescripcion());
+			  jsonArray.put(TEMP);
 		  }
-		  String result = "" + jsonObject;
+		  String result = "" + jsonArray;
 		  return Response.status(200).entity(result).build();
 	  }
 }
