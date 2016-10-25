@@ -6,25 +6,24 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.fyg.multisitio.negocio.ConsultasMultiSitioNegocio;
-import com.fyg.multisitio.comun.LogHandler;
-import com.fyg.multisitio.dto.FiltroSitio;
-import com.fyg.multisitio.dto.Negocio;
+import com.fyg.multisitio.dto.Actividad;
+
 
 public class ConsultaTest {
 	private ConsultasMultiSitioNegocio data;
-	private FiltroSitio dataNegocio;
+	private Actividad dataActividad;
 	
 	@Before
 	public void setUp() throws Exception {
 		data = new ConsultasMultiSitioNegocio();
-		dataNegocio = new FiltroSitio();
-		dataNegocio.setIdSitio(1);
+		dataActividad = new Actividad();
+		dataActividad.setNombre("nadar");
 	}
 
 	@Test
 	public void testConsultaNegocio() {
 		try {
-			data.consultaSitio(dataNegocio);
+			data.busquedaActividad(dataActividad);
 			
 		}
 		catch (Exception ex) {
