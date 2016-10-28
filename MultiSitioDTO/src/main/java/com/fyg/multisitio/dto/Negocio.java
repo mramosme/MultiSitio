@@ -102,6 +102,7 @@ public class Negocio  extends ObjetoValor {
 	 *
 	 */
 	private Boolean mascotas;
+	private String opinion;
 	/**
 	 * @return ,Se obtiene el id unico de registro
 	 */
@@ -341,5 +342,17 @@ public class Negocio  extends ObjetoValor {
 	 */
 	public void setObjetoGaleria(Galeria recibeGaleria) {
 		this.objetoGaleria = recibeGaleria;
+	}
+	/**
+	 * @return obtiene una opinion
+	 */
+	public String getOpinion() {
+		return opinion;
+	}
+	/**
+	 * @param opinion ingresa una opinion
+	 */
+	public void setOpinion(String opinion) {
+		this.opinion = opinion;
 	}
 	}

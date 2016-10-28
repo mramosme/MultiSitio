@@ -68,6 +68,10 @@ public class Sitio extends ObjetoValor {
 	 */
 	private int idZona;
 	/**
+	 * Opiniones del sitio
+	 */
+	private String opinion;
+	/**
 	 * @return ,Se obtiene el id unico de registro del sitio
 	 */
 	public int getId() {
@@ -222,5 +226,17 @@ public class Sitio extends ObjetoValor {
 	 */
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	/**
+	 * @return obtiene la opinion del sitio
+	 */
+	public String getOpinion() {
+		return opinion;
+	}
+	/**
+	 * @param opinion ingresa la opinion del sitio
+	 */
+	public void setOpinion(String opinion) {
+		this.opinion = opinion;
 	}
 }
