@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.fyg.multisitio.dao.resources.OperacionesMultiSitioDAO">
+
+<!--- INSERTA EN  LA TABLA CONTACTO-->
+<insert id="insertaRegistroContacto" parameterType="contacto" useGeneratedKeys="true" keyProperty="id"  keyColumn="id">
+INSERT INTO contacto(nombre,calle,colonia,telefono,correo,latitud,longitud)
+            VALUES(#{nombre},#{calle},#{colonia},#{telefono},#{correo},#{latitud},#{longitud})
+            <selectKey keyProperty="id" resultType="Integer" order="AFTER">
+            SELECT LAST_INSERT_ID();
+            </selectKey>
+</insert>
+
+
+
+<!--- ACTUALIZA LA TABLA CONTACTO-->
+<update id="actualizaRegistroContacto" parameterType="contacto">
+UPDATE contacto SET
+       calle     = #{calle},
+       colonia   = #{colonia},
+       telefono  = #{telefono},
+       correo    = #{correo},
+       latitud   = #{latitud},
+       longitud  = #{longitud}
+WHERE id = #{id}
+</update>
+
+
+                                                       <!--- OPERACIONES EN LA TABLA GALERIA-->
+<!--- ACTUALIZA LA TABLA GALERIA-->
+<update id="actualizaRegistroGaleria" parameterType="galeria">
+UPDATE galeria SET
+       urlImagen      = #{urlImagen}
+WHERE  idNegocio      = #{idNegocio}
+</update>
+
+<!--- REALIZA UNA BAJA EN LA TABLA GALERIA-->
+<update id="actualizaEstatusGaleria" parameterType="galeria">
+UPDATE galeria SET
+          estatus     = #{estatus},
+          fechaBaja   =  GETDATE(),
+          usuarioBaja = #{usuarioBaja}
+WHERE idNegocio       = #{idNegocio}
+</update>
+
+<!--- INSERTA EN LA TABLA GALERIA-->
+<insert id="insertaRegistroGaleria" parameterType="galeria" useGeneratedKeys="true" keyProperty="idGaleria"  keyColumn="idGaleria">
+INSERT INTO galeria(urlImagen,estatus,fechaRegistro,usuarioAlta)
+            VALUES(#{urlImagen},#{estatus},#{fechaRegistro},#{usuarioAlta})
+            <selectKey keyProperty="idGaleria" resultType="Integer" order="AFTER">
+            SELECT LAST_INSERT_ID();
+            </selectKey>
+</insert>
+	                                                     <!--- OPERACIONES EN LA TABLA NEGOCIO-->
+
+<!--- ACTUALIZA LA TABLA NEGOCIO-->
+<update id="actualizaRegistroNegocio" parameterType="negocio">
+UPDATE negocio SET
+        nombre           = #{nombre},
+        descripcionCorta = #{descripcionCorta},
+        descripcionLarga = #{descripcionLarga},
+        urlLogotipo      = #{urlLogotipo},
+        estatus          = #{estatus},
+        ligaFB           = #{ligaFB},
+        ligaPagina       = #{ligaPagina},
+        calificacion     = #{calificacion},
+        wifi             = #{wifi},
+        estacionamiento  = #{estacionamiento},
+        areaNinos        = #{areaNinos},
+        mascotas         = #{mascotas}
+WHERE  id = #{id} AND idSitio = #{idSitio}
+</update>
+
+<!--- INSERTA EN LA TABLA NEGOCIO-->
+<insert id="insertaRegistroNegocio" parameterType="negocio">
+INSERT INTO negocio(id,idSitio,idContacto,idGiro,idGaleria,nombre,descripcionCorta,descripcionLarga,urlLogotipo,estatus,ligaFB,ligaPagina,calificacion,wifi,estacionamiento,areaNinos,mascotas)
+VALUES(#{id},#{idSitio},#{idContacto},#{idGiro},#{idGaleria},#{nombre},#{descripcionCorta},#{descripcionLarga},#{urlLogotipo},#{estatus},#{ligaFB},#{ligaPagina},#{calificacion},#{wifi},#{estacionamiento},#{areaNinos},#{mascotas})
+</insert>
+
+														<!--- OPERACIONES EN LA TABLA SITIO-->
+
+<!--- ACTUALIZA LA TABLA SITIO-->
+<update id="actualizaRegistroSitio" parameterType="sitio">
+UPDATE sitio SET
+      nombre = #{nombre},
+      descripcion = #{descripcion},
+      contacto = #{contacto},
+      domicilio = #{domicilio},
+      telefono = #{telefono},
+      fechaRegistro =#{fechaRegistro},
+      estatus   = #{estatus},
+      idZona    = #{idZona},
+      estado    = #{estado}
+WHERE id = #{id}
+</update>
+
+<!--- INSERTA EN LA TABLA SITIO-->
+<insert id="insertaRegistroSitio" parameterType="sitio">
+INSERT INTO  sitio(id, nombre,descripcion,idGaleria,contacto,domicilio,telefono,fechaRegistro,estatus,idZona,estado)
+VALUES(#{id},#{nombre},#{descripcion},#{idGaleria},#{contacto},#{domicilio},#{telefono},#{fechaRegistro},#{estatus},#{idZona},#{estado})
+
+</insert>
+														<!--- OPERACIONES EN LA TABLA ZONA-->
+<!---ACTUALIZA LA TABLA ZONA-->
+<update id="actualizaRegistroZona" parameterType="zona">
+UPDATE zona SET
+       nombre = #{nombre},
+       descripcion = #{descripcion},
+       urlImagen  = #{urlImagen},
+       estatus = #{estatus}
+WHERE  id = #{id}
+</update>
+
+<!--- INSERTA EN LA TABLA ZONA-->
+<insert id="insertaRegistroZona" parameterType="zona">
+INSERT INTO zona(id,nombre,descripcion,urlImagen,estatus)
+VALUES(#{id},#{nombre},#{descripcion},#{urlImagen},#{estatus})
+</insert>
+														<!--- OPERACIONES EN LA TABLA PROMOCION-->
+<!---ACTUALIZA LA TABLA PROMOCION-->
+<update id="actualizaRegistroPromocion" parameterType="promocion">
+UPDATE promocion SET
+       nombre = #{nombre},
+       fechaInicio = #{fechaInicio},
+       fechaFin = #{fechaFin},
+       usuarioRegistro = #{usuarioRegistro}
+WHERE id = #{id}
+</update>
+
+<!--- INSERTA EN LA TABLA PROMOCION-->
+<insert id="insertaRegistroPromocion" parameterType="promocion">
+INSERT INTO promocion(idSitio,idNegocio,nombre,fechaInicio,fechaFin,usuarioRegistro)
+VALUES(#{idSitio}, #{idNegocio}, #{nombre}, #{fechaInicio}, #{fechaFin}, #{usuarioRegistro})
+</insert>
+
+<!--- INSERTA EN LA TABLA ARTICULO-->
+<insert id="insertaRegistroArticulo" parameterType="articulo">
+INSERT INTO articulo(idNegocio,nombre,descripcion,precio,fechaRegistro,estatus)
+VALUES(#{idNegocio},#{nombre},#{descripcion},#{precio},#{fechaRegistro},#{estatus})
+</insert>
+
+<!--- ACTUALIZA EN LA TABLA ARTICULO-->
+<update id="acualizaArticulo" parameterType="articulo">
+UPDATE articulo SET
+		idNegocio  	=	#{idNegocio},
+		nombre		= 	#{nombre},
+		descripcion	=	#{descripcion},
+		precio		=	#{precio},
+		fechaRegistro	#{fechaRegistro},
+		estatus 	=	#{estatus}
+WHERE id = #{id}
+</update>
+
+<!--- INSERTA EN LA TABLA GIRO-->
+<insert id="insertaRegistroGiro" parameterType="giro" useGeneratedKeys="true" keyProperty="idGiro"  keyColumn="idGiro">
+INSERT INTO giro(nombre) VALUES(#{nombreGiro})
+ <selectKey keyProperty="idGiro" resultType="Integer" order="AFTER">
+            SELECT LAST_INSERT_ID();
+            </selectKey>
+</insert>
+
+<!--- ACTUALIZA EN LA TABLA GIRO-->
+<update id="actualizaGiro" parameterType="giro">
+UPDATE giro SET nombre = #{nombreGiro} WHERE idGiro = #{idGiro}
+</update>
+
+<!--- INSERTA EN LA TABLA GIRO-->
+<insert id="insertaRegistroActividad" parameterType="actividad">
+INSERT INTO actividad(nombre,descripcion,idGiro) VALUES(#{nombre},#{descripcion},#{idGiro})
+</insert>
+</mapper>

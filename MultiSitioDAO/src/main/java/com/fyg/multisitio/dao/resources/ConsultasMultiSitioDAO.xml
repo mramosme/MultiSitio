@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.fyg.multisitio.dao.resources.ConsultasMultiSitioDAO">
+
+<!--- CONSULTA EN LA TABLA CONTACTO-->
+<select id="consultaContacto" parameterType="contacto" resultType="string">
+SELECT calle,colonia,telefono,correo
+FROM contacto
+WHERE id =#{id}
+</select>
+
+<!--- CONSULTA EN LA TABLA GALERIA-->
+<select id="consultaGaleria" parameterType="galeria" resultType="string">
+SELECT urlImagen
+FROM galeria
+WHERE idNegocio = #{idNegocio}
+</select>
+
+<!--- CONSULTA EN LA TABLA NEGOCIO-->
+<select id="consultaNegocio" parameterType="negocio" resultType="string">
+SELECT nombre,descripcionCorta,DescripcionLarga,urlLogotipo,estatus,ligaFB,ligaPagina,calificacion,wifi,estacionamiento,areaNinos,mascotas
+FROM negocio
+WHERE id = #{id} AND idSitio = #{idSitio}
+</select>
+
+<!--- CONSULTA EN LA TABLA SITIO-->
+<select id="consultaSitio" parameterType="sitio" resultType="string">
+SELECT nombre,contacto,domicilio,telefono,fechaRegistro,estatus,idZona
+FROM sitio
+WHERE id = #{id}
+</select>
+
+<!--- CONSULTA EN LA TABLA ZONA-->
+<select id="consultaZona" parameterType="zona" resultType="string">
+SELECT nombre,descripcion,urlImagen,estatus
+FROM zona
+WHERE id = #{id}
+</select>
+
+<!--- CONSULTA EN LA TABLA ARTICULO-->
+<select id="consultaArticulo" parameterType="articulo" resultType="Articulo">
+SELECT nombre , descripcion, precio, fechaRegistro, estatus
+FROM articulo
+WHERE id = #{id}
+</select>
+
+<!--- CONSULTA EN LA TABLA GIRO-->
+<select id="consultaGiro" parameterType="giro" resultType="String">
+SELECT nombreGiro FROM giro WHERE id = #{idGiro}
+</select>
+
+<!-- Consulta General Sitio (se estara modificando esta consulta)-->
+<select id="consultaSitioGeneral" parameterType="sitio" resultType="FiltroSitio">
+SELECT sitio.nombre AS nombre ,sitio.domicilio AS domicilio,sitio.telefono AS telefono,sitio.fechaRegistro AS fechaRegistro,sitio.estatus AS estatus,sitio.idZona AS idZona,sitio.estado AS estado, 
+	contacto.nombre AS contactoNombre,contacto.calle AS contactoCalle,contacto.colonia AS contactoColonia,contacto.telefono AS contactoTelefono,
+	contacto.correo AS contactoCorreo,contacto.latitud AS latitud, contacto.longitud AS longitud,
+	zona.nombre AS zonaNombre,zona.descripcion AS zonaDescripcion,galeria.urlImagen AS urlGaleria
+FROM sitio
+	INNER JOIN contacto ON sitio.contacto = contacto.id
+	INNER JOIN galeria on sitio.idGaleria = galeria.idGaleria
+	INNER JOIN zona ON sitio.idZona = zona.id
+	WHERE sitio.estado = #{estado}
+</select>
+
+<!-- Consulta Negocio General -->
+<select id="consultaNegocioGeneral" parameterType="negocio" resultType="FiltroNegocio">
+SELECT negocio.nombre AS nombre,negocio.descripcionLarga AS descripcionLarga,negocio.descripcionCorta AS descripcionCorta,
+negocio.urlLogotipo AS urlLogo, negocio.estatus AS status, negocio.ligaFB AS ligaFB, negocio.ligaPagina AS ligaPagina, negocio.calificacion AS calificacion,
+negocio.wifi AS wifi, negocio.estacionamiento AS estacionamiento, negocio.areaNinos AS areaNinos, negocio.mascotas AS mascotas, galeria.urlImagen AS urlGaleria,
+contacto.nombre AS contactoNombre, contacto.calle AS contactoCalle, contacto.colonia AS contactoColonia, contacto.telefono AS contactoTelefono,
+contacto.correo AS contactoCorreo,contacto.latitud AS latitud,contacto.longitud AS longitud, sitio.nombre AS sitioNombre, sitio.domicilio AS sitioDomicilio,
+sitio.telefono AS sitioTelefono FROM negocio 
+INNER JOIN galeria ON negocio.idGaleria = galeria.idGaleria 
+INNER JOIN contacto ON negocio.idContacto = contacto.id 
+INNER JOIN sitio ON negocio.idSitio = sitio.id 
+WHERE negocio.id = #{idNegocio}
+</select>
+
+<!-- Consulta Actividad General -->
+<select id="busquedaActividad" parameterType="actividad" resultType="Actividad">
+SELECT actividad.descripcion, actividad.idGiro, negocio.nombre,negocio.descripcionLarga
+FROM actividad
+INNER JOIN giro ON actividad.idGiro = giro.idGiro
+INNER JOIN negocio ON giro.idGiro = negocio.idGiro WHERE actividad.nombre = #{nombre}
+</select>
+</mapper>
